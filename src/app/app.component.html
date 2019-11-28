@@ -1,0 +1,12 @@
+<mat-toolbar>
+	<span>Curry Chronicles</span>
+	<button mat-icon-button [matMenuTriggerFor]="appMenu">
+		<mat-icon>more_vert</mat-icon>
+	</button>
+	<mat-menu #appMenu="matMenu">
+		<button mat-menu-item (click)="lolNope()">Settings</button>
+		<button mat-menu-item (click)="lolNope()">Help</button>
+	</mat-menu>
+</mat-toolbar>
+
+<router-outlet></router-outlet>

@@ -1,16 +1,21 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { MatButtonModule, MatIconModule, MatMenuModule, MatToolbarModule } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatMenuModule, MatIconModule, MatToolbarModule } from '@angular/material';
+import { RecipesService } from './infra';
+import { HomeComponent } from './ui';
 
 @NgModule({
 	declarations: [
-		AppComponent
+		AppComponent,
+		HomeComponent
 	],
 	imports: [
 		BrowserModule,
+		HttpClientModule,
 		AppRoutingModule,
 		MatMenuModule,
 		MatButtonModule,
@@ -18,7 +23,9 @@ import { MatButtonModule, MatMenuModule, MatIconModule, MatToolbarModule } from 
 		MatToolbarModule,
 		BrowserAnimationsModule
 	],
-	providers: [],
+	providers: [
+		RecipesService
+	],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }

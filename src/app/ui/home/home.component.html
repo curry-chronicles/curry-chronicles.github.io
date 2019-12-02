@@ -1,5 +1,9 @@
-<ul>
-    <li *ngFor="let overview of overviews">
-        {{ overview.name }}
-    </li>
+<ul *ngIf="overviews$ | async as overviews; else loading">
+	<li *ngFor="let overview of overviews">
+		{{ overview.name }}
+	</li>
 </ul>
+
+<ng-template #loading>
+	<mat-spinner></mat-spinner>
+</ng-template>

@@ -1,19 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RecipesService } from '../../infra';
 import { IRecipeOverview } from '../../models';
+import { Observable } from 'rxjs';
 
 @Component({
 	selector: 'app-home',
 	templateUrl: './home.component.html',
 	styleUrls: ['./home.component.scss']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
 
-	public overviews: IRecipeOverview[];
+	public overviews$: Observable<IRecipeOverview[]>;
 
-	constructor(private recipesService: RecipesService) {
-		this.recipesService.getRecipesOverviews().subscribe(overviews => {
-			this.overviews = overviews;
-		});
+	constructor(
+		private recipesService: RecipesService
+	) { }
+
+	public ngOnInit(): void {
+		this.overviews$ = this.recipesService.getRecipesOverviews();
 	}
 }

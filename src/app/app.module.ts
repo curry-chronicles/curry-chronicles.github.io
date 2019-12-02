@@ -1,6 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { MatButtonModule, MatIconModule, MatMenuModule, MatProgressSpinnerModule, MatToolbarModule, MatCardModule } from '@angular/material';
+import { MatButtonModule, MatIconModule, MatMenuModule, MatProgressSpinnerModule, MatToolbarModule, MatCardModule, MatGridListModule } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
@@ -23,6 +23,7 @@ import { HomeComponent } from './ui';
 		MatToolbarModule,
 		MatProgressSpinnerModule,
 		MatCardModule,
+		MatGridListModule,
 		BrowserAnimationsModule
 	],
 	providers: [

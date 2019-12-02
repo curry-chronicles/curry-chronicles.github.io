@@ -1,6 +1,6 @@
 <ul *ngIf="overviews$ | async as overviews; else loading">
 	<li *ngFor="let overview of overviews">
-		{{ overview.name }}
+		{{ overview.name }} - {{ overview.headLine }}
 	</li>
 </ul>
 

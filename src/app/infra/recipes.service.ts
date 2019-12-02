@@ -10,11 +10,13 @@ import { IRecipeOverview } from '../models';
 const RECIPES_OVERVIEWS: IRecipeOverview[] = [
 	{
 		name: 'Oignons aux oignons',
-		mainPicture: 'onions-damn-inions.jpg'
+		mainPicture: 'onions-damn-inions.jpg',
+		headLine: 'Damn onions'
 	},
 	{
 		name: 'Famous bacon burger',
-		mainPicture: 'bacon.jpg'
+		mainPicture: 'bacon.jpg',
+		headLine: 'BURGERS'
 	}
 ];
 

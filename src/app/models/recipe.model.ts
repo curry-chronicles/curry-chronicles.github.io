@@ -1,3 +1,6 @@
+import { IIngredient } from './ingredient.model';
+import { IDirection } from './direction.model';
+
 export interface IRecipeOverview {
 	name: string;
 	mainPicture: string;
@@ -5,8 +8,10 @@ export interface IRecipeOverview {
 }
 
 export interface IRecipe extends IRecipeOverview {
-	/**
-	 * TODO everything
-	 */
 	servesHowManyPeople: number;
+	preparationTime: number; // Timespan to implement ourselves
+	cookingTime: number;
+	description: string;
+	ingredients: IIngredient[];
+	directions: IDirection[];
 }

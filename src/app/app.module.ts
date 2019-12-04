@@ -1,17 +1,19 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { MatButtonModule, MatIconModule, MatMenuModule, MatProgressSpinnerModule, MatToolbarModule, MatCardModule, MatGridListModule } from '@angular/material';
+import { MatButtonModule, MatCardModule, MatGridListModule, MatIconModule, MatMenuModule, MatProgressSpinnerModule, MatToolbarModule, MatListModule } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RecipesService } from './infra';
 import { HomeComponent } from './ui';
+import { RecipeComponent } from './ui/recipe';
 
 @NgModule({
 	declarations: [
 		AppComponent,
-		HomeComponent
+		HomeComponent,
+		RecipeComponent
 	],
 	imports: [
 		BrowserModule,
@@ -24,6 +26,7 @@ import { HomeComponent } from './ui';
 		MatProgressSpinnerModule,
 		MatCardModule,
 		MatGridListModule,
+		MatListModule,
 		BrowserAnimationsModule
 	],
 	providers: [

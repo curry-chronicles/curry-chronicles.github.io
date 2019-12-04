@@ -1,0 +1,17 @@
+<mat-card *ngIf="recipe$ | async as recipe">
+    <mat-card-title>{{ recipe.name }}</mat-card-title>
+    <mat-card-subtitle>{{ recipe.description }}</mat-card-subtitle>
+    <div>{{ recipe.servesHowManyPeople }}  |  {{ recipe.preparationTime }}  |  {{ recipe.cookingTime }}</div>
+    <mat-card-content>
+        <mat-list>
+            <mat-list-item *ngFor="let ingredient of recipe.ingredients">
+                {{ ingredient.amount }}{{ ingredient.unit }} {{ ingredient.name }}
+            </mat-list-item>
+        </mat-list>
+        <mat-list>
+                <mat-list-item *ngFor="let direction of recipe.directions">
+                    {{ direction.description }}
+                </mat-list-item>
+            </mat-list>
+    </mat-card-content>
+</mat-card>

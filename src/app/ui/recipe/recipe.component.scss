@@ -1,0 +1,15 @@
+.layout {
+	display: flex;
+}
+
+.ingredients {
+	.ingredient {}
+}
+
+.directions {
+	.direction {
+		.chip {
+			margin-right: 0.333rem;
+		}
+	}
+}

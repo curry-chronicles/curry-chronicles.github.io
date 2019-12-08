@@ -2,6 +2,7 @@
     <mat-card-title>{{ recipe.name }}</mat-card-title>
     <mat-card-subtitle>{{ recipe.description }}</mat-card-subtitle>
     <div>{{ recipe.servesHowManyPeople }}  |  {{ recipe.preparationTime }}  |  {{ recipe.cookingTime }}</div>
+    <img [src]="recipe.mainPicture">
     <mat-card-content>
         <mat-list>
             <mat-list-item *ngFor="let ingredient of recipe.ingredients">

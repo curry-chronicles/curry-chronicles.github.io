@@ -26,6 +26,7 @@ const DEFAULT_RECIPE: IRecipe = {
 
 @Injectable()
 export class RecipesService {
+	private static recipes: IRecipe[];
 
 	constructor(private http: HttpClient) { }
 
@@ -41,8 +42,12 @@ export class RecipesService {
 	}
 
 	private getRecipes(): IRecipe[] {
-		const recipes = [...RECIPES];
-		recipes.forEach(recipe => recipe.mainPicture = `http://${IMG_SERVER}${recipe.mainPicture}`);
-		return recipes;
+		if (RecipesService.recipes == null) {
+			RecipesService.recipes = [...RECIPES];
+			RecipesService.recipes.forEach(recipe => {
+				recipe.mainPicture = `http://${IMG_SERVER}${recipe.mainPicture}`
+			});
+		}
+		return RecipesService.recipes;
 	}
 }

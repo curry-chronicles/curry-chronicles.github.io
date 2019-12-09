@@ -1,9 +1,9 @@
 <mat-grid-list *ngIf="overviews$ | async as overviews; else loading" cols="3" gutterSize="1rem">
-	<mat-grid-tile *ngFor="let overview of overviews">
+	<mat-grid-tile *ngFor="let overview of overviews" [routerLink]="overview.id">
 		<mat-grid-tile-header>
 			<h3>{{ overview.name }}</h3>
 		</mat-grid-tile-header>
-		<img src="https://imgur.com/xghY0XR.jpg">
+		<img [src]="overview.mainPicture">
 		<mat-grid-tile-footer>
 			<p>{{ overview.headLine }}</p>
 		</mat-grid-tile-footer>

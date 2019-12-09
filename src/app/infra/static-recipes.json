@@ -1,0 +1,943 @@
+[{
+	"id": "soupepoulet",
+	"name": "Soupe de poulet aux légumes",
+	"publicationDate": "Nov 24, 2019",
+	"mainPicture": "soupepoulet.jpg",
+	"headLine": "Idéal quand t'as 40 de fièvre",
+	"servesHowManyPeople": 2,
+	"preparationTime": "1:00:00",
+	"cookingTime": "2:00:00",
+	"description": "Bastien a trouvé ça sur Imgur, on a voulu faire pareil. Ah au fait, c'est super long à faire (mais quand t'es malade c'est top).",
+	"ingredients": [{
+		"name": "cuisses de poulet",
+		"amount": 4
+	}, {
+		"name": "carottes",
+		"amount": 2
+	}, {
+		"name": "navets",
+		"amount": 2
+	}, {
+		"name": "poivron rouge",
+		"amount": 1
+	}, {
+		"name": "bouquet garni",
+		"amount": 1
+	}, {
+		"name": "Du persil"
+	}, {
+		"name": "fenouil",
+		"amount": 0.5
+	}, {
+		"name": "oignon",
+		"amount": 1
+	}, {
+		"name": "de champignons de Paris",
+		"amount": 250,
+		"unit": "g"
+	}, {
+		"name": "cuillère à soupe de curcuma",
+		"amount": 1
+	}, {
+		"name": "cuillère à soupe de cumin",
+		"amount": 1
+	}, {
+		"name": "cuillère à soupe de piment rouge en poudre",
+		"amount": 1
+	}, {
+		"name": "Un peu de vin rouge"
+	}, {
+		"name": "Huile d'olive"
+	}],
+	"directions": [{
+		"description": "Faire revenir les cuisses de poulet 3 minutes de chaque côté."
+	}, {
+		"description": "Faire cuire lentement les cuisses de poulet dans l'eau. Mettre le poulet au fond d'une cocotte puis ajouter de l'eau jusqu'à recouvrir les cuisses."
+	}, {
+		"description": "Porter l'eau à ébullition, puis mettre imédiatement à feu doux. Recouvrir puis laisser confire une heure sous pression."
+	}, {
+		"description": "Effilocher les cuisses de poulet avec deux fourchettes. Ne pas jeter le bouillon."
+	}, {
+		"description": "Hâcher le persil et couper les champignons."
+	}, {
+		"description": "Faire revenir les carottes, navets, poivron, fenouil et l'oignon à l'huile d'olive."
+	}, {
+		"description": "Laisser un trou au milieu de la table afin de faire 3 tas d'épices (curcuma, cumin, piment rouge). Laisser les épices cuire quelque temps puis mélanger le tout."
+	}, {
+		"description": "Mettre tous les légumes dans le bouillon puis ajouter le persil, les champignons et le bouquet garni."
+	}, {
+		"description": "Laisser à feu doux 20 minutes."
+	}, {
+		"description": "Ajouter le poulet effiloché et le vin rouge puis laisser cuire encore 40 minutes."
+	}, {
+		"description": "Retirer le bouquet garni."
+	}, {
+		"description": "Verser dans un bol ou une assiette creuse (vous pouvez essayer dans une assiette plate mais le résultat sera triste)."
+	}, {
+		"description": "Bravo, vous avez vaincu l'hiver."
+	}]
+}, {
+	"id": "quichethon",
+	"name": "Quiche au thon",
+	"publicationDate": "Apr 30, 2019",
+	"mainPicture": "quichethon.jpg",
+	"headLine": "Elle est belle ma quiche",
+	"servesHowManyPeople": 2,
+	"preparationTime": "00:30:00",
+	"cookingTime": "00:45:00",
+	"description": "Cette quiche au thon est incroyable",
+	"ingredients": [{
+		"name": "boîte de thon (200-280g)",
+		"amount": 1
+	}, {
+		"name": "pâte feuilletée",
+		"amount": 1
+	}, {
+		"name": "échalottes",
+		"amount": 2
+	}, {
+		"name": "de champignons",
+		"amount": 500,
+		"unit": "g"
+	}, {
+		"name": "oeufs",
+		"amount": 2
+	}, {
+		"name": "30cl de crème semi-épaisse"
+	}, {
+		"name": "Quelques brins de ciboulette"
+	}, {
+		"name": "Un peu de beurre"
+	}, {
+		"name": "Sel"
+	}, {
+		"name": "Poivre"
+	}],
+	"directions": [{
+		"description": "Emietter le thon sur la base de la pâte."
+	}, {
+		"description": "Faire revenir les echalottes dans le beurre."
+	}, {
+		"description": "Ajouter les champignons dans la poêle avec les échalottes et continuer à faire revenir."
+	}, {
+		"description": "Ajouter les échalottes + champis par-dessus le thon sur la pâte."
+	}, {
+		"description": "Préparer la crème : crème + oeufs + sel + poivre + ciboulette ciselée dans un bol ou saladier puis touiller."
+	}, {
+		"description": "Ajouter la crème sur la pâte."
+	}, {
+		"description": "Ne pas hésiter à bouger le plat pour répartir la crème."
+	}, {
+		"description": "Cuire au four pendant 40 min à 180°C à chaleur tournante."
+	}, {
+		"description": "Cuire les 5 dernières minutes au four en grill par le dessus pour dorer la quiche."
+	}, {
+		"description": "Régales-toi mon pote."
+	}]
+}, {
+	"id": "lasagne",
+	"name": "Lasagnes Bellegrave Médoc 2015",
+	"publicationDate": "Aug 06, 2019",
+	"mainPicture": "lasagne.jpg",
+	"headLine": "Elles coûtent cher",
+	"servesHowManyPeople": 4,
+	"preparationTime": "00:60:00",
+	"cookingTime": "00:25:00",
+	"description": "Et sa sauce béchamel ressuscitée",
+	"ingredients": [{
+		"name": "paquet de pâtes de lasagnes",
+		"amount": 1
+	}, {
+		"name": "oignons jaunes",
+		"amount": 3
+	}, {
+		"name": "gousses d'ail",
+		"amount": 2
+	}, {
+		"name": "carotte",
+		"amount": 1
+	}, {
+		"name": "de viande hachée",
+		"amount": 700,
+		"unit": "g"
+	}, {
+		"name": "de purée de tomate",
+		"amount": 800,
+		"unit": "g"
+	}, {
+		"name": "20cl de vin rouge (de préférence un château Bellegrave Médoc 2015)"
+	}, {
+		"name": "feuilles de laurier",
+		"amount": 2
+	}, {
+		"name": "branches de thym",
+		"amount": 2
+	}, {
+		"name": "feuilles de basilic",
+		"amount": 10
+	}, {
+		"name": "pincées de muscade râpée",
+		"amount": 3
+	}, {
+		"name": "de gruyère rapé",
+		"amount": 100,
+		"unit": "g"
+	}, {
+		"name": "Sel"
+	}, {
+		"name": "Poivre"
+	}, {
+		"name": "de farine",
+		"amount": 100,
+		"unit": "g"
+	}, {
+		"name": "de beurre demi-sel",
+		"amount": 125,
+		"unit": "g"
+	}, {
+		"name": "de lait",
+		"amount": 1,
+		"unit": "L"
+	}],
+	"directions": [{
+		"description": "Faire revenir gousses hachées d'ail et les oignons émincés dans un peu d'huile d'olive."
+	}, {
+		"description": "Ajouter la carotte puis la viande et faire revenir le tout."
+	}, {
+		"description": "Au bout de quelques minutes, ajouter le vin rouge. Vous rendre compte que vous avez pris un vin beaucoup trop cher. Laisser cuire jusqu'à évaporation."
+	}, {
+		"description": "Ajouter la purée de tomates, 15cl d'eau, le laurier, le thymm et le basilic."
+	}, {
+		"description": "Saler, poivrer, puis laisser mijoter à feu doux 45 minutes."
+	}, {
+		"description": "Préparer la béchamel : faire fondre le beurre."
+	}, {
+		"description": "Hors du feu, ajouter la farine d'un coup."
+	}, {
+		"description": "Remettre sur le feu et remuer avec un fouet jusqu'à l'obtention d'un mélange bien lisse. Ça risque de ressembler à rien au début mais c'est normal, t'avais qu'à rester devant le feu tout le temps. On ne déconne pas avec la béchamel."
+	}, {
+		"description": "Ajouter le lait peu à peu tout en remuant, jusqu'à ce que le mélange s'épaississe et devienne une crème."
+	}, {
+		"description": "Ensuite, parfumer avec la muscade, saler, poivrer. Laisser cuire environ 5 minutes, à feu très doux, en remuant."
+	}, {
+		"description": "Préchauffer le four à 200°C (thermostat 6-7). Huiler le plat à lasagnes. Poser une fine couche de béchamel puis des feuilles de lasagnes, de la bolognaise, de la béchamel et du parmesan. Répéter l'opération 3 fois de suite."
+	}, {
+		"description": "Sur la dernière couche de lasagnes, ne mettre que de la béchamel et recouvrir de fromage râpé. Parsemer quelques noisettes de beurre."
+	}, {
+		"description": "Enfourner pour environ 25 minutes de cuisson à chaleur tournante."
+	}, {
+		"description": "Régalez vous aves vos amis, parce qu'un plat n'a jamais auant de saveur que lorsqu'il est partagé (ahah)"
+	}]
+}, {
+	"id": "bolos",
+	"name": "Spaghettis bolognaise",
+	"publicationDate": "Apr 11, 2019",
+	"mainPicture": "bolos.jpg",
+	"headLine": "Mieux qu'en Italie",
+	"servesHowManyPeople": 2,
+	"preparationTime": "00:30:00",
+	"cookingTime": "00:60:00",
+	"description": "La photo n'est pas ouf mais c'est vraiment bon",
+	"ingredients": [{
+		"name": "de viande de boeuf hachée",
+		"amount": 230,
+		"unit": "g"
+	}, {
+		"name": "de spaghettis (oui j'en mets pas mal)",
+		"amount": 300,
+		"unit": "g"
+	}, {
+		"name": "oignons",
+		"amount": 2
+	}, {
+		"name": "carottes",
+		"amount": 2
+	}, {
+		"name": "Sauce soja sucrée"
+	}, {
+		"name": "bouillon cube dégraissé 100% végétal",
+		"amount": 1
+	}, {
+		"name": "de coulis de tomates",
+		"amount": 400,
+		"unit": "g"
+	}, {
+		"name": "Un peu de beurre"
+	}],
+	"directions": [{
+		"description": "Eplucher les carottes et les cuire 40 min jusqu'à ce qu'elles soient fondantes."
+	}, {
+		"description": "Faire revenir les oigons dans de l'eau mélangée à n peu de sauce soja sucrée (ça te pose un problème ?)"
+	}, {
+		"description": "Préparer le ragù : chauffer la sauce à feu doux, puis y ajouter les carottes et les oigons."
+	}, {
+		"description": "Ajouter la viande."
+	}, {
+		"description": "Laisser mijoter 15-20 min à feu doux."
+	}, {
+		"description": "Faire cuire les pâtes al dente avec le bouillon cube."
+	}, {
+		"description": "Beurrer les spaghettis puis les disposer dans l'assiette."
+	}, {
+		"description": "Ajouter le ragù sur les pâtes."
+	}, {
+		"description": "C'est bon."
+	}]
+}, {
+	"id": "pateschevrelegumes",
+	"name": "Shaghettis aux poivrons, courgettes et fromage de chèvre",
+	"publicationDate": "May 23, 2019",
+	"mainPicture": "pateschevrelegumes.jpg",
+	"headLine": "C'est coloré, c'est joli",
+	"servesHowManyPeople": 2,
+	"preparationTime": "00:20:00",
+	"cookingTime": "00:20:00",
+	"description": "Idéal pour manger du fromage tout en se donnant bonne conscience",
+	"ingredients": [{
+		"name": "de spaghettis",
+		"amount": 200,
+		"unit": "g"
+	}, {
+		"name": "poivrons (rouge, jaune)",
+		"amount": 2
+	}, {
+		"name": "courgettes",
+		"amount": 2
+	}, {
+		"name": "bûchette de fromage de chèvre",
+		"amount": 0.75
+	}, {
+		"name": "Huile d'olive"
+	}, {
+		"name": "bouillon cube dégraissé 100% végétal",
+		"amount": 1
+	}, {
+		"name": "Beurre"
+	}],
+	"directions": [{
+		"description": "Couper les poivrons et les courgettes."
+	}, {
+		"description": "Les faire revenir dans l'huile d'olive."
+	}, {
+		"description": "Cuire les spaghettis al dente avec le bouillon cube."
+	}, {
+		"description": "Couper le fromage de chèvre en petits morceaux."
+	}, {
+		"description": "Beurrer les spaghettis puis y ajouter le fromage de chèvre."
+	}, {
+		"description": "Servir dans une assiette, puis ajouter les légumes."
+	}, {
+		"description": "Annoncez à la Terre entière que vous mangez vegan."
+	}]
+}, {
+	"id": "soupecourgettes",
+	"name": "Soupe froide de courgettes",
+	"publicationDate": "Jun 08, 2019",
+	"mainPicture": "soupecourgettes.jpg",
+	"headLine": "Idéal pour l'été, cette entrée déchire",
+	"servesHowManyPeople": 4,
+	"preparationTime": "00:30:00",
+	"cookingTime": "00:5:00",
+	"description": "Recette honteusement pompée sur <a href=\"https://www.youtube.com/watch?v=wj2cFMBusMw\">Nadlex Cook</a>. Abonnez-vous !",
+	"ingredients": [{
+		"name": "feuilles de menthe",
+		"amount": 20
+	}, {
+		"name": "courgettes",
+		"amount": 4
+	}, {
+		"name": "poignée de gros sel",
+		"amount": 1
+	}, {
+		"name": "cuillères à soupe de crème fraîche",
+		"amount": 4
+	}, {
+		"name": "cuillères à soupe d'huile d'olive",
+		"amount": 2
+	}, {
+		"name": "0.5 cuillère à café de sel"
+	}, {
+		"name": "0.5 cuillère à café de cumin en poudre"
+	}],
+	"directions": [{
+		"description": "Faire bouillir l'eau avec le gros sel."
+	}, {
+		"description": "Eplucher la menthe."
+	}, {
+		"description": "Circoncir les courgettes (avec bienveillance). Eplucher au niveau des impuretés s'il y en a, puis couper en tranches."
+	}, {
+		"description": "Cuire les courgettes dans l'eau bouillante pendant 5 min. (Il faut qu'elles soient encore un peu fermes)"
+	}, {
+		"description": "Préparer la crème : mélanger la crème faîche avec l'huile d'olive, le sel et le cumin."
+	}, {
+		"description": "Une fois que les tranches de courgettes sont cuites, les mettre dans un saladier d'eau gelée avec des glaçons."
+	}, {
+		"description": "Mettre les tranches de courgettes dans un mixeur avec la crème et les feuilles de menthe. Si t'as seulement un mixeur plongeur, tu fais comme moi et tu fais ça dans un saladier, ça passe."
+	}, {
+		"description": "Servir la soupe dans une assiette creuse."
+	}, {
+		"description": "Ajouter une feuille de menthe par-dessus pour faire classe."
+	}, {
+		"description": "Tada."
+	}]
+}, {
+	"id": "porcmozza",
+	"name": "Boulettes porc mozza",
+	"publicationDate": "Oct 06, 2019",
+	"mainPicture": "porcmozza.jpg",
+	"headLine": "Gruik",
+	"servesHowManyPeople": 2,
+	"preparationTime": "00:30:00",
+	"cookingTime": "00:20:00",
+	"description": "C'est toujours meilleur avec du fromage dedans",
+	"ingredients": [{
+		"name": "de chait à saucisse",
+		"amount": 300,
+		"unit": "g"
+	}, {
+		"name": "de mozzarella",
+		"amount": 150,
+		"unit": "g"
+	}, {
+		"name": "de maracornis complets",
+		"amount": 225,
+		"unit": "g"
+	}, {
+		"name": "de passata",
+		"amount": 300,
+		"unit": "g"
+	}, {
+		"name": "tomates",
+		"amount": 2
+	}, {
+		"name": "oigon jaune",
+		"amount": 1
+	}, {
+		"name": "gousse d'ail",
+		"amount": 1
+	}, {
+		"name": "mini bouquet garni",
+		"amount": 1
+	}, {
+		"name": "Sel"
+	}, {
+		"name": "Poivre"
+	}, {
+		"name": "Huilde d'olive"
+	}],
+	"directions": [{
+		"description": "Couper les oignons puis les faire revenir à l'huile (genre dans un wok)."
+	}, {
+		"description": "Emincer l'ail et l'ajouter aux morceaux d'oignons."
+	}, {
+		"description": "Préparer les boulettes : couper la mozzarella en petits dés et en faire des bouboules avec la chair à saucisse."
+	}, {
+		"description": "Ajouter les boulettes aux oignons à feu fort pendent 2-3 minutes en remuant."
+	}, {
+		"description": "Mettre sur feu doux puis couvrir."
+	}, {
+		"description": "Ajouter la passata."
+	}, {
+		"description": "Couper la tomate en petits dés puis les ajouter dans le wok."
+	}, {
+		"description": "Saler, poivrer, puis effeuiller le bouquet garni en le frottant."
+	}, {
+		"description": "Laisser mijoter une dizaine de minutes."
+	}, {
+		"description": "Faire cuire les pâtes (7 min)."
+	}, {
+		"description": "Disposer les pâtes puis les boulettes en sauce dans une assiette."
+	}, {
+		"description": "Régales-toi."
+	}]
+}, {
+	"id": "pouletcurry",
+	"name": "Poulet Curry",
+	"publicationDate": "Jul 30, 2018",
+	"mainPicture": "pouletcurry.jpg",
+	"headLine": "C'est du poulet avec du curry",
+	"servesHowManyPeople": 3,
+	"preparationTime": "00:30:00",
+	"cookingTime": "00:45:00",
+	"description": "Un décilieux poulet au curry qui rendra jaloux tout votre entourage",
+	"ingredients": [{
+		"name": "escalopes de poulet",
+		"amount": 4
+	}, {
+		"name": "de pâte de curry",
+		"amount": 165,
+		"unit": "g"
+	}, {
+		"name": "de lait de coco",
+		"amount": 400,
+		"unit": "ml"
+	}, {
+		"name": "oignons",
+		"amount": 3
+	}, {
+		"name": "de gingembre en poudre",
+		"amount": 5,
+		"unit": "g"
+	}, {
+		"name": "poivrons (rouge, jaune)",
+		"amount": 3
+	}, {
+		"name": "de riz",
+		"amount": 300,
+		"unit": "g"
+	}],
+	"directions": [{
+		"description": "Couper les oignons puis les faire revenir à l'eau et à la poudre de gingembre."
+	}, {
+		"description": "Couper le poulet en bouts ni trop gros ni trop petits (en gros tu te débrouilles mais fais ça bien)."
+	}, {
+		"description": "Couper les poivrons en fines lamelles. En gros tu coupes en 8 puis tu fais des lamelles sur les morceaux."
+	}, {
+		"description": "Mettre le poulet dans une marmite ou une cocotte à feu moyen. Ajouter immédiatement le lait de coco."
+	}, {
+		"description": "Ajouter la pâte de curry en 3 fois (t'ajoutes, tu mélanges)."
+	}, {
+		"description": "Ajouter les oigons, mélanger."
+	}, {
+		"description": "Ajouter les oignons au gingembre, mélanger."
+	}, {
+		"description": "Laisser une dizaine de minutes à feu moyen."
+	}, {
+		"description": "Laisser mijoter 35 minutes à feux très doux."
+	}, {
+		"description": "A 10 minutes de la fin, faire cuire le riz."
+	}, {
+		"description": "Servir le riz dans une assiette puis ajouter une portion de poulet curry."
+	}, {
+		"description": "Prends une photo et partages-là sur Instagram #pouletcurry."
+	}]
+}, {
+	"id": "legumesfour",
+	"name": "Légumes du soleil au four",
+	"publicationDate": "Oct 08, 2018",
+	"mainPicture": "legumesfour.jpg",
+	"headLine": "C'est bon les légumes",
+	"servesHowManyPeople": 2,
+	"preparationTime": "00:30:00",
+	"cookingTime": "J'ai:00:00",
+	"description": "Tout le soleil du monde sur votre assiette.",
+	"ingredients": [{
+		"name": "poivrons (rouge, jaune)",
+		"amount": 2
+	}, {
+		"name": "10-12 carottes"
+	}, {
+		"name": "oigons",
+		"amount": 3
+	}, {
+		"name": "ail",
+		"amount": 1
+	}, {
+		"name": "Quelques tomates cerises"
+	}, {
+		"name": "Herbes de provence"
+	}, {
+		"name": "Huile d'olive"
+	}, {
+		"name": "Sel"
+	}, {
+		"name": "Poivre"
+	}],
+	"directions": [{
+		"description": "Couper les poivrons, les carottes, les oignons, l'ail et les tomates cerises."
+	}, {
+		"description": "Sortir le lèche frites, y déposer du papier sulfurisé."
+	}, {
+		"description": "Répartir intelligemment les légumes fraîchement découpés sur le lèche frites."
+	}, {
+		"description": "Arroser d'huile d'olive, de sel, de poivre et d'herbes de Provence"
+	}, {
+		"description": "Mettre au four à 200°C, jusqu'à ce que le bord des poivrons noircisse."
+	}, {
+		"description": "Enjoy."
+	}]
+}, {
+	"id": "potaufeu",
+	"name": "Pot-au-feu Poulet",
+	"publicationDate": "Nov 11, 2018",
+	"mainPicture": "potaufeu.jpg",
+	"headLine": "J'avais envie de poulet",
+	"servesHowManyPeople": 2,
+	"preparationTime": "00:20:00",
+	"cookingTime": "2:00:00",
+	"description": "C'est comme un pot-au-feu, mais avec du poulet",
+	"ingredients": [{
+		"name": "escalopes de poulet",
+		"amount": 2
+	}, {
+		"name": "carottes",
+		"amount": 2
+	}, {
+		"name": "navets",
+		"amount": 2
+	}, {
+		"name": "poireau",
+		"amount": 1
+	}, {
+		"name": "oignon",
+		"amount": 1
+	}, {
+		"name": "gousse d'ail",
+		"amount": 1
+	}, {
+		"name": "bouquet garni",
+		"amount": 1
+	}, {
+		"name": "clous de girofle",
+		"amount": 4
+	}, {
+		"name": "Sel"
+	}, {
+		"name": "Poivre"
+	}, {
+		"name": "de pâtes",
+		"amount": 200,
+		"unit": "g"
+	}],
+	"directions": [{
+		"description": "Préparer les légumes."
+	}, {
+		"description": "Planter les clous de girofle dans les morceaux d'oignons."
+	}, {
+		"description": "Faire bouillir 3 litres d'eau puis tout jeter dedans (légumes, bouquet garni, poulet, set, poivre)."
+	}, {
+		"description": "Faire cuire pendant plus de 2h. Ecumer de temps en temps."
+	}, {
+		"description": "Faire des pâtes."
+	}, {
+		"description": "Récupérer les ingrédients via un écumoir et verser dans un bol ou une assiette creuse, avec un fond de bouillon."
+	}, {
+		"description": "En fait c'était vraiment comme un pot-au-feu, mais avec du poulet (et des pâtes)."
+	}]
+}, {
+	"id": "jap",
+	"name": "M2 sauce salée supplément brochettes",
+	"publicationDate": "Jul 21, 2019",
+	"mainPicture": "jap.jpg",
+	"headLine": "C'est pas trop cher en plus",
+	"servesHowManyPeople": 1,
+	"preparationTime": "00:0:00",
+	"cookingTime": "00:0:00",
+	"description": "Le menu japonais du dimanche soir",
+	"ingredients": [{
+		"name": "Un téléphone"
+	}],
+	"directions": [{
+		"description": "Commander japonais."
+	}, {
+		"description": "Ne pas oublier de mettre le wasabi sous le saumon des sushis (on n'est pas des sauvages)."
+	}, {
+		"description": "Manger."
+	}]
+}, {
+	"id": "saladepoulet",
+	"name": "Salade légendaire du paradis",
+	"publicationDate": "Jul 29, 2019",
+	"mainPicture": "saladepoulet.jpg",
+	"headLine": "Avec un nom pareil pourquoi hésiter",
+	"servesHowManyPeople": 3,
+	"preparationTime": "00:40:00",
+	"cookingTime": "00:15:00",
+	"description": "C'est toujours meilleur avec du poulet",
+	"ingredients": [{
+		"name": "salade mâche",
+		"amount": 1
+	}, {
+		"name": "sachet d'oignons frits",
+		"amount": 1
+	}, {
+		"name": "panier de tomates cerises",
+		"amount": 1
+	}, {
+		"name": "carottes",
+		"amount": 2
+	}, {
+		"name": "gouda",
+		"amount": 1
+	}, {
+		"name": "escalopes de poulet (environ 150g chacune)",
+		"amount": 2
+	}, {
+		"name": "filet d'huile d'olive",
+		"amount": 1
+	}, {
+		"name": "boîte de chapelure",
+		"amount": 1
+	}, {
+		"name": "oeufs",
+		"amount": 2
+	}, {
+		"name": "cuillères à soupe de moutarde",
+		"amount": 2
+	}, {
+		"name": "cuillère à soupe de miel",
+		"amount": 1
+	}, {
+		"name": "cuillères à soupe d'huile de tournesol",
+		"amount": 4
+	}, {
+		"name": "cuillère à soupe de vinaigre de vin rouge",
+		"amount": 1
+	}, {
+		"name": "pincée de sel",
+		"amount": 1
+	}, {
+		"name": "cuillère à café de poivre",
+		"amount": 1
+	}, {
+		"name": "cuillère à café de curry (plutôt jaune, style korma)",
+		"amount": 0.5
+	}],
+	"directions": [{
+		"description": "Casser les oeufs dans un bol et les touiller en omelette en mélangeant avec une pincée de sel."
+	}, {
+		"description": "Couper le poulet en petit morceaux puis tremper ces morceaux dans l'oeuf avant de les recouvrir de chapelure."
+	}, {
+		"description": "Paner les morceaux de poulet dans une poêle avec un fond d'huile d'olive (feu moyen)."
+	}, {
+		"description": "Laver la salade. (Retirer au préalable l'abeille piégée dans le sachet, c'est ce qui nous est hélas arrivé)"
+	}, {
+		"description": "Couper les carottes, les tomates cerises et le gouda."
+	}, {
+		"description": "Préparer la sauce : mélanger la moutarde, le miel, l'huile de tournesol, le vinaigre, le sel, le poivre et le curry de manière homogène."
+	}, {
+		"description": "Ajouter les légumes dans la salade, puis le poulet pané."
+	}, {
+		"description": "Servir dans des assiettes, puis ajouter la sauce, tel un filet majestueux."
+	}, {
+		"description": "Ouvrez votre restaurant hipster à Paris."
+	}]
+}, {
+	"id": "cuissespoulet",
+	"name": "Cuisses de poulet aux légumes",
+	"publicationDate": "Oct 08, 2018",
+	"mainPicture": "cuissespoulet.jpg",
+	"headLine": "J'ai pas trouvé mieux comme nom",
+	"servesHowManyPeople": 2,
+	"preparationTime": "00:30:00",
+	"cookingTime": "00:30:00",
+	"description": "C'est de cuisses de poulet avec des légumes.",
+	"ingredients": [{
+		"name": "cuisses de poulet",
+		"amount": 2
+	}, {
+		"name": "carottes",
+		"amount": 4
+	}, {
+		"name": "oignons jaunes",
+		"amount": 2
+	}, {
+		"name": "oignons vers",
+		"amount": 2
+	}, {
+		"name": "cuillères à soupe d'huile de sésame",
+		"amount": 2
+	}, {
+		"name": "cuillères à soupe de sauce Sriracha",
+		"amount": 2
+	}, {
+		"name": "cuillères à soupe de vinaigre de riz",
+		"amount": 2
+	}, {
+		"name": "cuillères à soupe de sauce soja sucrée",
+		"amount": 2
+	}, {
+		"name": "cuillère à soupe de miel",
+		"amount": 1
+	}, {
+		"name": "morceau de gingembre",
+		"amount": 1
+	}, {
+		"name": "Sel"
+	}],
+	"directions": [{
+		"description": "Préchauffer le four à 210°C."
+	}, {
+		"description": "Assaisonner les cuisses de poulet au sel puis badigeonner avec l'huile de sésame (uniquement d'un côté)."
+	}, {
+		"description": "Mettre les cuisses dans une poêle à feu doux pendant environ 5 minutes, jusqu'à ce qu'un fond de gras recouvre la pôele. Ensuite, retourner les cuisses et augmenter la chaleur à feu moyen."
+	}, {
+		"description": "Au bout de 10-12 minutes au total, sortir les cuisses de la poêle."
+	}, {
+		"description": "Retirer une partie du gras de la poêle en laissant l'équivalent d'environ 2 cuillères à soupe de gras du poulet, puis cuire les carottes dedans quelques minutes de chaque côté jusqu'à ce qu'elles soient bien dorées."
+	}, {
+		"description": "Transférer le contenu de la pôele dans le four pendant 8 à 10 minutes."
+	}, {
+		"description": "Préparer la sauce : mélanger la sauce soja + Sriracha + vinaigre de riz + miel + huile. Râper finement le gingembre dans le bol, puis mélanger à nouveau."
+	}, {
+		"description": "Remettre les carottes dans la poêle, remettre le poulet par-dessus, puis couper les oignons jaunes + verts sur le tout."
+	}, {
+		"description": "Laisser quelques minutes à feu doux en couvrant la pôele."
+	}, {
+		"description": "Régalez-vous."
+	}]
+}, {
+	"id": "pelmenis",
+	"name": "Pelmenis",
+	"publicationDate": "May 28, 2019",
+	"mainPicture": "pelmenis.jpg",
+	"headLine": "Un plat russe sans vodka",
+	"servesHowManyPeople": 2,
+	"preparationTime": "00:60:00",
+	"cookingTime": "00:5:00",
+	"description": "Les fameux raviolis russes",
+	"ingredients": [{
+		"name": "de farine",
+		"amount": 500,
+		"unit": "g"
+	}, {
+		"name": "de viande de boeuf hachée",
+		"amount": 250,
+		"unit": "g"
+	}, {
+		"name": "de viande de porc hachée",
+		"amount": 250,
+		"unit": "g"
+	}, {
+		"name": "oignon",
+		"amount": 1
+	}, {
+		"name": "Sel"
+	}, {
+		"name": "Poivre"
+	}],
+	"directions": [{
+		"description": "Prévoir un plan de travail d'une taille suffisante pour étaler la pâte."
+	}, {
+		"description": "Prévoir également de préférence une pelmenitsa (la grille à pelmenis)."
+	}, {
+		"description": "Préparer la pâte : mettre la farine dans un saladier avec du sel, puis ajouter l'eau petit à petit en pétrissant la pâte jusqu'à en faire une bouboule étastique."
+	}, {
+		"description": "Ne pas hésiter à ajouter de la farine jusqu'à saturer la pâte."
+	}, {
+		"description": "Mettre de la farine partout : sur le plan de travail, sur le rouleau à pâtisserie, dans votre baignoire (optionnel)."
+	}, {
+		"description": "Séparer la boule en deux et étaler deux pâtes fines circulaires."
+	}, {
+		"description": "Etaler la première pâte sur la pelmenitsa, puis enfoncer la pâte au niveau des trous."
+	}, {
+		"description": "Préparer la farce : boeuf, porc, oignons hachés, poivre, sel."
+	}, {
+		"description": "Mettre des petites boules de farce dans les trous (il paraît qu'il faut pas trop en mettre, moi je m'en fous je blinde)."
+	}, {
+		"description": "Ajouter par-dessus la deuxième couche de pâte."
+	}, {
+		"description": "Etaler (d'abord délicatement avec les mains, puis comme un bourrin avec le rouleau)."
+	}, {
+		"description": "Retourner la pelmenitsa puis enlevez vos raviolis."
+	}, {
+		"description": "Faire cuire les raviolis dans l'eai bouillante pendant 5 min."
+	}, {
+		"description": "Remerciez votre pote qui vous a prêté sa pelmenitsa. C'est un type bien."
+	}]
+}, {
+	"id": "pouletcaramel",
+	"name": "Poulet Caramel",
+	"publicationDate": "Mar 1, 2019",
+	"mainPicture": "pouletcaramel.jpg",
+	"headLine": "Plus jamais je fais du caramel",
+	"servesHowManyPeople": 2,
+	"preparationTime": "00:10:00",
+	"cookingTime": "15:00:00",
+	"description": "Bien plus qu'une recette, un défi",
+	"ingredients": [{
+		"name": "escalopes de poulet",
+		"amount": 2
+	}, {
+		"name": "Sucre"
+	}, {
+		"name": "Riz"
+	}, {
+		"name": "Petits pois"
+	}, {
+		"name": "Dés de jambon"
+	}, {
+		"name": "oeufs",
+		"amount": 2
+	}, {
+		"name": "Sauce soja salée"
+	}],
+	"directions": [{
+		"description": "Préparer le riz cantonais : commencer par faire cuire le riz (2 volumes d'eau)."
+	}, {
+		"description": "Cuire les oefs en omelette puis leur exploser la tronche à coups de spatule."
+	}, {
+		"description": "Ajouter l'oeuf, puis le jambon et les petits pois au riz, et mélanger avec un peu de sauce soja salée."
+	}, {
+		"description": "Couper le poulet en morceaux et le cuire à la poêle."
+	}, {
+		"description": "Préparer le caramel : là ça devient super chiant, à une échelle cosmique."
+	}, {
+		"description": "Faire chauffer de l'eau dans une pôele avec du sucre. Une énorme blinde de sucre."
+	}, {
+		"description": "Ne surtout pas mélanger, sinon c'est encore plus chiant."
+	}, {
+		"description": "Chauffer au max jusqu'à ce que l'eau jaunisse. Ce ne sera presque pas progressif. Il est très important de rester tout le temps devant, car la couleur ne bougera absolument pas jusqu'au dernier moment."
+	}, {
+		"description": "Aux premiers signes de changement de couleur, baisser le feu au minimum le plus rapidement possible."
+	}, {
+		"description": "Attendre que le caramel devienne orange et visqueux."
+	}, {
+		"description": "Si le caramel durcit, il suffit d'ajouter de l'eau et de le mélanger avec."
+	}, {
+		"description": "S'il redevient trop liquide, il faudra rechauffer et attendre."
+	}, {
+		"description": "Trouver l'équilibre dans cet superposition d'états quantique est le secret du caramel. Seul l'élu peut y parvenir."
+	}, {
+		"description": "Lorsque le caramel ressemble à du caramel, verser rapidement sur le poulet et mélanger."
+	}, {
+		"description": "Régalez-vous, réjouissez-vous d'avoir réussi à faire du caramel, et ne recommencez plus jamais."
+	}]
+}, {
+	"id": "brocoquinoa",
+	"name": "Brocolis Poulet Quinoa",
+	"publicationDate": "Mar 05, 2019",
+	"mainPicture": "brocoquinoa.jpg",
+	"headLine": "It's so healthy",
+	"servesHowManyPeople": 2,
+	"preparationTime": "00:10:00",
+	"cookingTime": "00:20:00",
+	"description": "La recette qui consiste à prendre ce qu'il reste dans ton frigo",
+	"ingredients": [{
+		"name": "gros brocoli",
+		"amount": 1
+	}, {
+		"name": "escalopes de poulet",
+		"amount": 2
+	}, {
+		"name": "de viande de porc hachée",
+		"amount": 250,
+		"unit": "g"
+	}, {
+		"name": "de quinoa",
+		"amount": 250,
+		"unit": "g"
+	}, {
+		"name": "Sauce soja salée"
+	}, {
+		"name": "Sauce sriracha"
+	}, {
+		"name": "bouillon cube 100% végétal",
+		"amount": 1
+	}],
+	"directions": [{
+		"description": "Faire cuire le quinoa dans l'eau bouillante avec le bouillon cube à feu moyen puis doux (1.5 fois de volume d'eau)."
+	}, {
+		"description": "Séparer le brocoli en plein de petits morceaux."
+	}, {
+		"description": "Faire cuire les brocolis dans l'eau bouillante 6-7 min."
+	}, {
+		"description": "Couper le poulet en morceaux."
+	}, {
+		"description": "Ajouter le poulet et les brocolis au quinoa."
+	}, {
+		"description": "Ajouter de la sauce soja salée ainsi que de la sauce sriracha, puis mélanger allègrement."
+	}, {
+		"description": "Vous pouvez raconter demain au travail que vous avez mangé des brocolis, et qu'en plus vous avez aimé ça."
+	}]
+}]

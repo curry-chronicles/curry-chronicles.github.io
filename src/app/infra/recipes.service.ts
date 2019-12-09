@@ -1,16 +1,20 @@
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
 import { IRecipe, IRecipeOverview } from '../models';
+import * as RECIPES_JSON from './static-recipes.json';
 
+const IMG_SERVER = "sebferrer.fr/curry-chronicles/recipe/img/";
+
+const RECIPES: IRecipe[] = (RECIPES_JSON as any).default;
 const DEFAULT_RECIPE: IRecipe = {
 	id: 'default',
 	name: 'Default',
-	mainPicture: 'onions-damn-inions.jpg',
+	mainPicture: 'https://scontent-cdg2-1.cdninstagram.com/v/t51.2885-15/e35/69316854_509717162933918_2113320626994813678_n.jpg?_nc_ht=scontent-cdg2-1.cdninstagram.com&_nc_cat=102&oh=fed08636a6b4e2d543e79bc5611e2477&oe=5E8C34D4',
 	headLine: '',
 	servesHowManyPeople: 0,
-	preparationTime: 0,
-	cookingTime: 0,
+	preparationTime: '00:00:00',
+	cookingTime: '00:00:00',
 	description: 'Un délicieux DEFAULT',
 	ingredients: [
 		{ name: 'Rien', amount: 1 }
@@ -20,53 +24,30 @@ const DEFAULT_RECIPE: IRecipe = {
 	]
 };
 
-const RECIPES: IRecipe[] = [
-	{
-		id: 'curry',
-		name: 'Poulet Curry',
-		mainPicture: 'onions-damn-inions.jpg',
-		headLine: 'C\'est du poulet avec du curry',
-		servesHowManyPeople: 3,
-		preparationTime: 30,
-		cookingTime: 45,
-		description: 'Un décilieux poulet au curry qui rendra jaloux tout votre entourage',
-		ingredients: [
-			{ name: 'Escalope de poulet', amount: 4 },
-			{ name: 'Pâte de curry', amount: 165, unit: 'g' },
-			{ name: 'Lait de coco', amount: 400, unit: 'ml' },
-			{ name: 'Oignon', amount: 3 },
-			{ name: 'Gingembre en poudre', amount: 5, unit: 'g' },
-			{ name: 'Poivron (rouge, jaune)', amount: 3 },
-			{ name: 'Riz', amount: 300, unit: 'g' }
-		],
-		directions: [
-			{ description: 'Couper les oignons puis les faire revenir à l\'eau et à la poudre de gingembre.' },
-			{ description: 'Couper le poulet en bouts ni trop gros ni trop petits (en gros tu te débrouilles mais fais ça bien).' },
-			{ description: 'Couper les poivrons en fines lamelles. En gros tu coupes en 8 puis tu fais des lamelles sur les morceaux.' },
-			{ description: 'Mettre le poulet dans une marmite ou une cocotte à feu moyen. Ajouter immédiatement le lait de coco.' },
-			{ description: 'Ajouter la pâte de curry en 3 fois (t\'ajoutes, tu mélanges).' },
-			{ description: 'Ajouter les oigons, mélanger.' },
-			{ description: 'Laisser une dizaine de minutes à feu moyen.' },
-			{ description: 'Laisser mijoter 35 minutes à feux très doux.' },
-			{ description: 'A 10 minutes de la fin, faire cuire le riz.' },
-			{ description: 'Servir le riz dans une assiette puis ajouter une portion de poulet curry.' },
-			{ description: 'Prends une photo et partages-là sur Instagram #pouletcurry.' }
-		]
-	}
-];
-
 @Injectable()
 export class RecipesService {
+	private static recipes: IRecipe[];
 
 	constructor(private http: HttpClient) { }
 
 	public getRecipesOverviews(): Observable<IRecipeOverview[]> {
-		return of(RECIPES).pipe(
+		return of(this.getRecipes()).pipe(
 			// delay(2000)
 		);
 	}
 
 	public getRecipe(id: string): Observable<IRecipe> {
-		return of(RECIPES.find(recipe => recipe.id === id) || DEFAULT_RECIPE);
+		const recipes = this.getRecipes();
+		return of(recipes.find(recipe => recipe.id === id) || DEFAULT_RECIPE);
+	}
+
+	private getRecipes(): IRecipe[] {
+		if (RecipesService.recipes == null) {
+			RecipesService.recipes = [...RECIPES];
+			RecipesService.recipes.forEach(recipe => {
+				recipe.mainPicture = `http://${IMG_SERVER}${recipe.mainPicture}`
+			});
+		}
+		return RecipesService.recipes;
 	}
 }

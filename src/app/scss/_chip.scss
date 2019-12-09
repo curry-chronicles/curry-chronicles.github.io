@@ -1,0 +1,11 @@
+@import "./variables";
+@import "~@angular/material/theming";
+
+.chip {
+	display: inline-block;
+	background: mat-color($primary-palette);
+	padding: 7px 12px;
+	border-radius: 16px;
+	font-weight: 500;
+	font-size: 14px;
+}

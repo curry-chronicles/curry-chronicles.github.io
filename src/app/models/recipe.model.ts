@@ -10,8 +10,8 @@ export interface IRecipeOverview {
 
 export interface IRecipe extends IRecipeOverview {
 	servesHowManyPeople: number;
-	preparationTime: number; // Timespan to implement ourselves
-	cookingTime: number;
+	preparationTime: string; // Timespan to implement ourselves
+	cookingTime: string;
 	description: string;
 	ingredients: IIngredient[];
 	directions: IDirection[];

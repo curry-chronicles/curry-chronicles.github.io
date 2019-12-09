@@ -1,4 +1,5 @@
 <mat-card *ngIf="recipe$ | async as recipe">
+	<div>{{ recipe.publicationDate }}</div>
 	<mat-card-title>{{ recipe.name }}</mat-card-title>
 	<mat-card-subtitle>{{ recipe.description }}</mat-card-subtitle>
 	<div>{{ recipe.servesHowManyPeople }} | {{ recipe.preparationTime }} | {{ recipe.cookingTime }}</div>

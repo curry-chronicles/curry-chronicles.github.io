@@ -1,0 +1,11 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+$curry-chronicles-primary: mat-palette($mat-red);
+$curry-chronicles-accent: mat-palette($mat-pink, A200, A100, A400);
+$curry-chronicles-warn: mat-palette($mat-red);
+
+$curry-chronicles-theme: mat-light-theme($curry-chronicles-primary, $curry-chronicles-accent, $curry-chronicles-warn);
+
+@include angular-material-theme($curry-chronicles-theme);

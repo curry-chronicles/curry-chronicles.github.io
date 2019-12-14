@@ -1,15 +1,27 @@
-<mat-grid-list *ngIf="overviews$ | async as overviews; else loading" cols="3" gutterSize="1rem">
-	<mat-grid-tile *ngFor="let overview of overviews" [routerLink]="overview.id">
-		<mat-grid-tile-header>
-			<h3>{{ overview.name }}</h3>
-		</mat-grid-tile-header>
-		<img [src]="overview.mainPicture">
-		<mat-grid-tile-footer>
-			<p>{{ overview.headLine }}</p>
-		</mat-grid-tile-footer>
-	</mat-grid-tile>
-</mat-grid-list>
+<h1>
+	<mat-icon>restaurant</mat-icon>
+	Liste des recettes
+</h1>
+
+<div class="recipes-list" *ngIf="overviews$ | async as overviews; else loading">
+	<article class="card" *ngFor="let overview of overviews" [routerLink]="overview.id">
+		<header>
+			<h2>
+				{{ overview.name }}
+			</h2>
+		</header>
+		<content>
+			<img [src]="overview.mainPicture">
+		</content>
+		<footer>
+			{{ overview.headLine }}
+		</footer>
+	</article>
+</div>
 
 <ng-template #loading>
-	<mat-spinner></mat-spinner>
+	<div class="recipes-loader">
+		<mat-spinner></mat-spinner>
+		<span>Cuisson en cours...</span>
+	</div>
 </ng-template>

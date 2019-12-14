@@ -1,5 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
-@import "./app/scss/chip";
+
+@import "components/components";
+@import "theme";
+
+@import url("https://fonts.googleapis.com/css?family=Varela+Round&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Courgette&display=swap");
 
 html,
 body {
@@ -8,7 +13,6 @@ body {
 
 body {
 	margin: 0;
-	font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 html,
@@ -18,5 +22,5 @@ body {
 
 body {
 	margin: 0;
-	font-family: Roboto, "Helvetica Neue", sans-serif;
+	font-family: "Varela Round", sans-serif;
 }

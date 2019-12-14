@@ -1,9 +1,39 @@
+@import "colors", "variables";
+
 mat-toolbar {
-	margin-bottom: 1rem;
+	margin-bottom: 2rem;
+	background: white;
+	box-shadow: 0 6px 15px rgba(36, 37, 38, .08);
+
+	@media screen and (min-width: $tablet-width-breakpoint) {
+		padding-left: 20%;
+	}
+}
+
+.website-title {
+	font-family: $website-title-font-stack;
+
+	mat-icon {
+		color: $primary-color;
+		position: absolute;
+		top: 1.20rem;
+	}
+
+	span {
+		margin-left: 30px;
+		font-size: 1.4rem;
+	}
 }
 
 .content {
 	display: block;
-	width: 70%;
-	margin: auto;
+
+	@media screen and (min-width: $tablet-width-breakpoint) {
+		width: 60%;
+		margin: auto;
+	}
+
+	@media screen and (max-width: $tablet-width-breakpoint) {
+		margin: 0 1rem;
+	}
 }

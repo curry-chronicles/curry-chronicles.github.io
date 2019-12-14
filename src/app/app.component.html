@@ -1,12 +1,8 @@
 <mat-toolbar>
-	<span routerLink="">Curry Chronicles</span>
-	<button mat-icon-button [matMenuTriggerFor]="appMenu">
-		<mat-icon>more_vert</mat-icon>
-	</button>
-	<mat-menu #appMenu="matMenu">
-		<button mat-menu-item (click)="lolNope()">Settings</button>
-		<button mat-menu-item (click)="lolNope()">Help</button>
-	</mat-menu>
+	<a routerLink="" class="website-title">
+		<mat-icon>local_dining</mat-icon>
+		<span>Curry Chronicles</span>
+	</a>
 </mat-toolbar>
 
 <div class="content">

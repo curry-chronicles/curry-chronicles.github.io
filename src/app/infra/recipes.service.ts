@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { delay } from 'rxjs/operators';
 import { IRecipe, IRecipeOverview } from '../models';
 import * as RECIPES_JSON from './static-recipes.json';
 
@@ -32,7 +33,7 @@ export class RecipesService {
 
 	public getRecipesOverviews(): Observable<IRecipeOverview[]> {
 		return of(this.getRecipes()).pipe(
-			// delay(2000)
+			delay(1000)
 		);
 	}
 

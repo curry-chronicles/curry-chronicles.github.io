@@ -1,9 +1,9 @@
-@import "./variables";
+@import "./../variables";
 @import "~@angular/material/theming";
 
 .chip {
 	display: inline-block;
-	background: mat-color($primary-palette);
+	background: #E13B2B;
 	padding: 7px 12px;
 	border-radius: 16px;
 	font-weight: 500;

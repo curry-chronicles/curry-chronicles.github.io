@@ -4,8 +4,16 @@
 }
 
 app-ingredients-list,
-.directions {
+app-directions-list {
 	flex: 0 1 50%;
+}
+
+app-ingredients-list {
+	padding-right: .5rem;
+}
+
+app-directions-list {
+	padding-left: .5rem;
 }
 
 .directions {

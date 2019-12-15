@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { IIngredient } from '../../models';
 
 @Component({
@@ -6,12 +6,7 @@ import { IIngredient } from '../../models';
 	templateUrl: './ingredients-list.component.html',
 	styleUrls: ['./ingredients-list.component.scss']
 })
-export class IngredientsListComponent implements OnInit {
-
+export class IngredientsListComponent {
 	@Input()
 	public ingredients: IIngredient[];
-
-	public ngOnInit(): void {
-
-	}
 }

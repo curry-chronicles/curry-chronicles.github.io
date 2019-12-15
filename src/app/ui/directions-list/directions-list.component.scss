@@ -1,0 +1,35 @@
+@import "colors";
+
+li {
+	display: block;
+	counter-increment: direction-counter;
+	padding-left: 1rem;
+	margin-bottom: 1.875rem;
+
+	font-size: 1rem;
+	color: $grey;
+
+	// Direction index
+	&::before {
+		vertical-align: top;
+		display: inline-block;
+		width: 2rem;
+		height: 2rem;
+		line-height: 2rem;
+		background-color: $lightest;
+
+		content: counter(direction-counter);
+
+		font-size: 16px;
+		font-weight: 700;
+		color: $light;
+		text-align: center;
+	}
+
+	>span {
+		display: inline-block;
+		margin-left: 1.25rem;
+		width: calc(100% - 3.25rem);
+		line-height: 1.5;
+	}
+}

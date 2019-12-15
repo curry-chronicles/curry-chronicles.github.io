@@ -1,9 +1,11 @@
 .layout {
 	display: flex;
+	flex: 0 1 50%;
 }
 
-.ingredients {
-	.ingredient {}
+app-ingredients-list,
+.directions {
+	flex: 0 1 50%;
 }
 
 .directions {

@@ -7,12 +7,7 @@
 	<mat-card-content class="layout">
 
 		<!-- Ingredients -->
-		<mat-list class="ingredients">
-			<h3>Ingrédients</h3>
-			<mat-list-item *ngFor="let ingredient of recipe.ingredients">
-				{{ ingredient.amount }}{{ ingredient.unit }} {{ ingredient.name }}
-			</mat-list-item>
-		</mat-list>
+		<app-ingredients-list [ingredients]="recipe.ingredients"></app-ingredients-list>
 
 		<!-- Directions -->
 		<mat-list class="directions">

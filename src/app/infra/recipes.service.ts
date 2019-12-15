@@ -1,13 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { delay } from 'rxjs/operators';
+import { catchError, map, shareReplay } from 'rxjs/operators';
 import { IRecipe, IRecipeOverview } from '../models';
-import * as RECIPES_JSON from './static-recipes.json';
 
 const IMG_SERVER = "sebferrer.fr/curry-chronicles/recipe/img/";
+const RECIPES_API = "http://164.132.97.208:5002/api/recipes";
 
-const RECIPES: IRecipe[] = (RECIPES_JSON as any).default;
 const DEFAULT_RECIPE: IRecipe = {
 	id: 'default',
 	name: 'Default',
@@ -27,28 +26,32 @@ const DEFAULT_RECIPE: IRecipe = {
 
 @Injectable()
 export class RecipesService {
-	private static recipes: IRecipe[];
+	private static recipes: Observable<IRecipeOverview[]>;
 
 	constructor(private http: HttpClient) { }
 
 	public getRecipesOverviews(): Observable<IRecipeOverview[]> {
-		return of(this.getRecipes()).pipe(
-			delay(1000)
-		);
+		if (RecipesService.recipes == null) {
+			RecipesService.recipes = this.http.get<IRecipeOverview[]>(RECIPES_API).pipe(
+				map(recipes => {
+					recipes.forEach(recipe => {
+						recipe.mainPicture = `http://${IMG_SERVER}${recipe.mainPicture}`;
+					});
+					return recipes;
+				}),
+				shareReplay(1)
+			);
+		}
+		return RecipesService.recipes;
 	}
 
 	public getRecipe(id: string): Observable<IRecipe> {
-		const recipes = this.getRecipes();
-		return of(recipes.find(recipe => recipe.id === id) || DEFAULT_RECIPE);
-	}
-
-	private getRecipes(): IRecipe[] {
-		if (RecipesService.recipes == null) {
-			RecipesService.recipes = [...RECIPES];
-			RecipesService.recipes.forEach(recipe => {
-				recipe.mainPicture = `http://${IMG_SERVER}${recipe.mainPicture}`
-			});
-		}
-		return RecipesService.recipes;
+		return this.http.get<IRecipe>(`${RECIPES_API}/${id}`)
+			.pipe(map(recipe => {
+				recipe.mainPicture = `http://${IMG_SERVER}${recipe.mainPicture}`;
+				return recipe;
+			}), catchError(err => {
+				return of(DEFAULT_RECIPE);
+			}));
 	}
 }

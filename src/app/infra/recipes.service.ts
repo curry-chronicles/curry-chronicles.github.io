@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { delay, map, catchError } from 'rxjs/operators';
+import { catchError, map, shareReplay } from 'rxjs/operators';
 import { IRecipe, IRecipeOverview } from '../models';
 
 const IMG_SERVER = "sebferrer.fr/curry-chronicles/recipe/img/";
@@ -32,17 +32,17 @@ export class RecipesService {
 
 	public getRecipesOverviews(): Observable<IRecipeOverview[]> {
 		if (RecipesService.recipes == null) {
-			RecipesService.recipes = this.http.get<IRecipeOverview[]>(RECIPES_API);
-			RecipesService.recipes = RecipesService.recipes.pipe(map(recipes => {
-				recipes.forEach(recipe => {
-					recipe.mainPicture = `http://${IMG_SERVER}${recipe.mainPicture}`;
-				});
-				return recipes;
-			}));
+			RecipesService.recipes = this.http.get<IRecipeOverview[]>(RECIPES_API).pipe(
+				map(recipes => {
+					recipes.forEach(recipe => {
+						recipe.mainPicture = `http://${IMG_SERVER}${recipe.mainPicture}`;
+					});
+					return recipes;
+				}),
+				shareReplay(1)
+			);
 		}
-		return RecipesService.recipes.pipe(
-			delay(1000)
-		);
+		return RecipesService.recipes;
 	}
 
 	public getRecipe(id: string): Observable<IRecipe> {

@@ -11,7 +11,9 @@ mat-toolbar {
 }
 
 .website-title {
-	font-family: $website-title-font-stack;
+	span {
+		font-family: $website-title-font-stack;
+	}
 
 	mat-icon {
 		color: $primary-color;
@@ -27,6 +29,7 @@ mat-toolbar {
 
 .content {
 	display: block;
+	max-width: 1140px;
 
 	@media screen and (min-width: $tablet-width-breakpoint) {
 		width: 60%;

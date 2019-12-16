@@ -1,4 +1,16 @@
-@import "colors";
+@import "colors", "variables";
+
+:host {
+	display: block;
+	max-width: 730px;
+	margin: auto;
+}
+
+@media screen and (max-width: $tablet-width-breakpoint) {
+	:host {
+		max-width: inherit;
+	}
+}
 
 .layout {
 	display: flex;

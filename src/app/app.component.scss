@@ -29,14 +29,13 @@ mat-toolbar {
 
 .content {
 	display: block;
-	max-width: 730px;
 
 	@media screen and (min-width: $tablet-width-breakpoint) {
+		width: 60%;
 		margin: auto;
 	}
 
 	@media screen and (max-width: $tablet-width-breakpoint) {
-		max-width: inherit;
 		margin: 0 1rem;
 	}
 }

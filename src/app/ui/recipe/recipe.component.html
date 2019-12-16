@@ -1,13 +1,14 @@
-<mat-card *ngIf="recipe$ | async as recipe">
+<ng-container *ngIf="recipe$ | async as recipe">
 
-	<div>{{ recipe.publicationDate }}</div>
-	<mat-card-title>{{ recipe.name }}</mat-card-title>
-	<mat-card-subtitle>{{ recipe.description }}</mat-card-subtitle>
-	<div>{{ recipe.servesHowManyPeople }} | {{ recipe.preparationTime }} | {{ recipe.cookingTime }}</div>
-	<img [src]="recipe.mainPicture">
+	<h4>{{ recipe.publicationDate }}</h4>
+	<h1>{{ recipe.name }}</h1>
+
+	<app-recipe-header [recipe]="recipe"></app-recipe-header>
+
+	<span class="description">{{ recipe.description }}</span>
 
 	<mat-card-content class="layout">
 		<app-ingredients-list [ingredients]="recipe.ingredients"></app-ingredients-list>
 		<app-directions-list [directions]="recipe.directions"></app-directions-list>
 	</mat-card-content>
-</mat-card>
+</ng-container>

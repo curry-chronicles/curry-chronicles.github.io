@@ -4,7 +4,7 @@ h1 {
 	font-size: 1.25rem;
 	padding-bottom: 1.5rem;
 	margin-bottom: 2rem;
-	color: $light;
+	color: $grey;
 	display: block;
 	font-weight: normal;
 	border-bottom: 1px dashed $lighter;
@@ -58,7 +58,7 @@ h1 {
 	>footer {
 		background-color: white;
 		padding: 0.5rem;
-		color: $light;
+		color: $grey;
 		font-size: 1rem;
 		text-align: center;
 	}
@@ -75,6 +75,6 @@ h1 {
 	}
 
 	>span {
-		color: $light;
+		color: $grey;
 	}
 }

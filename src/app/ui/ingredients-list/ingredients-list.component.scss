@@ -1,0 +1,22 @@
+@import "variables", "colors";
+
+:host {
+	display: block;
+}
+
+ul {
+	background: $lightest;
+	padding: 0.875rem 1.875rem;
+}
+
+li {
+	padding: 0.625rem 0 !important;
+	border-bottom: 1px dashed $lighter;
+
+	color: $grey;
+	font-size: 16px;
+
+	&:last-child {
+		border-bottom: none;
+	}
+}

@@ -1,0 +1,18 @@
+<img [src]="recipe.mainPicture">
+<header>
+	<div>
+		<label for="servesHowManyPeople">Pour</label>
+		<mat-icon>group</mat-icon>
+		<span name="servesHowManyPeople">{{ recipe.servesHowManyPeople }} personnes</span>
+	</div>
+	<div>
+		<label for="preparationTime">Préparation</label>
+		<mat-icon>timer</mat-icon>
+		<span name="preparationTime">{{ recipe.preparationTime }}</span>
+	</div>
+	<div>
+		<label for="cookingTime">Cuisson</label>
+		<mat-icon>timer</mat-icon>
+		<span name="cookingTime">{{ recipe.cookingTime }}</span>
+	</div>
+</header>

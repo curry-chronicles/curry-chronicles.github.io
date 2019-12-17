@@ -11,7 +11,9 @@ mat-toolbar {
 }
 
 .website-title {
-	font-family: $website-title-font-stack;
+	span {
+		font-family: $website-title-font-stack;
+	}
 
 	mat-icon {
 		color: $primary-color;

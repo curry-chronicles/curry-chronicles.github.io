@@ -1,26 +1,14 @@
-<mat-card *ngIf="recipe$ | async as recipe">
-	<div>{{ recipe.publicationDate }}</div>
-	<mat-card-title>{{ recipe.name }}</mat-card-title>
-	<mat-card-subtitle>{{ recipe.description }}</mat-card-subtitle>
-	<div>{{ recipe.servesHowManyPeople }} | {{ recipe.preparationTime }} | {{ recipe.cookingTime }}</div>
-	<img [src]="recipe.mainPicture">
+<ng-container *ngIf="recipe$ | async as recipe">
+
+	<h4>{{ recipe.publicationDate }}</h4>
+	<h1>{{ recipe.name }}</h1>
+
+	<app-recipe-header [recipe]="recipe"></app-recipe-header>
+
+	<span class="description">{{ recipe.description }}</span>
+
 	<mat-card-content class="layout">
-
-		<!-- Ingredients -->
-		<mat-list class="ingredients">
-			<h3>Ingrédients</h3>
-			<mat-list-item *ngFor="let ingredient of recipe.ingredients">
-				{{ ingredient.amount }}{{ ingredient.unit }} {{ ingredient.name }}
-			</mat-list-item>
-		</mat-list>
-
-		<!-- Directions -->
-		<mat-list class="directions">
-			<h3>Etapes</h3>
-			<mat-list-item *ngFor="let direction of recipe.directions; let directionIndex = index" class="direction">
-				<span class="chip">{{ directionIndex + 1 }}</span>
-				<span>{{ direction.description }}</span>
-			</mat-list-item>
-		</mat-list>
+		<app-ingredients-list [ingredients]="recipe.ingredients"></app-ingredients-list>
+		<app-directions-list [directions]="recipe.directions"></app-directions-list>
 	</mat-card-content>
-</mat-card>
+</ng-container>

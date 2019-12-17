@@ -1,9 +1,53 @@
-.layout {
-	display: flex;
+@import "colors", "variables";
+
+:host {
+	display: block;
+	max-width: 730px;
+	margin: auto;
 }
 
-.ingredients {
-	.ingredient {}
+@media screen and (max-width: $tablet-width-breakpoint) {
+	:host {
+		max-width: inherit;
+	}
+}
+
+.layout {
+	display: flex;
+	flex: 0 1 50%;
+}
+
+h1,
+h4 {
+	text-align: center;
+}
+
+h4 {
+	color: $lighter;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+}
+
+.description {
+	display: inline-block;
+	margin: 1.5rem 0;
+
+	font-weight: 400;
+	font-size: 1rem;
+	color: $grey;
+}
+
+app-ingredients-list,
+app-directions-list {
+	flex: 0 1 50%;
+}
+
+app-ingredients-list {
+	padding-right: .5rem;
+}
+
+app-directions-list {
+	padding-left: .5rem;
 }
 
 .directions {

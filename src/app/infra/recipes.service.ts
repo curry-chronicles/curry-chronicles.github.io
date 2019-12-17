@@ -5,7 +5,7 @@ import { catchError, map, shareReplay } from 'rxjs/operators';
 import { IRecipe, IRecipeOverview } from '../models';
 
 const IMG_SERVER = "sebferrer.fr/curry-chronicles/recipe/img/";
-const RECIPES_API = "https://164.132.97.208:5003/api/recipes";
+const RECIPES_API = "https://curry-chronicles.fr/api/recipes";
 
 const DEFAULT_RECIPE: IRecipe = {
 	id: 'default',

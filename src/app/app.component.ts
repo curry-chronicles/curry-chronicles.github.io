@@ -13,7 +13,7 @@ const RANDOM_INGREDIENTS = [
 	'Angular',
 	'Jean-Pierre Coffe',
 	'le fantôme de Jean-Pierre Coffe',
-	'Patrick Etchebest',
+	'Philippe Etchebest',
 	'ma maman',
 	'de la bière',
 	'beaucoup de bière',

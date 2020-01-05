@@ -4,6 +4,7 @@ const RANDOM_INGREDIENTS = [
 	'un gros poulet',
 	'un gros steak',
 	'un gros couteau',
+	'un gros couteau d\'anniversaire',
 	'beaucoup d\'oignons',
 	'du bœuf à la fraise',
 	'élégance',
@@ -26,6 +27,8 @@ const RANDOM_INGREDIENTS = [
 })
 export class AppComponent {
 	public title = 'Curry Chronicles';
+
+	private randomIngredientIndex: number;
 	public randomIngredient: string;
 
 	constructor() {
@@ -33,6 +36,11 @@ export class AppComponent {
 	}
 
 	public generateRandomIngredient(): void {
-		this.randomIngredient = RANDOM_INGREDIENTS[Math.floor(Math.random() * RANDOM_INGREDIENTS.length)];
+		let index = Math.floor(Math.random() * RANDOM_INGREDIENTS.length);
+		if (index === this.randomIngredientIndex) {
+			index = index > (RANDOM_INGREDIENTS.length - 1) ? index - 1 : index + 1;
+		}
+		this.randomIngredientIndex = index;
+		this.randomIngredient = RANDOM_INGREDIENTS[this.randomIngredientIndex];
 	}
 }

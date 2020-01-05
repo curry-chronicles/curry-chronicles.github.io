@@ -13,8 +13,10 @@
 }
 
 .layout {
-	display: flex;
-	flex: 0 1 50%;
+	@media screen and (min-width: $tablet-width-breakpoint) {
+		display: flex;
+		flex: 0 1 50%;
+	}
 }
 
 h1,
@@ -35,11 +37,6 @@ h4 {
 	font-weight: 400;
 	font-size: 1rem;
 	color: $grey;
-}
-
-app-ingredients-list,
-app-directions-list {
-	flex: 0 1 50%;
 }
 
 app-ingredients-list {

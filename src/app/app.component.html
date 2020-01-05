@@ -1,10 +1,36 @@
-<mat-toolbar>
-	<a routerLink="" class="website-title">
-		<mat-icon>local_dining</mat-icon>
-		<span>Curry Chronicles</span>
-	</a>
-</mat-toolbar>
+<header>
+	<mat-toolbar>
+		<a routerLink="" class="website-title">
+			<mat-icon>local_dining</mat-icon>
+			<span>Curry Chronicles</span>
+		</a>
+	</mat-toolbar>
+</header>
 
-<div class="content">
+<main>
 	<router-outlet></router-outlet>
-</div>
+</main>
+
+<footer>
+	<div class="container">
+		<div class="block">
+			<h4>À propos</h4>
+			<span>
+				Ceci est un site ayant simplement pour but de regrouper les recettes que l'on connait et qu'on aime
+				faire. Si vous êtes venu ici en pensant trouver de la grande cuisine, dommage !
+			</span>
+		</div>
+		<div class="block">
+			<h4>Code source</h4>
+			<span>
+				Pour les curieux, l'intégralité du code de ce site est disponible sur
+				<a href="https://github.com/curry-chronicles/curry-chronicles.github.io" target="_blank">
+					notre repo Github
+				</a>.
+			</span>
+		</div>
+	</div>
+	<div class="copyright">
+		Fait avec ❤️ et <span class="mouse-hover" (click)="generateRandomIngredient()">{{ randomIngredient }}</span>
+	</div>
+</footer>

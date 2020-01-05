@@ -39,6 +39,13 @@ h4 {
 	color: $grey;
 }
 
+app-ingredients-list,	
+app-directions-list {	
+	@media screen and (min-width: $tablet-width-breakpoint) {
+		flex: 0 1 50%;	
+	}
+}
+
 app-ingredients-list {
 	padding-right: .5rem;
 }

@@ -6,4 +6,7 @@ export function recipesRoute(app: Express): void {
 
 	app.route('/api/recipes')
 		.get(controller.getAll);
+
+	app.route('/api/recipes/:recipeId')
+		.get(controller.getById);
 }

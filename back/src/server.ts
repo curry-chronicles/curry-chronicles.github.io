@@ -9,14 +9,14 @@ const app: Express = (express as any)();
 const port = process.env.port || 3000;
 const databaseIP = 'localhost';
 const databasePort = 27017;
-const databaseName = 'test';
+const databaseName = 'curry-chronicles';
 const connectionString = `mongodb://${databaseIP}:${databasePort}/${databaseName}`;
 
 (<any>mongoose).Promise = global.Promise;
 mongoose
 	.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true })
 	.catch(error => {
-		console.error(error)
+		console.error(error);
 	});
 
 app.use(bodyParser.urlencoded({ extended: true }));

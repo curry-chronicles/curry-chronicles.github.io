@@ -1,0 +1,30 @@
+{
+  "name": "curry-chronicles",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node src/server.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/curry-chronicles/curry-chronicles.github.io.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/curry-chronicles/curry-chronicles.github.io/issues"
+  },
+  "homepage": "https://github.com/curry-chronicles/curry-chronicles.github.io#readme",
+  "devDependencies": {
+    "@types/express": "^4.17.2",
+    "@types/mongoose": "^5.5.38",
+    "ts-node": "^8.5.4",
+    "typescript": "^3.7.4"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.8.4"
+  }
+}

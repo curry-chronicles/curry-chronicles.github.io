@@ -10,7 +10,7 @@ const RECIPES_API = "https://curry-chronicles.fr/api/recipes";
 const DEFAULT_RECIPE: IRecipe = {
 	id: 'default',
 	name: 'Default',
-	mainPicture: 'https://scontent-cdg2-1.cdninstagram.com/v/t51.2885-15/e35/69316854_509717162933918_2113320626994813678_n.jpg?_nc_ht=scontent-cdg2-1.cdninstagram.com&_nc_cat=102&oh=fed08636a6b4e2d543e79bc5611e2477&oe=5E8C34D4',
+	mainPicture: '',
 	headLine: '',
 	servesHowManyPeople: 0,
 	preparationTime: '00:00:00',

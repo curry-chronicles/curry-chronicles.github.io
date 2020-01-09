@@ -5,8 +5,12 @@ export function recipesRoute(app: Express): void {
 	const controller = new RecipesController();
 
 	app.route('/api/recipes')
-		.get(controller.getAll);
+		.get((request, result) => {
+			controller.getAll(request, result);
+		});
 
 	app.route('/api/recipes/:recipeId')
-		.get(controller.getById);
+		.get((request, result) => {
+			controller.getById(request, result);
+		});
 }

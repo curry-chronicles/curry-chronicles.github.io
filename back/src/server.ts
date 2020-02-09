@@ -1,5 +1,6 @@
 import * as bodyParser from 'body-parser';
 import * as express from 'express';
+import * as cors from 'cors'
 import { Express } from 'express';
 import * as mongoose from 'mongoose';
 import { RecipeSchema } from './models';
@@ -12,6 +13,7 @@ const databasePort = 27017;
 const databaseName = 'curry-chronicles';
 const connectionString = `mongodb://${databaseIP}:${databasePort}/${databaseName}`;
 
+
 (<any>mongoose).Promise = global.Promise;
 mongoose
 	.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -19,6 +21,7 @@ mongoose
 		console.error(error);
 	});
 
+app.use(cors())
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 

@@ -22,7 +22,7 @@ const routes: Routes = [
 		BrowserModule,
 		BrowserAnimationsModule,
 		MatMenuModule,
-		RouterModule.forRoot(routes)
+		RouterModule.forRoot(routes, { useHash: true })
 	],
 	exports: [RouterModule],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA]

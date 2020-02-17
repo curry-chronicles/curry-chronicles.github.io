@@ -26,7 +26,7 @@ export class RecipesController extends AController {
 				if (error != null) {
 					response.send(error);
 				}
-				response.json(recipes);
+				response.json(recipes[0]);
 			});
 	}
 }

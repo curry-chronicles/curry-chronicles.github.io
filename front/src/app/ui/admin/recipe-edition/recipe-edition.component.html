@@ -1,0 +1,6 @@
+<h1>Ajout d'une recette</h1>
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+    <formly-form [model]="model" [fields]="fields" [form]="form"></formly-form>
+    <button type="submit" [disabled]="!canSubmit" class="btn btn-primary">Enregistrer</button>
+</form>

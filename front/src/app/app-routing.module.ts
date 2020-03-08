@@ -3,13 +3,26 @@ import { Routes, RouterModule } from '@angular/router';
 import { MatMenuModule } from '@angular/material/menu';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
-import { HomeComponent } from './ui';
+import { HomeComponent, AdminComponent, RecipeEditionComponent } from './ui';
 import { RecipeComponent } from './ui/recipe';
 
 const routes: Routes = [
 	{
 		path: '',
 		component: HomeComponent
+	},
+	{
+		path: 'admin',
+		children: [
+			{
+				path: '',
+				component: AdminComponent
+			},
+			{
+				path: 'add-recipe',
+				component: RecipeEditionComponent
+			}
+		]
 	},
 	{
 		path: ':recipeId',

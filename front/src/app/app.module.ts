@@ -6,7 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RecipesService } from './infra';
-import { DirectionsListComponent, HomeComponent, IngredientsListComponent, RecipeComponent, RecipeHeaderComponent, AdminComponent, RecipeEditionComponent } from './ui';
+import { DirectionsListComponent, HomeComponent, IngredientsListComponent, RecipeComponent, RecipeHeaderComponent, AdminComponent, RecipeEditionComponent, TimespanComponent, CURRY_CHRONICLES_FORMLY_CONFIG, TimespanEditorComponent } from './ui';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
@@ -21,7 +21,10 @@ import { FormlyMaterialModule } from '@ngx-formly/material';
 		RecipeHeaderComponent,
 		// Admin components
 		AdminComponent,
-		RecipeEditionComponent
+		RecipeEditionComponent,
+		// Custom formly components
+		TimespanComponent,
+		TimespanEditorComponent
 	],
 	imports: [
 		BrowserModule,
@@ -37,7 +40,7 @@ import { FormlyMaterialModule } from '@ngx-formly/material';
 		MatListModule,
 		BrowserAnimationsModule,
 		ReactiveFormsModule,
-		FormlyModule.forRoot(),
+		FormlyModule.forRoot(CURRY_CHRONICLES_FORMLY_CONFIG),
 		FormlyMaterialModule
 	],
 	providers: [

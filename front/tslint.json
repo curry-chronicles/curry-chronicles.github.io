@@ -37,15 +37,7 @@
 		],
 		"member-access": false,
 		"member-ordering": [
-			true,
-			{
-				"order": [
-					"static-field",
-					"instance-field",
-					"static-method",
-					"instance-method"
-				]
-			}
+			false
 		],
 		"no-consecutive-blank-lines": false,
 		"no-console": [

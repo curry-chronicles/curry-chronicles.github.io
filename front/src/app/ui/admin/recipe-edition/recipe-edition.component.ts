@@ -24,6 +24,7 @@ export class RecipeEditionComponent {
 		this.form = new FormGroup({});
 
 		this.model = {
+			preparationTime: '00:60:00',
 			ingredients: [],
 			directions: []
 		} as IRecipe;
@@ -48,6 +49,14 @@ export class RecipeEditionComponent {
 					required: true
 				}
 			},
+			{
+				key: nameof<IRecipe>('preparationTime'),
+				type: 'timespan',
+				templateOptions: {
+					label: 'Temps de préparation',
+					required: true
+				}
+			}
 		];
 	}
 

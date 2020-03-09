@@ -2,6 +2,11 @@ import { Component, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 class Timespan {
+
+	public get isEmpty(): boolean {
+		return this.hours == null && this.minutes == null && this.seconds == null;
+	}
+
 	constructor(
 		public hours: number,
 		public minutes: number,
@@ -9,13 +14,13 @@ class Timespan {
 	) { }
 
 	public toString(): string {
-		return `${this.hours}:${this.minutes || '00'}:${this.seconds || '00'}`;
+		return `${this.hours || '00'}:${this.minutes || '00'}:${this.seconds || '00'}`;
 	}
 
 	public static parse(input: string): Timespan {
 		const regex = new RegExp(/(?<hours>\d+):(?<minutes>\d+):(?<seconds>\d+)/gm);
 		const parseResult = regex.exec(input);
-		console.log(parseResult);
+
 		if (parseResult == null) {
 			return new Timespan(null, null, null);
 		}
@@ -44,7 +49,6 @@ export class TimespanEditorComponent implements ControlValueAccessor {
 	public value = new Timespan(0, 0, 0);
 
 	public writeValue(obj: string): void {
-		debugger;
 		this.value = Timespan.parse(obj);
 	}
 
@@ -62,6 +66,10 @@ export class TimespanEditorComponent implements ControlValueAccessor {
 	}
 
 	public onChange(): void {
-		this.onChangeCallback(this.value.toString());
+		if (this.value.isEmpty) {
+			this.onChangeCallback(null);
+		} else {
+			this.onChangeCallback(this.value.toString());
+		}
 	}
 }

@@ -9,7 +9,7 @@ class Timespan {
 	) { }
 
 	public toString(): string {
-		return `${this.hours}:${this.minutes}:${this.seconds}`;
+		return `${this.hours}:${this.minutes || '00'}:${this.seconds || '00'}`;
 	}
 
 	public static parse(input: string): Timespan {
@@ -17,7 +17,7 @@ class Timespan {
 		const parseResult = regex.exec(input);
 		console.log(parseResult);
 		if (parseResult == null) {
-			return new Timespan(0, 0, 0);
+			return new Timespan(null, null, null);
 		}
 		return new Timespan(
 			parseInt(parseResult.groups.hours, 10),
@@ -44,11 +44,13 @@ export class TimespanEditorComponent implements ControlValueAccessor {
 	public value = new Timespan(0, 0, 0);
 
 	public writeValue(obj: string): void {
+		debugger;
 		this.value = Timespan.parse(obj);
 	}
 
-	public registerOnChange(fn: any): void {
-		// TODO
+	public onChangeCallback: (newValue: string) => void = () => { };
+	public registerOnChange(fn: (newValue: string) => void): void {
+		this.onChangeCallback = fn;
 	}
 
 	public registerOnTouched(fn: any): void {
@@ -57,5 +59,9 @@ export class TimespanEditorComponent implements ControlValueAccessor {
 
 	public setDisabledState?(isDisabled: boolean): void {
 		// TODO
+	}
+
+	public onChange(): void {
+		this.onChangeCallback(this.value.toString());
 	}
 }

@@ -1,1 +1,3 @@
-{{ value.hours }}:{{ value.minutes }}:{{ value.seconds }}
+<input type="number" (ngModelChange)="onChange()" class="mat-input-element" [(ngModel)]="value.hours" placeholder="Heures" />
+<input type="number" (ngModelChange)="onChange()" class="mat-input-element" [(ngModel)]="value.minutes" placeholder="minutes" />
+<input type="number" (ngModelChange)="onChange()" class="mat-input-element" [(ngModel)]="value.seconds" placeholder="secondes" />

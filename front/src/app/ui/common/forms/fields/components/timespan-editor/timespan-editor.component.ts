@@ -7,6 +7,13 @@ class Timespan {
 		return this.hours == null && this.minutes == null && this.seconds == null;
 	}
 
+	public get isValid(): boolean {
+		return (this.hours != null || this.minutes != null || this.seconds != null) &&
+			(this.hours >= 0 && this.hours <= 23) &&
+			(this.minutes >= 0 && this.minutes <= 59) &&
+			(this.seconds >= 0 && this.seconds <= 59);
+	}
+
 	constructor(
 		public hours: number,
 		public minutes: number,
@@ -14,6 +21,9 @@ class Timespan {
 	) { }
 
 	public toString(): string {
+		if (this.isEmpty || !this.isValid) {
+			return null;
+		}
 		return `${this.hours || '00'}:${this.minutes || '00'}:${this.seconds || '00'}`;
 	}
 
@@ -48,28 +58,28 @@ export class TimespanEditorComponent implements ControlValueAccessor {
 
 	public value = new Timespan(0, 0, 0);
 
+	public isDisabled = false;
+
+	public onChanged: (newValue: string) => void = () => { };
+	public onTouched: () => void = () => { };
+
 	public writeValue(obj: string): void {
 		this.value = Timespan.parse(obj);
 	}
 
-	public onChangeCallback: (newValue: string) => void = () => { };
 	public registerOnChange(fn: (newValue: string) => void): void {
-		this.onChangeCallback = fn;
+		this.onChanged = fn;
 	}
 
 	public registerOnTouched(fn: any): void {
-		// TODO
+		this.onTouched = fn;
 	}
 
 	public setDisabledState?(isDisabled: boolean): void {
-		// TODO
+		this.isDisabled = isDisabled;
 	}
 
-	public onChange(): void {
-		if (this.value.isEmpty) {
-			this.onChangeCallback(null);
-		} else {
-			this.onChangeCallback(this.value.toString());
-		}
+	public onValueChanged(): void {
+		this.onChanged(this.value.toString());
 	}
 }

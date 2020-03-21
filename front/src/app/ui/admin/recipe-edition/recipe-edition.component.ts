@@ -64,6 +64,14 @@ export class RecipeEditionComponent {
 					label: 'Temps de cuisson',
 					required: true
 				}
+			},
+			{
+				key: nameof<IRecipe>('ingredients'),
+				type: 'ingredients',
+				templateOptions: {
+					label: 'Ingrédients',
+					required: true
+				}
 			}
 		];
 	}

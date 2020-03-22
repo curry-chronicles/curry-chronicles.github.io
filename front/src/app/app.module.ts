@@ -1,16 +1,16 @@
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { MatButtonModule, MatCardModule, MatGridListModule, MatIconModule, MatListModule, MatMenuModule, MatProgressSpinnerModule, MatToolbarModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatBadgeModule, MatButtonModule, MatCardModule, MatFormFieldModule, MatGridListModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule, MatProgressSpinnerModule, MatToolbarModule } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormlyModule } from '@ngx-formly/core';
+import { FormlyMaterialModule } from '@ngx-formly/material';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RecipesService } from './infra';
-import { DirectionsListComponent, HomeComponent, IngredientsListComponent, RecipeComponent, RecipeHeaderComponent, AdminComponent, RecipeEditionComponent, TimespanComponent, CURRY_CHRONICLES_FORMLY_CONFIG, TimespanEditorComponent, IngredientsComponent, IngredientsEditorComponent, AutofocusOnShowDirective } from './ui';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { FormlyModule } from '@ngx-formly/core';
-import { FormlyMaterialModule } from '@ngx-formly/material';
-import { DragDropModule } from '@angular/cdk/drag-drop';
+import { AdminComponent, AutofocusOnShowDirective, CURRY_CHRONICLES_FORMLY_CONFIG, DirectionsComponent, DirectionsEditorComponent, DirectionsListComponent, HomeComponent, IngredientsComponent, IngredientsEditorComponent, IngredientsListComponent, RecipeComponent, RecipeEditionComponent, RecipeHeaderComponent, TimespanComponent, TimespanEditorComponent } from './ui';
 
 @NgModule({
 	declarations: [
@@ -20,14 +20,20 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 		IngredientsListComponent,
 		DirectionsListComponent,
 		RecipeHeaderComponent,
+
 		// Admin components
 		AdminComponent,
 		RecipeEditionComponent,
+
 		// Custom formly components
 		TimespanComponent,
 		TimespanEditorComponent,
 		IngredientsComponent,
 		IngredientsEditorComponent,
+		DirectionsComponent,
+		DirectionsEditorComponent,
+
+		// Directives
 		AutofocusOnShowDirective
 	],
 	imports: [
@@ -44,6 +50,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 		MatListModule,
 		MatFormFieldModule,
 		MatInputModule,
+		MatBadgeModule,
 		DragDropModule,
 		BrowserAnimationsModule,
 		ReactiveFormsModule,

@@ -1,0 +1,10 @@
+mat-form-field.mod-fullWidth {
+	width: 100%;
+}
+
+mat-list-item.mod-heightAuto {
+	&.mat-list-item {
+		height: auto !important;
+	}
+}
+

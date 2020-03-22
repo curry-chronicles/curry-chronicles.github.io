@@ -27,7 +27,9 @@ export class RecipeEditionComponent {
 			ingredients: [
 				{ name: '' }
 			],
-			directions: []
+			directions: [
+				{ description: '' }
+			]
 		} as IRecipe;
 
 		this.fields = [
@@ -71,6 +73,14 @@ export class RecipeEditionComponent {
 				type: 'ingredients',
 				templateOptions: {
 					label: 'Ingrédients',
+					required: true
+				}
+			},
+			{
+				key: nameof<IRecipe>('directions'),
+				type: 'directions',
+				templateOptions: {
+					label: 'Étapes',
 					required: true
 				}
 			}

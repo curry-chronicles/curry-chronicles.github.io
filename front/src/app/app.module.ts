@@ -10,6 +10,7 @@ import { DirectionsListComponent, HomeComponent, IngredientsListComponent, Recip
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
 	declarations: [
@@ -43,6 +44,7 @@ import { FormlyMaterialModule } from '@ngx-formly/material';
 		MatListModule,
 		MatFormFieldModule,
 		MatInputModule,
+		DragDropModule,
 		BrowserAnimationsModule,
 		ReactiveFormsModule,
 		FormlyModule.forRoot(CURRY_CHRONICLES_FORMLY_CONFIG),

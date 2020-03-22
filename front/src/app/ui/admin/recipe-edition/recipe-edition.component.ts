@@ -24,7 +24,6 @@ export class RecipeEditionComponent {
 		this.form = new FormGroup({});
 
 		this.model = {
-			// preparationTime: '00:30:00',
 			ingredients: [
 				{ name: '' }
 			],
@@ -32,41 +31,41 @@ export class RecipeEditionComponent {
 		} as IRecipe;
 
 		this.fields = [
-			// {
-			// 	key: nameof<IRecipe>('name'),
-			// 	type: 'input',
-			// 	templateOptions: {
-			// 		label: 'Nom',
-			// 		placeholder: 'Nom de la recette',
-			// 		required: true
-			// 	}
-			// },
-			// {
-			// 	key: nameof<IRecipe>('servesHowManyPeople'),
-			// 	type: 'input',
-			// 	templateOptions: {
-			// 		type: 'number',
-			// 		label: 'Nombre de personnes',
-			// 		placeholder: 'Pour combien de personnes',
-			// 		required: true
-			// 	}
-			// },
-			// {
-			// 	key: nameof<IRecipe>('preparationTime'),
-			// 	type: 'timespan',
-			// 	templateOptions: {
-			// 		label: 'Temps de préparation',
-			// 		required: true
-			// 	}
-			// },
-			// {
-			// 	key: nameof<IRecipe>('cookingTime'),
-			// 	type: 'timespan',
-			// 	templateOptions: {
-			// 		label: 'Temps de cuisson',
-			// 		required: true
-			// 	}
-			// },
+			{
+				key: nameof<IRecipe>('name'),
+				type: 'input',
+				templateOptions: {
+					label: 'Nom',
+					placeholder: 'Nom de la recette',
+					required: true
+				}
+			},
+			{
+				key: nameof<IRecipe>('servesHowManyPeople'),
+				type: 'input',
+				templateOptions: {
+					type: 'number',
+					label: 'Nombre de personnes',
+					placeholder: 'Pour combien de personnes',
+					required: true
+				}
+			},
+			{
+				key: nameof<IRecipe>('preparationTime'),
+				type: 'timespan',
+				templateOptions: {
+					label: 'Temps de préparation',
+					required: true
+				}
+			},
+			{
+				key: nameof<IRecipe>('cookingTime'),
+				type: 'timespan',
+				templateOptions: {
+					label: 'Temps de cuisson',
+					required: true
+				}
+			},
 			{
 				key: nameof<IRecipe>('ingredients'),
 				type: 'ingredients',

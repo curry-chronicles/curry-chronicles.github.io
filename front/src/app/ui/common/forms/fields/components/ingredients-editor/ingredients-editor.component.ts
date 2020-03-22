@@ -1,3 +1,4 @@
+import { moveItemInArray, CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Component, forwardRef } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
 import { IIngredient, isIngredientValid } from '../../../../../../models';
@@ -27,29 +28,32 @@ export class IngredientsEditorComponent implements ControlValueAccessor, Validat
 
 	public ingredients = new Array<IIngredient>();
 
-	public addIngredient(): void {
+	public addIngredient(ingredientIndex?: number): void {
 		if (!this.canAddIngredient) {
 			return;
 		}
-		this.ingredients.push({
+		const newIngredient = {
 			name: ''
-		});
-	}
-
-	public onEnter(): void {
-		this.addIngredient();
+		};
+		if (ingredientIndex != null) {
+			this.ingredients.splice(ingredientIndex + 1, 0, newIngredient);
+		} else {
+			this.ingredients.push(newIngredient);
+		}
 	}
 
 	public removeIngredientAt(ingredientIndex: number): void {
-		console.log('remove');
 		if (ingredientIndex == null) {
 			return;
 		}
 		this.ingredients.splice(ingredientIndex, 1);
 	}
 
+	public onDropIngredient(event: CdkDragDrop<string[]>) {
+		moveItemInArray(this.ingredients, event.previousIndex, event.currentIndex);
+	}
+
 	public onIngredientsChanged(): void {
-		console.log('changed');
 		this.onChanged([...this.ingredients]);
 	}
 

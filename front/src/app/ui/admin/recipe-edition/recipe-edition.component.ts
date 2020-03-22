@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 import { IRecipe } from 'src/app/models';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { FormGroup } from '@angular/forms';
@@ -25,46 +25,48 @@ export class RecipeEditionComponent {
 
 		this.model = {
 			// preparationTime: '00:30:00',
-			ingredients: [],
+			ingredients: [
+				{ name: '' }
+			],
 			directions: []
 		} as IRecipe;
 
 		this.fields = [
-			{
-				key: nameof<IRecipe>('name'),
-				type: 'input',
-				templateOptions: {
-					label: 'Nom',
-					placeholder: 'Nom de la recette',
-					required: true
-				}
-			},
-			{
-				key: nameof<IRecipe>('servesHowManyPeople'),
-				type: 'input',
-				templateOptions: {
-					type: 'number',
-					label: 'Nombre de personnes',
-					placeholder: 'Pour combien de personnes',
-					required: true
-				}
-			},
-			{
-				key: nameof<IRecipe>('preparationTime'),
-				type: 'timespan',
-				templateOptions: {
-					label: 'Temps de préparation',
-					required: true
-				}
-			},
-			{
-				key: nameof<IRecipe>('cookingTime'),
-				type: 'timespan',
-				templateOptions: {
-					label: 'Temps de cuisson',
-					required: true
-				}
-			},
+			// {
+			// 	key: nameof<IRecipe>('name'),
+			// 	type: 'input',
+			// 	templateOptions: {
+			// 		label: 'Nom',
+			// 		placeholder: 'Nom de la recette',
+			// 		required: true
+			// 	}
+			// },
+			// {
+			// 	key: nameof<IRecipe>('servesHowManyPeople'),
+			// 	type: 'input',
+			// 	templateOptions: {
+			// 		type: 'number',
+			// 		label: 'Nombre de personnes',
+			// 		placeholder: 'Pour combien de personnes',
+			// 		required: true
+			// 	}
+			// },
+			// {
+			// 	key: nameof<IRecipe>('preparationTime'),
+			// 	type: 'timespan',
+			// 	templateOptions: {
+			// 		label: 'Temps de préparation',
+			// 		required: true
+			// 	}
+			// },
+			// {
+			// 	key: nameof<IRecipe>('cookingTime'),
+			// 	type: 'timespan',
+			// 	templateOptions: {
+			// 		label: 'Temps de cuisson',
+			// 		required: true
+			// 	}
+			// },
 			{
 				key: nameof<IRecipe>('ingredients'),
 				type: 'ingredients',

@@ -62,6 +62,7 @@
 		],
 		"object-literal-sort-keys": false,
 		"ordered-imports": false,
+		"prefer-for-of": false,
 		"quotemark": [
 			true,
 			"single"

@@ -1,1 +1,43 @@
-ingredients editor works
+<mat-list>
+	<mat-list-item *ngFor="let ingredient of ingredients; let ingredientIndex = index">
+
+		<!-- Name -->
+		<mat-form-field>
+			<mat-label>Nom</mat-label>
+			<input type="text" matInput [disabled]="isDisabled" [appAutofocusOnShow]="ingredients.length > 1"
+				(focus)="onTouched()" [(ngModel)]="ingredient.name" (ngModelChange)="onIngredientsChanged()"
+				(keyup.enter)="onEnter()" placeholder="Nom" />
+		</mat-form-field>
+
+		<!-- Quantité -->
+		<mat-form-field>
+			<mat-label>Quantité</mat-label>
+			<input type="number" matInput [disabled]="isDisabled" (focus)="onTouched()" [(ngModel)]="ingredient.amount"
+				(ngModelChange)="onIngredientsChanged()" (keyup.enter)="onEnter()" placeholder="Quantité" />
+		</mat-form-field>
+
+		<!-- Unité -->
+		<mat-form-field>
+			<mat-label>Unité</mat-label>
+			<input type="text" matInput [disabled]="isDisabled" (focus)="onTouched()" [(ngModel)]="ingredient.unit"
+				(ngModelChange)="onIngredientsChanged()" (keyup.enter)="onEnter()" placeholder="Unité" />
+		</mat-form-field>
+
+		<!-- Remove button -->
+		<button mat-icon-button type="button" (click)="removeIngredientAt(ingredientIndex)"
+			[disabled]="ingredients.length === 1">
+			<mat-icon>remove_circle</mat-icon>
+		</button>
+	</mat-list-item>
+</mat-list>
+
+<!-- Add button -->
+<button mat-icon-button type="button" class="add-ingredient-button" (click)="addIngredient()"
+	[disabled]="isDisabled || !canAddIngredient">
+	<mat-icon>add_circle</mat-icon>
+	Ajouter un ingrédient
+</button>
+
+<pre>
+	{{ ingredients | json }}
+</pre>

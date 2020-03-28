@@ -29,4 +29,27 @@ export class RecipesController extends AController {
 				response.json(recipes[0]);
 			});
 	}
+
+	public create(request: Request, response: Response): void {
+		let newRecipe = new RecipeSchema(request.body);
+		newRecipe.save(
+			(error: Error, recipe: Document) => {
+				if (error) {
+					response.send(error);
+				}
+				response.json(recipe);
+			});
+	}
+
+	public delete(request: Request, response: Response): void {
+		RecipeSchema.remove(
+			{ id: request.params.recipeId },
+			(error: Error) => {
+				if (error) {
+					response.send(error);
+				}
+				response.json({ message: 'Recipe successfully deleted' });
+			});
+	}
+
 }

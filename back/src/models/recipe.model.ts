@@ -7,7 +7,10 @@ export const RecipeSchema = mongoose.model(
 	RecipeSchemaName,
 	new Schema(
 		{
-			id: String,
+			id: {
+				type: String ,
+				unique: true
+			},
 			name: {
 				type: String,
 				default: 'DEFAULT'

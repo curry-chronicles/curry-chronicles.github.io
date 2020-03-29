@@ -19,4 +19,9 @@ export function recipesRoute(app: Express): void {
 		.delete((request, result) => {
 			controller.delete(request, result);
 		});
+		
+	app.route('/api/picture/:recipeId')
+		.get((request, result) => {
+			controller.getPictureById(request, result);
+		});
 }

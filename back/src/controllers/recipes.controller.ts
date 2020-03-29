@@ -2,6 +2,8 @@ import { Request, Response } from 'express';
 import { Document } from 'mongoose';
 import { RecipeSchema } from '../models';
 import { AController } from './abstract.controller';
+import { RequestResponse } from 'request';
+import * as httpRequest from 'request';
 
 export class RecipesController extends AController {
 
@@ -28,6 +30,19 @@ export class RecipesController extends AController {
 				}
 				response.json(recipes[0]);
 			});
+	}
+
+	public getPictureById(request: Request, response: Response): void {
+		httpRequest.get({
+			url: 'http://sebferrer.fr/cook/recipe/img/' + request.params.recipeId + '.jpg',
+			method: 'GET',
+			encoding: null
+		}, (error: Error, requestResponse: RequestResponse, body: Body) => {
+			if (!error && requestResponse.statusCode == 200) {
+				response.writeHead(200, {'Content-Type': 'image/png'});
+				response.end(body);
+			}
+		});
 	}
 
 	public create(request: Request, response: Response): void {

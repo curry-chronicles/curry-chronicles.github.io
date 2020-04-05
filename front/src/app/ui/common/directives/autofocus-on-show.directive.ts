@@ -23,6 +23,6 @@ export class AutofocusOnShowDirective implements AfterViewInit {
 			const input: HTMLInputElement = this.el.nativeElement as HTMLInputElement;
 			input.focus();
 			input.select();
-		}, 0)
+		}, 0);
 	}
 }

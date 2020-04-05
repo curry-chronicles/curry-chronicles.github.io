@@ -4,8 +4,8 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, shareReplay } from 'rxjs/operators';
 import { IRecipe, IRecipeOverview } from '../models';
 
-const IMG_SERVER = "sebferrer.fr/curry-chronicles/recipe/img/";
-const RECIPES_API = "https://curry-chronicles.fr/api/recipes";
+const IMG_SERVER = 'sebferrer.fr/curry-chronicles/recipe/img/';
+const RECIPES_API = 'https://curry-chronicles.fr/api/recipes';
 
 const DEFAULT_RECIPE: IRecipe = {
 	id: 'default',

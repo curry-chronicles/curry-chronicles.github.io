@@ -1,4 +1,4 @@
-import { Component, forwardRef } from '@angular/core';
+import { Component, forwardRef, ViewChild, ElementRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Observable } from 'rxjs';
 
@@ -16,7 +16,11 @@ import { Observable } from 'rxjs';
 })
 export class PictureEditorComponent implements ControlValueAccessor {
 
-	public value: string;
+	@ViewChild('fileInput')
+	public fileInput: ElementRef<HTMLInputElement>;
+
+	public base64File: string;
+	public fileName: string;
 
 	public isDisabled = false;
 
@@ -24,7 +28,7 @@ export class PictureEditorComponent implements ControlValueAccessor {
 	public onTouched: () => void = () => { };
 
 	public writeValue(obj: string): void {
-		this.value = obj;
+		this.base64File = obj;
 	}
 
 	public registerOnChange(fn: (newValue: string) => void): void {
@@ -40,18 +44,28 @@ export class PictureEditorComponent implements ControlValueAccessor {
 	}
 
 	public onValueChanged(): void {
-		this.onChanged(this.value);
+		this.onChanged(this.base64File);
+	}
+
+	public browse(): void {
+		this.fileInput.nativeElement.click();
+	}
+
+	public clear(): void {
+		this.base64File = null;
+		this.fileName = null;
+		this.onValueChanged();
 	}
 
 	public onSelectedFileChanged(selectedFileEvent: Event): void {
-		const selectedFile = (selectedFileEvent.target as HTMLInputElement).files[0];
+		const selectedFile = (selectedFileEvent?.target as HTMLInputElement)?.files?.item(0);
 		if (selectedFile == null) {
-			this.value = null;
-			this.onValueChanged();
+			this.clear();
 			return;
 		}
+		this.fileName = selectedFile.name;
 		this.toBase64(selectedFile).subscribe(base64 => {
-			this.value = base64;
+			this.base64File = base64;
 			this.onValueChanged();
 		});
 	}

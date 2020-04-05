@@ -1,1 +1,11 @@
-<input type="file" (change)="onSelectedFileChanged($event)" accept="image/*">
+<div>
+	<input #fileInput hidden type="file" (change)="onSelectedFileChanged($event)" accept="image/*">
+	<button mat-stroked-button (click)="browse()" type="button">Choisir une image</button>
+	{{ fileName }}
+	<button mat-icon-button type="button" (click)="clear()" *ngIf="fileName != null">
+		<mat-icon>clear</mat-icon>
+	</button>
+</div>
+<div *ngIf="base64File != null" class="image-preview">
+	<img [src]="base64File" height="200">
+</div>

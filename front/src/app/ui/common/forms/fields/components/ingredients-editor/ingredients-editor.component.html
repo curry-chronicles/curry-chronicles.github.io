@@ -15,16 +15,14 @@
 		<mat-form-field>
 			<mat-label>Quantité</mat-label>
 			<input type="number" matInput [disabled]="isDisabled" (focus)="onTouched()" [(ngModel)]="ingredient.amount"
-				(ngModelChange)="onIngredientsChanged(ingredientIndex)" (keyup.enter)="addIngredient()"
-				placeholder="Quantité" />
+				(ngModelChange)="onIngredientsChanged()" (keyup.enter)="addIngredient()" placeholder="Quantité" />
 		</mat-form-field>
 
 		<!-- Unité -->
 		<mat-form-field>
 			<mat-label>Unité</mat-label>
 			<input type="text" matInput [disabled]="isDisabled" (focus)="onTouched()" [(ngModel)]="ingredient.unit"
-				(ngModelChange)="onIngredientsChanged(ingredientIndex)" (keyup.enter)="addIngredient()"
-				placeholder="Unité" />
+				(ngModelChange)="onIngredientsChanged()" (keyup.enter)="addIngredient()" placeholder="Unité" />
 		</mat-form-field>
 
 		<!-- Remove button -->

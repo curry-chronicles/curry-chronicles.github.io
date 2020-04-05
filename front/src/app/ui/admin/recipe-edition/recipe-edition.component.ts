@@ -53,6 +53,14 @@ export class RecipeEditionComponent {
 				}
 			},
 			{
+				key: nameof<IRecipe>('mainPicture'),
+				type: 'picture',
+				templateOptions: {
+					label: 'Image principale',
+					required: true
+				}
+			},
+			{
 				key: nameof<IRecipe>('preparationTime'),
 				type: 'timespan',
 				templateOptions: {

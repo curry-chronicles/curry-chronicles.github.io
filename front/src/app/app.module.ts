@@ -10,7 +10,7 @@ import { FormlyMaterialModule } from '@ngx-formly/material';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RecipesService } from './infra';
-import { AdminComponent, AutofocusOnShowDirective, CURRY_CHRONICLES_FORMLY_CONFIG, DirectionsComponent, DirectionsEditorComponent, DirectionsListComponent, HomeComponent, IngredientsComponent, IngredientsEditorComponent, IngredientsListComponent, RecipeComponent, RecipeEditionComponent, RecipeHeaderComponent, TimespanComponent, TimespanEditorComponent } from './ui';
+import { AdminComponent, AutofocusOnShowDirective, CURRY_CHRONICLES_FORMLY_CONFIG, DirectionsComponent, DirectionsEditorComponent, DirectionsListComponent, HomeComponent, IngredientsComponent, IngredientsEditorComponent, IngredientsListComponent, RecipeComponent, RecipeEditionComponent, RecipeHeaderComponent, TimespanComponent, TimespanEditorComponent, PictureComponent, PictureEditorComponent, FileValueAccessorDirective } from './ui';
 
 @NgModule({
 	declarations: [
@@ -32,9 +32,12 @@ import { AdminComponent, AutofocusOnShowDirective, CURRY_CHRONICLES_FORMLY_CONFI
 		IngredientsEditorComponent,
 		DirectionsComponent,
 		DirectionsEditorComponent,
+		PictureComponent,
+		PictureEditorComponent,
 
 		// Directives
-		AutofocusOnShowDirective
+		AutofocusOnShowDirective,
+		FileValueAccessorDirective
 	],
 	imports: [
 		BrowserModule,

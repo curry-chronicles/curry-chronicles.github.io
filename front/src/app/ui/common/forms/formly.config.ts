@@ -1,5 +1,5 @@
 import { ConfigOption } from '@ngx-formly/core';
-import { TimespanComponent, IngredientsComponent, DirectionsComponent } from './fields';
+import { TimespanComponent, IngredientsComponent, DirectionsComponent, PictureComponent } from './fields';
 
 export const CURRY_CHRONICLES_FORMLY_CONFIG: ConfigOption = {
 	types: [
@@ -14,6 +14,10 @@ export const CURRY_CHRONICLES_FORMLY_CONFIG: ConfigOption = {
 		{
 			name: 'directions',
 			component: DirectionsComponent
+		},
+		{
+			name: 'picture',
+			component: PictureComponent
 		}
 	]
 };

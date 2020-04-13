@@ -9,6 +9,7 @@ export interface IRecipeOverview {
 }
 
 export interface IRecipe extends IRecipeOverview {
+	publicationDate: string;
 	servesHowManyPeople: number;
 	preparationTime: string; // Timespan to implement ourselves
 	cookingTime: string;

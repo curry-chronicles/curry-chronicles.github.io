@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
-import { IRecipe } from 'src/app/models';
-import { FormlyFieldConfig } from '@ngx-formly/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { nameof } from 'src/app/utils';
+import { FormlyFieldConfig } from '@ngx-formly/core';
+import { IRecipe } from '../../../models';
+import { nameof } from '../../../utils';
 
 @Component({
 	selector: 'app-recipe-edition',
@@ -10,6 +10,10 @@ import { nameof } from 'src/app/utils';
 	styleUrls: ['./recipe-edition.component.scss']
 })
 export class RecipeEditionComponent {
+
+	@ViewChild('jsonRecipeTextArea')
+	public jsonRecipeTextArea: ElementRef<HTMLTextAreaElement>;
+	public showCopySuccessMessage = false;
 
 	public form: FormGroup;
 	public model: IRecipe;
@@ -20,9 +24,7 @@ export class RecipeEditionComponent {
 	}
 
 	constructor() {
-
 		this.form = new FormGroup({});
-
 		this.model = {
 			ingredients: [
 				{ name: '' }
@@ -39,6 +41,14 @@ export class RecipeEditionComponent {
 				templateOptions: {
 					label: 'Nom',
 					placeholder: 'Nom de la recette',
+					required: true
+				}
+			},
+			{
+				key: nameof<IRecipe>('publicationDate'),
+				type: 'date',
+				templateOptions: {
+					label: 'Date de publication',
 					required: true
 				}
 			},
@@ -97,5 +107,16 @@ export class RecipeEditionComponent {
 
 	public submit(): void {
 		console.log(this.model);
+	}
+
+	public copyToClipboard(): void {
+		this.jsonRecipeTextArea.nativeElement.hidden = false;
+		this.jsonRecipeTextArea.nativeElement.select();
+		document.execCommand('copy');
+		this.showCopySuccessMessage = true;
+		this.jsonRecipeTextArea.nativeElement.hidden = true;
+		setTimeout(() => {
+			this.showCopySuccessMessage = false;
+		}, 2000);
 	}
 }

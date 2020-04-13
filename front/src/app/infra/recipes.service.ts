@@ -5,7 +5,7 @@ import { catchError, map, shareReplay } from 'rxjs/operators';
 import { IRecipe, IRecipeOverview } from '../models';
 import { todayAsIsoString } from '../utils';
 
-const IMG_SERVER = 'sebferrer.fr/curry-chronicles/recipe/img/';
+const IMG_SERVER = 'https://curry-chronicles.fr/api/pictures/';
 const RECIPES_API = 'https://curry-chronicles.fr/api/recipes';
 
 const DEFAULT_RECIPE: IRecipe = {
@@ -37,7 +37,7 @@ export class RecipesService {
 			RecipesService.recipes = this.http.get<IRecipeOverview[]>(RECIPES_API).pipe(
 				map(recipes => {
 					recipes.forEach(recipe => {
-						recipe.mainPicture = `http://${IMG_SERVER}${recipe.mainPicture}`;
+						recipe.mainPicture = `${IMG_SERVER}${recipe.mainPicture}`;
 					});
 					return recipes;
 				}),

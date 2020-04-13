@@ -20,7 +20,7 @@ export function recipesRoute(app: Express): void {
 			controller.delete(request, result);
 		});
 		
-	app.route('/api/picture/:recipeId')
+	app.route('/api/pictures/:recipeId')
 		.get((request, result) => {
 			controller.getPictureById(request, result);
 		});

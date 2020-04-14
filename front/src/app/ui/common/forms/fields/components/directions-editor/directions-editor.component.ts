@@ -56,6 +56,7 @@ export class DirectionsEditorComponent implements ControlValueAccessor, Validato
 
 	public onDropDirection(event: CdkDragDrop<string[]>) {
 		moveItemInArray(this.directions, event.previousIndex, event.currentIndex);
+		this.onDirectionsChanged();
 	}
 
 	public onDirectionsChanged(): void {

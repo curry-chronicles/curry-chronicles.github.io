@@ -51,6 +51,7 @@ export class IngredientsEditorComponent implements ControlValueAccessor, Validat
 
 	public onDropIngredient(event: CdkDragDrop<string[]>) {
 		moveItemInArray(this.ingredients, event.previousIndex, event.currentIndex);
+		this.onIngredientsChanged();
 	}
 
 	public onIngredientsChanged(): void {

@@ -50,7 +50,7 @@ export class RecipesService {
 	public getRecipe(id: string): Observable<IRecipe> {
 		return this.http.get<IRecipe>(`${RECIPES_API}/${id}`).pipe(
 			map(recipe => {
-				recipe.mainPicture = `http://${IMG_SERVER}${recipe.mainPicture}`;
+				recipe.mainPicture = `${IMG_SERVER}${recipe.mainPicture}`;
 				return recipe;
 			}), catchError(_ => {
 				return of(DEFAULT_RECIPE);

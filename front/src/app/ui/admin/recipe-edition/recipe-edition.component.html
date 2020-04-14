@@ -1,0 +1,22 @@
+<h1>Ajout d'une recette</h1>
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+	<formly-form [model]="model" [fields]="fields" [form]="form"></formly-form>
+	<div class="submit-bar">
+		<button mat-raised-button type="submit" color="primary" [disabled]="!canSubmit">Enregistrer</button>
+	</div>
+</form>
+
+<!-- Json recipe -->
+<mat-expansion-panel class="code-block">
+	<mat-expansion-panel-header>
+		<mat-panel-title>Json</mat-panel-title>
+	</mat-expansion-panel-header>
+	<button mat-icon-button type="button" [disabled]="showCopySuccessMessage" (click)="copyToClipboard()"
+		[class.success]="showCopySuccessMessage">
+		<mat-icon>file_copy</mat-icon>
+		{{ showCopySuccessMessage ? 'Copié !' : 'Copier' }}
+	</button>
+	<pre>{{ model | json }}</pre>
+	<textarea hidden #jsonRecipeTextArea>{{ model | json }}</textarea>
+</mat-expansion-panel>

@@ -37,15 +37,7 @@
 		],
 		"member-access": false,
 		"member-ordering": [
-			true,
-			{
-				"order": [
-					"static-field",
-					"instance-field",
-					"static-method",
-					"instance-method"
-				]
-			}
+			false
 		],
 		"no-consecutive-blank-lines": false,
 		"no-console": [
@@ -70,8 +62,10 @@
 		],
 		"object-literal-sort-keys": false,
 		"ordered-imports": false,
+		"prefer-for-of": false,
 		"quotemark": [
-			false
+			true,
+			"single"
 		],
 		"trailing-comma": false,
 		"no-conflicting-lifecycle": true,

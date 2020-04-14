@@ -1,15 +1,27 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { MatMenuModule } from '@angular/material/menu';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HomeComponent } from './ui';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule, Routes } from '@angular/router';
+import { AdminComponent, HomeComponent, RecipeEditionComponent } from './ui';
 import { RecipeComponent } from './ui/recipe';
 
 const routes: Routes = [
 	{
 		path: '',
 		component: HomeComponent
+	},
+	{
+		path: 'admin',
+		children: [
+			{
+				path: '',
+				component: AdminComponent
+			},
+			{
+				path: 'add-recipe',
+				component: RecipeEditionComponent
+			}
+		]
 	},
 	{
 		path: ':recipeId',
@@ -21,7 +33,6 @@ const routes: Routes = [
 	imports: [
 		BrowserModule,
 		BrowserAnimationsModule,
-		MatMenuModule,
 		RouterModule.forRoot(routes, { useHash: true })
 	],
 	exports: [RouterModule],

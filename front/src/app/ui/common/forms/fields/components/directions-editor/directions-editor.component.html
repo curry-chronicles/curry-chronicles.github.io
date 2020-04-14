@@ -1,0 +1,29 @@
+<mat-list cdkDropList (cdkDropListDropped)="onDropDirection($event)">
+	<mat-list-item *ngFor="let direction of directions; let directionIndex = index" cdkDrag class="mod-heightAuto">
+
+		<mat-icon [matBadge]="directionIndex + 1" matBadgePosition="before"></mat-icon>
+
+		<mat-icon cdkDragHandle>drag_indicator</mat-icon>
+
+		<!-- Description -->
+		<mat-form-field class="mod-fullWidth">
+			<mat-label>Description</mat-label>
+			<textarea matInput [disabled]="isDisabled" [appAutofocusOnShow]="directions.length > 1"
+				(focus)="onTouched()" (keyup.enter)="onEnter(directionIndex)" [(ngModel)]="direction.description"
+				(ngChange)="onDirectionsChanged()" placeholder="Nom"></textarea>
+		</mat-form-field>
+
+		<!-- Remove button -->
+		<button mat-icon-button type="button" (click)="removeDirectionAt(directionIndex)"
+			[disabled]="directions.length === 1" tabindex="-1">
+			<mat-icon>remove_circle</mat-icon>
+		</button>
+	</mat-list-item>
+</mat-list>
+
+<!-- Add button -->
+<button mat-icon-button type="button" class="add-direction-button" (click)="addDirection()"
+	[disabled]="isDisabled || !canAddDirection">
+	<mat-icon>add_circle</mat-icon>
+	Ajouter une étape
+</button>

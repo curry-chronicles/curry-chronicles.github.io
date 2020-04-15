@@ -1,11 +1,12 @@
 @import "../colors";
 
 h1 {
-	font-size: 2.5rem;
-	padding-bottom: 1.5rem;
-	margin-bottom: 2rem;
+	display: block;
+	border-bottom: 1px dashed $lighter;
+	font-size: 2.25rem;
 	font-weight: bold;
-	margin-bottom: 0;
+	padding-bottom: 1rem;
+	margin-bottom: 2rem;
 }
 
 h3 {

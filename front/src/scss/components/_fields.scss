@@ -1,10 +1,19 @@
-mat-form-field.mod-fullWidth {
-	width: 100%;
+mat-form-field {
+
+	&.mod-fullWidth {
+		width: 100%;
+	}
+
+	&.mod-withIcon {
+		.mat-form-field-suffix {
+			padding: 0.4375em 0;
+		}
+	}
 }
+
 
 mat-list-item.mod-heightAuto {
 	&.mat-list-item {
 		height: auto !important;
 	}
 }
-

@@ -26,6 +26,8 @@ const DEFAULT_RECIPE: IRecipe = {
 	]
 };
 
+const RECIPE_OVERVIEW_FIELDS = 'id,name,mainPicture,headLine';
+
 @Injectable()
 export class RecipesService {
 	private static recipes: Observable<IRecipeOverview[]>;
@@ -34,10 +36,12 @@ export class RecipesService {
 
 	public getRecipesOverviews(): Observable<IRecipeOverview[]> {
 		if (RecipesService.recipes == null) {
-			RecipesService.recipes = this.http.get<IRecipeOverview[]>(RECIPES_API).pipe(
+			RecipesService.recipes = this.http.get<IRecipeOverview[]>(
+				`${RECIPES_API}?fields=${RECIPE_OVERVIEW_FIELDS}`
+			).pipe(
 				map(recipes => {
 					recipes.forEach(recipe => {
-						recipe.mainPicture = `${IMG_SERVER}${recipe.mainPicture}`;
+						recipe.mainPicture = this.getMainPictureUrl(recipe);
 					});
 					return recipes;
 				}),
@@ -47,13 +51,30 @@ export class RecipesService {
 		return RecipesService.recipes;
 	}
 
+	public getRecipesByClue(clue: string): Observable<IRecipeOverview[]> {
+		return this.http.get<IRecipeOverview[]>(
+			`${RECIPES_API}?fields=${RECIPE_OVERVIEW_FIELDS}&name=like,${clue}`
+		).pipe(
+			map(recipes => {
+				recipes.forEach(recipe => {
+					recipe.mainPicture = this.getMainPictureUrl(recipe);
+				});
+				return recipes;
+			})
+		);
+	}
+
 	public getRecipe(id: string): Observable<IRecipe> {
 		return this.http.get<IRecipe>(`${RECIPES_API}/${id}`).pipe(
 			map(recipe => {
-				recipe.mainPicture = `${IMG_SERVER}${recipe.mainPicture}`;
+				recipe.mainPicture = this.getMainPictureUrl(recipe);
 				return recipe;
 			}), catchError(_ => {
 				return of(DEFAULT_RECIPE);
 			}));
+	}
+
+	private getMainPictureUrl(recipe: IRecipeOverview) {
+		return `${IMG_SERVER}${recipe.mainPicture}`;
 	}
 }

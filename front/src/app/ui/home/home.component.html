@@ -1,9 +1,17 @@
-<h1>
-	<mat-icon>restaurant</mat-icon>
-	Liste des recettes
-</h1>
+<section class="header">
+	<h1>
+		<mat-icon>restaurant</mat-icon>
+		Liste des recettes
+	</h1>
+	<mat-form-field class="mod-withIcon">
+		<mat-label>Rechercher</mat-label>
+		<input type="text" matInput #searchInputElement [(ngModel)]="searchInput"
+			placeholder="Rechercher une recette" />
+		<mat-icon matSuffix>search</mat-icon>
+	</mat-form-field>
+</section>
 
-<div class="recipes-list" *ngIf="overviews$ | async as overviews; else loading">
+<section class="recipes-list" *ngIf="overviews$ | async as overviews; else loading">
 	<article class="card" *ngFor="let overview of overviews" [routerLink]="overview.id">
 		<header>
 			<h2>
@@ -17,11 +25,11 @@
 			{{ overview.headLine }}
 		</footer>
 	</article>
-</div>
+</section>
 
 <ng-template #loading>
-	<div class="recipes-loader">
+	<section class="recipes-loader">
 		<mat-spinner></mat-spinner>
 		<span>Cuisson en cours...</span>
-	</div>
+	</section>
 </ng-template>

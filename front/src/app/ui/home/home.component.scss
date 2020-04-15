@@ -1,5 +1,23 @@
 @import "variables", "colors";
 
+.header {
+	display: flex;
+	justify-content: space-between;
+	border-bottom: 1px dashed $lighter;
+	padding-bottom: 1rem;
+	margin-bottom: 2rem;
+
+	h1 {
+		display: inline-block;
+		margin: 0;
+		padding: 0;
+	}
+
+	mat-form-field {
+		margin-right: 0.5rem;
+	}
+}
+
 .recipes-list {
 
 	// When screen big enough, display overviews in a grid

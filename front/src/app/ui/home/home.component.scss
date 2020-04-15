@@ -1,10 +1,5 @@
 @import "variables", "colors";
 
-h1 {
-	display: block;
-	border-bottom: 1px dashed $lighter;
-}
-
 .recipes-list {
 
 	// When screen big enough, display overviews in a grid
@@ -17,8 +12,7 @@ h1 {
 
 .card {
 	cursor: pointer;
-	box-shadow: 0 6px 15px rgba(36, 37, 38, .08);
-	border: 1px solid $lighter;
+	box-shadow: 0 0px 15px rgba(36, 37, 38, .15);
 	margin-bottom: 1rem;
 
 	flex: 0 1 calc(33% - 1rem);
@@ -41,12 +35,15 @@ h1 {
 	}
 
 	>content {
+		display: block;
 		overflow: hidden;
 
 		img {
 			display: block;
 			border: 0;
 			width: 100%;
+			height: auto;
+			transition: transform 0.25s ease, filter 0.25s ease;
 		}
 	}
 
@@ -56,6 +53,13 @@ h1 {
 		color: $grey;
 		font-size: 1rem;
 		text-align: center;
+	}
+
+	&:hover {
+		img {
+			filter: contrast(1.15);
+			transform: scale(1.333);
+		}
 	}
 }
 

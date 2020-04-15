@@ -33,7 +33,12 @@ const routes: Routes = [
 	imports: [
 		BrowserModule,
 		BrowserAnimationsModule,
-		RouterModule.forRoot(routes, { useHash: true })
+		RouterModule.forRoot(
+			routes,
+			{
+				useHash: true
+			}
+		)
 	],
 	exports: [RouterModule],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA]

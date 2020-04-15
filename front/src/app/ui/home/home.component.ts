@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { fromEvent, Observable } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 import { RecipesService } from '../../infra';
 import { IRecipeOverview } from '../../models';
-import { Observable, fromEvent } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
 
 const SEARCH_DEBOUNCE_TIME_IN_MS = 300;
 
@@ -19,6 +19,10 @@ export class HomeComponent implements OnInit {
 	public searchInputElement: ElementRef<HTMLInputElement>;
 	public searchInput = '';
 
+	public get isSearchInputEmpty(): boolean {
+		return this.searchInput == null || this.searchInput.length === 0
+	}
+
 	constructor(
 		private recipesService: RecipesService
 	) { }
@@ -27,12 +31,22 @@ export class HomeComponent implements OnInit {
 		this.overviews$ = this.recipesService.getRecipesOverviews();
 		fromEvent(this.searchInputElement.nativeElement, 'keyup').pipe(
 			debounceTime(SEARCH_DEBOUNCE_TIME_IN_MS)
-		).subscribe(() => {
-			if (this.searchInput == null || this.searchInput.length === 0) {
-				this.overviews$ = this.recipesService.getRecipesOverviews();
-				return;
-			}
-			this.overviews$ = this.recipesService.getRecipesByClue(this.searchInput);
+		).subscribe((event) => {
+			console.log(event);
+			this.onSearchChanged();
 		});
+	}
+
+	public onClearSearchInput(): void {
+		this.searchInput = '';
+		this.onSearchChanged();
+	}
+
+	private onSearchChanged(): void {
+		if (this.isSearchInputEmpty) {
+			this.overviews$ = this.recipesService.getRecipesOverviews();
+			return;
+		}
+		this.overviews$ = this.recipesService.getRecipesByClue(this.searchInput);
 	}
 }

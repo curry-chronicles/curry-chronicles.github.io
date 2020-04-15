@@ -1,19 +1,19 @@
 <!-- Hours -->
-<mat-form-field>
+<mat-form-field appearance="outline">
 	<mat-label>Heures</mat-label>
 	<input type="number" matInput [disabled]="isDisabled" (focus)="onTouched()" min="0" max="23"
 		[(ngModel)]="value.hours" (ngModelChange)="onValueChanged()" placeholder="Heures" />
 </mat-form-field>
 
 <!-- Minutes -->
-<mat-form-field>
+<mat-form-field appearance="outline">
 	<mat-label>minutes</mat-label>
 	<input type="number" matInput [disabled]="isDisabled" (focus)="onTouched()" min="0" max="59"
 		[(ngModel)]="value.minutes" (ngModelChange)="onValueChanged()" placeholder="minutes" />
 </mat-form-field>
 
 <!-- Seconds -->
-<mat-form-field>
+<mat-form-field appearance="outline">
 	<mat-label>secondes</mat-label>
 	<input type="number" matInput [disabled]="isDisabled" (focus)="onTouched()" min="0" max="59"
 		[(ngModel)]="value.seconds" (ngModelChange)="onValueChanged()" placeholder="secondes" />

@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { fromEvent, Observable } from 'rxjs';
 import { debounceTime, map } from 'rxjs/operators';
 import { RecipesService } from '../../infra';
-import { IRecipeOverview, Page, IRecipe } from '../../models';
+import { IRecipeOverview, Page } from '../../models';
 
 const SEARCH_DEBOUNCE_TIME_IN_MS = 300;
 
@@ -33,8 +33,7 @@ export class HomeComponent implements OnInit {
 		this.recipesPage$ = this.recipesService.getPagedRecipes();
 		fromEvent(this.searchInputElement.nativeElement, 'keyup').pipe(
 			debounceTime(SEARCH_DEBOUNCE_TIME_IN_MS)
-		).subscribe((event) => {
-			console.log(event);
+		).subscribe(() => {
 			this.onSearchChanged();
 		});
 	}
@@ -45,6 +44,9 @@ export class HomeComponent implements OnInit {
 	}
 
 	public loadMore(page: Page<IRecipeOverview>): void {
+		if (page.hasReachedLimit) {
+			return;
+		}
 		this.isLoadingMore = true;
 		this.recipesService.getPagedRecipes(page).subscribe(() => {
 			this.isLoadingMore = false;
@@ -57,7 +59,7 @@ export class HomeComponent implements OnInit {
 			return;
 		}
 		this.recipesPage$ = this.recipesService.getRecipesByClue(this.searchInput).pipe(
-			map(recipes => new Page<IRecipeOverview>(0, 0, recipes))
+			map(recipes => new Page<IRecipeOverview>(0, 0, recipes, true))
 		);
 	}
 }

@@ -22,7 +22,8 @@ import { FormlyMaterialModule } from '@ngx-formly/material';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RecipesService } from './infra';
-import { AdminComponent, AutofocusOnShowDirective, CURRY_CHRONICLES_FORMLY_CONFIG, DateComponent, DirectionsComponent, DirectionsEditorComponent, DirectionsListComponent, FileValueAccessorDirective, HomeComponent, IngredientsComponent, IngredientsEditorComponent, IngredientsListComponent, PictureComponent, PictureEditorComponent, RecipeComponent, RecipeEditionComponent, RecipeHeaderComponent, TimespanComponent, TimespanEditorComponent } from './ui';
+import { AdminComponent, AutofocusOnShowDirective, CURRY_CHRONICLES_FORMLY_CONFIG, DateComponent, DirectionsComponent, DirectionsEditorComponent, DirectionsListComponent, FileValueAccessorDirective, HomeComponent, IngredientsComponent, IngredientsEditorComponent, IngredientsListComponent, PictureComponent, PictureEditorComponent, RecipeComponent, RecipeEditionComponent, RecipeHeaderComponent, TimespanComponent, TimespanEditorComponent, RecipeThumbnailComponent } from './ui';
+import { InfiniteScrollComponent } from './ui/infinite-scroll';
 
 export const DateFormat = {
 	parse: {
@@ -40,6 +41,7 @@ export const DateFormat = {
 	declarations: [
 		AppComponent,
 		HomeComponent,
+		RecipeThumbnailComponent,
 		RecipeComponent,
 		IngredientsListComponent,
 		DirectionsListComponent,
@@ -62,7 +64,10 @@ export const DateFormat = {
 
 		// Directives
 		AutofocusOnShowDirective,
-		FileValueAccessorDirective
+		FileValueAccessorDirective,
+
+		// Helpers
+		InfiniteScrollComponent
 	],
 	imports: [
 		BrowserModule,

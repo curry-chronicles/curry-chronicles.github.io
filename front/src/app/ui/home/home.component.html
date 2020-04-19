@@ -1,27 +1,61 @@
-<h1>
-	<mat-icon>restaurant</mat-icon>
-	Liste des recettes
-</h1>
+<section class="header">
+	<!-- Title -->
+	<h1>
+		<mat-icon>restaurant</mat-icon>
+		Recettes
+	</h1>
+	<!-- Search input -->
+	<mat-form-field>
+		<mat-label>Rechercher</mat-label>
+		<input type="text" matInput #searchInputElement [(ngModel)]="searchInput"
+			placeholder="Rechercher une recette" />
+		<button *ngIf="isSearchInputEmpty" disabled type="button" mat-icon-button matSuffix>
+			<mat-icon>search</mat-icon>
+		</button>
+		<button *ngIf="!isSearchInputEmpty" (click)="onClearSearchInput()" type="button" mat-icon-button matSuffix>
+			<mat-icon>close</mat-icon>
+		</button>
+	</mat-form-field>
+</section>
 
-<div class="recipes-list" *ngIf="overviews$ | async as overviews; else loading">
-	<article class="card" *ngFor="let overview of overviews" [routerLink]="overview.id">
-		<header>
-			<h2>
-				{{ overview.name }}
-			</h2>
-		</header>
-		<content>
-			<img [src]="overview.mainPicture">
-		</content>
-		<footer>
-			{{ overview.headLine }}
-		</footer>
-	</article>
-</div>
+<ng-container *ngIf="recipesPage$ | async as recipesPage; else loading">
+	<ng-template [ngIf]="recipesPage.items.length > 0" [ngIfElse]="norecipe">
+		<!-- Recipes list -->
+		<app-infinite-scroll (scrolled)="loadMore(recipesPage)">
+			<section class="recipes-list">
+				<article class="card" *ngFor="let recipe of recipesPage.items" [routerLink]="recipe.id">
+					<app-recipe-thumbnail [recipe]="recipe"></app-recipe-thumbnail>
+				</article>
+			</section>
+		</app-infinite-scroll>
+		<div class="load-more-container">
+			<!-- Load more button -->
+			<ng-template [ngIf]="!recipesPage.hasReachedLimit" [ngIfElse]="allRecipesLoaded">
+				<button mat-raised-button type="button" color="primary" (click)="loadMore(recipesPage)"
+					[class.mod-loading]="isLoadingMore" [disabled]="isLoadingMore">
+					Charger plus
+				</button>
+			</ng-template>
+			<!-- End of paging -->
+			<ng-template #allRecipesLoaded>
+				C'est tout, gros daleux !
+			</ng-template>
+		</div>
+	</ng-template>
 
+	<!-- No recipe to display -->
+	<ng-template #norecipe>
+		<div class="empty-recipes">
+			<h3>Aucune recette</h3>
+			Essayez de modifier votre recherche
+		</div>
+	</ng-template>
+</ng-container>
+
+<!-- Recipes loading -->
 <ng-template #loading>
-	<div class="recipes-loader">
+	<section class="recipes-loader">
 		<mat-spinner></mat-spinner>
 		<span>Cuisson en cours...</span>
-	</div>
+	</section>
 </ng-template>

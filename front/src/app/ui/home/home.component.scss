@@ -1,8 +1,22 @@
 @import "variables", "colors";
 
-h1 {
-	display: block;
+.header {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
 	border-bottom: 1px dashed $lighter;
+	padding-bottom: 1rem;
+	margin-bottom: 2rem;
+
+	h1 {
+		display: inline-block;
+		margin: 0;
+		padding: 0;
+	}
+
+	mat-form-field {
+		margin-right: 0.5rem;
+	}
 }
 
 .recipes-list {
@@ -12,51 +26,37 @@ h1 {
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: space-between;
+
+		&::after {
+			content: "";
+			flex: 0 1 calc(33% - 1rem);
+		}
+	}
+
+	overflow: inherit auto;
+	align-items: center;
+
+	.card {
+		flex: 0 1 calc(33% - 1rem);
+
+		@media screen and (max-width: $tablet-width-breakpoint) {
+			flex: 0 0 calc(49%);
+		}
+
+		cursor: pointer;
+		box-shadow: 0 0px 15px rgba(36, 37, 38, .15);
+		margin-bottom: 1rem;
 	}
 }
 
-.card {
-	cursor: pointer;
-	box-shadow: 0 6px 15px rgba(36, 37, 38, .08);
-	border: 1px solid $lighter;
-	margin-bottom: 1rem;
+.load-more-container {
+	margin: 8rem 0;
+	text-align: center;
+}
 
-	flex: 0 1 calc(33% - 1rem);
-
-	@media screen and (max-width: $tablet-width-breakpoint) {
-		flex: 0 0 calc(49%);
-	}
-
-	>header {
-		background-color: $primary-color;
-		color: white;
-		padding: 0.5rem;
-
-		h2 {
-			margin: 0;
-			padding: 0;
-			font-weight: 400;
-			font-size: 1rem;
-		}
-	}
-
-	>content {
-		overflow: hidden;
-
-		img {
-			display: block;
-			border: 0;
-			width: 100%;
-		}
-	}
-
-	>footer {
-		background-color: white;
-		padding: 0.5rem;
-		color: $grey;
-		font-size: 1rem;
-		text-align: center;
-	}
+.empty-recipes {
+	text-align: center;
+	margin: 10rem 0;
 }
 
 .recipes-loader {

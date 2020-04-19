@@ -21,10 +21,10 @@ mat-toolbar {
 			margin-left: 38px;
 			font-size: 1.4rem;
 			transition: color 0.25s ease;
+		}
 
-			&:hover {
-				color: #e13b2b;
-			}
+		&:hover {
+			color: #e13b2b;
 		}
 	}
 }

@@ -40,6 +40,7 @@ export class RecipeEditionComponent {
 				type: 'input',
 				templateOptions: {
 					label: 'Nom',
+					appearance: 'outline',
 					placeholder: 'Nom de la recette',
 					required: true
 				}
@@ -57,6 +58,7 @@ export class RecipeEditionComponent {
 				type: 'input',
 				templateOptions: {
 					type: 'number',
+					appearance: 'outline',
 					label: 'Nombre de personnes',
 					placeholder: 'Pour combien de personnes',
 					required: true

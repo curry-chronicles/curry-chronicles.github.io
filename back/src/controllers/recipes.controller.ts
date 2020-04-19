@@ -34,7 +34,7 @@ export class RecipesController extends AController {
 
 	public getPictureById(request: Request, response: Response): void {
 		httpRequest.get({
-			url: 'http://sebferrer.fr/cook/recipe/img/' + request.params.recipeId + '.jpg',
+			url: 'http://sebferrer.fr/curry-chronicles/recipe/img/' + request.params.pictureId + '.jpg',
 			method: 'GET',
 			encoding: null
 		}, (error: Error, requestResponse: RequestResponse, body: Body) => {

@@ -11,7 +11,7 @@ export abstract class AController {
 		keys.filter(key => !IGNORED_FILTERS.has(key))
 			.forEach(key => {
 				// Like operator?
-				const likeRegex = /like,([a-zA-Z0-9]+)/mg.exec(query[key]);
+				const likeRegex = /like,([a-zA-Z0-9\u00C0-\u024F\u1E00-\u1EFF]+)/mg.exec(query[key]);
 				if (likeRegex != null) {
 					result[key] = {
 						$regex: likeRegex[1],

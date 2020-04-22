@@ -19,7 +19,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from './routing/app-routing.module';
 import { AppComponent } from './app.component';
 import { RecipesService, AuthenticationService } from './infra';
 import { AdminComponent, AutofocusOnShowDirective, CURRY_CHRONICLES_FORMLY_CONFIG, DateComponent, DirectionsComponent, DirectionsEditorComponent, DirectionsListComponent, FileValueAccessorDirective, HomeComponent, IngredientsComponent, IngredientsEditorComponent, IngredientsListComponent, PictureComponent, PictureEditorComponent, RecipeComponent, RecipeEditionComponent, RecipeHeaderComponent, TimespanComponent, TimespanEditorComponent, RecipeThumbnailComponent, LoginComponent } from './ui';

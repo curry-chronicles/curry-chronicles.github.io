@@ -21,8 +21,8 @@ import { FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RecipesService } from './infra';
-import { AdminComponent, AutofocusOnShowDirective, CURRY_CHRONICLES_FORMLY_CONFIG, DateComponent, DirectionsComponent, DirectionsEditorComponent, DirectionsListComponent, FileValueAccessorDirective, HomeComponent, IngredientsComponent, IngredientsEditorComponent, IngredientsListComponent, PictureComponent, PictureEditorComponent, RecipeComponent, RecipeEditionComponent, RecipeHeaderComponent, TimespanComponent, TimespanEditorComponent, RecipeThumbnailComponent } from './ui';
+import { RecipesService, AuthenticationService } from './infra';
+import { AdminComponent, AutofocusOnShowDirective, CURRY_CHRONICLES_FORMLY_CONFIG, DateComponent, DirectionsComponent, DirectionsEditorComponent, DirectionsListComponent, FileValueAccessorDirective, HomeComponent, IngredientsComponent, IngredientsEditorComponent, IngredientsListComponent, PictureComponent, PictureEditorComponent, RecipeComponent, RecipeEditionComponent, RecipeHeaderComponent, TimespanComponent, TimespanEditorComponent, RecipeThumbnailComponent, LoginComponent } from './ui';
 import { InfiniteScrollComponent } from './ui/infinite-scroll';
 
 export const DateFormat = {
@@ -48,6 +48,7 @@ export const DateFormat = {
 		RecipeHeaderComponent,
 
 		// Admin components
+		LoginComponent,
 		AdminComponent,
 		RecipeEditionComponent,
 
@@ -94,7 +95,8 @@ export const DateFormat = {
 		FormsModule
 	],
 	providers: [
-		RecipesService
+		RecipesService,
+		AuthenticationService
 	],
 	bootstrap: [AppComponent]
 })

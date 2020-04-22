@@ -1,0 +1,16 @@
+<mat-card>
+	<h1>Connexion</h1>
+
+	<div class="callout mod-error" *ngIf="error != null">
+		{{ error }}
+	</div>
+
+	<mat-card-content>
+		<form [formGroup]="form" (ngSubmit)="submit()">
+			<formly-form [model]="model" [fields]="fields" [form]="form"></formly-form>
+			<div class="submit-bar">
+				<button mat-raised-button type="submit" color="primary" [disabled]="!canSubmit">Se connecter</button>
+			</div>
+		</form>
+	</mat-card-content>
+</mat-card>

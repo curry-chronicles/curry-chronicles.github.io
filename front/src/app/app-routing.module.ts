@@ -2,8 +2,7 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
-import { AdminComponent, HomeComponent, RecipeEditionComponent } from './ui';
-import { RecipeComponent } from './ui/recipe';
+import { AdminComponent, HomeComponent, LoginComponent, RecipeComponent, RecipeEditionComponent } from './ui';
 
 const routes: Routes = [
 	{
@@ -22,6 +21,10 @@ const routes: Routes = [
 				component: RecipeEditionComponent
 			}
 		]
+	},
+	{
+		path: 'login',
+		component: LoginComponent
 	},
 	{
 		path: ':recipeId',

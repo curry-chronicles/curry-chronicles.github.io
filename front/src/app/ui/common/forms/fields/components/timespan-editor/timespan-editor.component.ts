@@ -28,16 +28,16 @@ class Timespan {
 	}
 
 	public static parse(input: string): Timespan {
-		const regex = new RegExp(/(?<hours>\d+):(?<minutes>\d+):(?<seconds>\d+)/gm);
+		const regex = new RegExp(/(\d+):(\d+):(\d+)/gm);
 		const parseResult = regex.exec(input);
 
 		if (parseResult == null) {
 			return new Timespan(null, null, null);
 		}
 		return new Timespan(
-			parseInt(parseResult.groups.hours, 10),
-			parseInt(parseResult.groups.minutes, 10),
-			parseInt(parseResult.groups.seconds, 10),
+			parseInt(parseResult[1], 10),
+			parseInt(parseResult[2], 10),
+			parseInt(parseResult[3], 10),
 		);
 	}
 }

@@ -21,7 +21,11 @@ mongoose
 		console.error(error);
 	});
 
-app.use(cors());
+app.use(cors({
+    origin: 'https://curry-chronicles.github.io',
+    credentials: true
+}));
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 

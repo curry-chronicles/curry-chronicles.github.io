@@ -4,7 +4,7 @@ import * as cors from 'cors'
 import { Express } from 'express';
 import * as mongoose from 'mongoose';
 import { RecipeSchema } from './models';
-import { recipesRoute } from './routes';
+import { recipesRoute, loginRoute } from './routes';
 
 const app: Express = (express as any)();
 const port = process.env.port || 3000;
@@ -26,7 +26,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 const routes: ((app: Express) => void)[] = [
-	recipesRoute
+	recipesRoute,
+	loginRoute
 ];
 
 // Register the schemas

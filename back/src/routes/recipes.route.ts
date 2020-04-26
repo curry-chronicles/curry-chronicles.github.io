@@ -7,10 +7,21 @@ export function recipesRoute(app: Express): void {
 	app.route('/api/recipes')
 		.get((request, result) => {
 			controller.getAll(request, result);
-		});
+		})
+		/*.post((request, result) => {
+			controller.create(request, result);
+		});*/
 
 	app.route('/api/recipes/:recipeId')
 		.get((request, result) => {
 			controller.getById(request, result);
+		})
+		/*.delete((request, result) => {
+			controller.delete(request, result);
+		});*/
+		
+	app.route('/api/pictures/:pictureId')
+		.get((request, result) => {
+			controller.getPictureById(request, result);
 		});
 }

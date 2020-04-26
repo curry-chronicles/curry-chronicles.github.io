@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { FormlyFieldConfig } from '@ngx-formly/core';
+import { AuthenticationService } from '../../infra';
 import { ILogin } from '../../models';
 import { nameof } from '../../utils';
-import { AuthenticationService } from '../../infra';
 
 @Component({
 	selector: 'app-login',
@@ -16,6 +17,7 @@ export class LoginComponent {
 	public model: ILogin;
 	public fields: FormlyFieldConfig[];
 
+	public isSaving = false;
 	public error: string;
 
 	public get canSubmit(): boolean {
@@ -23,7 +25,8 @@ export class LoginComponent {
 	}
 
 	constructor(
-		private authenticationService: AuthenticationService
+		private authenticationService: AuthenticationService,
+		private router: Router
 	) {
 		this.form = new FormGroup({});
 		this.model = {} as ILogin;
@@ -52,10 +55,16 @@ export class LoginComponent {
 
 	public submit(): void {
 		this.authenticationService.login(this.model)
-			.subscribe(stuff => {
-				// ???
+			.subscribe(() => {
+				this.isSaving = false;
+				this.router.navigateByUrl('/admin');
 			}, (error: string) => {
+				this.isSaving = false;
 				this.error = error;
+				this.model = {
+					login: this.model.login,
+					password: null
+				};
 			});
 	}
 }

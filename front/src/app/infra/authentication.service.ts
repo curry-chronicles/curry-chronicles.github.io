@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { Observable, of, throwError } from 'rxjs';
+import { tap, catchError } from 'rxjs/operators';
 import { ILogin } from '../models';
 import { environment } from '../../environments/environment';
 
@@ -16,9 +16,7 @@ export class AuthenticationService {
 
 	public login(credentials: ILogin): Observable<any> {
 		return this.http.post(`${environment.backendUrl}${LOGIN_URL}`, credentials, { withCredentials: true }).pipe(
-			tap(e => {
-				console.log(e);
-			})
+			catchError(e => throwError(e?.error ?? 'Echec d²\'authentification'))
 		);
 	}
 

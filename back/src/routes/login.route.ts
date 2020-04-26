@@ -5,8 +5,6 @@ export function loginRoute(app: Express): void {
 	const controller = new LoginController();
 
 	app.route('/api/login')
-		.post((request, result) => {
-			controller.login(request, result);
-		});
+		.post((request, result) => controller.login(request, result));
 
 }

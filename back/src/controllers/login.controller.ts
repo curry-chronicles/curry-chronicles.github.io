@@ -12,7 +12,8 @@ export class LoginController {
 		const body = request.body as ILoginRequest;
 
 		if (body.login !== auth.login || body.password !== auth.password) {
-			response.send(401);
+			response.status(401);
+			response.send('Identifiants invalides');
 			return;
 		}
 

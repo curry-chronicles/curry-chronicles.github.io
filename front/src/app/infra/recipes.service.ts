@@ -4,9 +4,10 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, shareReplay } from 'rxjs/operators';
 import { IRecipe, IRecipeOverview, Page } from '../models';
 import { todayAsIsoString } from '../utils';
+import { environment } from '../../environments/environment';
 
-const IMG_SERVER = 'https://curry-chronicles.fr/api/pictures/';
-const RECIPES_API = 'https://curry-chronicles.fr/api/recipes';
+const IMG_SERVER = '/api/pictures/';
+const RECIPES_API = '/api/recipes';
 
 const DEFAULT_RECIPE: IRecipe = {
 	id: 'default',
@@ -43,7 +44,7 @@ export class RecipesService {
 			currentPaging.skip += PAGING_INCREMENT;
 		}
 		return this.http.get<IRecipeOverview[]>(
-			`${RECIPES_API}?fields=${RECIPE_OVERVIEW_FIELDS}&paging=${currentPaging.skip},${currentPaging.limit}`
+			`${environment.backendUrl}${RECIPES_API}?fields=${RECIPE_OVERVIEW_FIELDS}&paging=${currentPaging.skip},${currentPaging.limit}`
 		).pipe(
 			map(recipes => {
 				if (recipes.length === 0) {
@@ -61,7 +62,7 @@ export class RecipesService {
 	public getRecipesOverviews(): Observable<IRecipeOverview[]> {
 		if (RecipesService.recipes == null) {
 			RecipesService.recipes = this.http.get<IRecipeOverview[]>(
-				`${RECIPES_API}?fields=${RECIPE_OVERVIEW_FIELDS}`
+				`${environment.backendUrl}${RECIPES_API}?fields=${RECIPE_OVERVIEW_FIELDS}`
 			).pipe(
 				map(recipes => {
 					recipes.forEach(recipe => {
@@ -77,7 +78,7 @@ export class RecipesService {
 
 	public getRecipesByClue(clue: string): Observable<IRecipeOverview[]> {
 		return this.http.get<IRecipeOverview[]>(
-			`${RECIPES_API}?fields=${RECIPE_OVERVIEW_FIELDS}&name=like,${clue}`
+			`${environment.backendUrl}${RECIPES_API}?fields=${RECIPE_OVERVIEW_FIELDS}&name=like,${clue}`
 		).pipe(
 			map(recipes => {
 				recipes.forEach(recipe => {
@@ -89,7 +90,7 @@ export class RecipesService {
 	}
 
 	public getRecipe(id: string): Observable<IRecipe> {
-		return this.http.get<IRecipe>(`${RECIPES_API}/${id}`).pipe(
+		return this.http.get<IRecipe>(`${environment.backendUrl}${RECIPES_API}/${id}`).pipe(
 			map(recipe => {
 				recipe.mainPicture = this.getMainPictureUrl(recipe);
 				return recipe;

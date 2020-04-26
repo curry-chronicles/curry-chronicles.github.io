@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { ILogin } from '../models';
+import { environment } from '../../environments/environment';
 
 const LOGIN_URL = '/api/login';
 
@@ -11,11 +12,10 @@ const LOGIN_URL = '/api/login';
 })
 export class AuthenticationService {
 
-	constructor(private http: HttpClient) {
-	}
+	constructor(private http: HttpClient) { }
 
 	public login(credentials: ILogin): Observable<any> {
-		return this.http.post(LOGIN_URL, credentials, { withCredentials: true }).pipe(
+		return this.http.post(`${environment.backendUrl}${LOGIN_URL}`, credentials, { withCredentials: true }).pipe(
 			tap(e => {
 				console.log(e);
 			})

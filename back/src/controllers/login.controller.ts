@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
-import { ILoginRequest, ILoginInfo } from '../models';
 import { auth } from '../auth.json';
 import { environment } from '../environments/environment';
+import { ILoginInfo, ILoginRequest } from '../models';
 
 const ACCESS_TOKEN_COOKIE_NAME = 'accessToken';
 const ACCES_TOKEN_COOKIE_DURATION_IN_DAYS = 14;
@@ -38,5 +38,10 @@ export class LoginController {
 			return;
 		}
 		response.send({ isLoggedIn: true } as ILoginInfo);
+	}
+
+	public logout(request: Request, response: Response): void {
+		response.clearCookie(ACCESS_TOKEN_COOKIE_NAME);
+		response.send();
 	}
 }

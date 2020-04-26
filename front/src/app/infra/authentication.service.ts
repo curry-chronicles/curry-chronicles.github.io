@@ -6,6 +6,7 @@ import { environment } from '../../environments/environment';
 import { ILogin, ILoginInfo } from '../models';
 
 const LOGIN_URL = '/api/login';
+const LOGOUT_URL = '/api/logout';
 const LOGIN_INFO_URL = '/api/login-info';
 
 @Injectable({
@@ -19,6 +20,10 @@ export class AuthenticationService {
 		return this.http.post(`${environment.backendUrl}${LOGIN_URL}`, credentials, { withCredentials: true }).pipe(
 			catchError(e => throwError(e?.error ?? 'Echec d\'authentification'))
 		);
+	}
+
+	public logout(): Observable<any> {
+		return this.http.post(`${environment.backendUrl}${LOGOUT_URL}`, {}, { withCredentials: true });
 	}
 
 	public isLoggedIn(): Observable<boolean> {

@@ -1,6 +1,9 @@
 <h2>
 	<mat-icon>settings</mat-icon>
 	Administration
+	<button mat-button type="button" [disabled]="isLoggingOut" (click)="logout()">
+		Déconnexion
+	</button>
 </h2>
 
 <div>

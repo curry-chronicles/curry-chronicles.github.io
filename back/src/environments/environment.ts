@@ -1,5 +1,10 @@
-export const environment = {
-	production: false,
-	frontendUrl: 'http://localhost:4200',
-	frontendDomain: 'http://localhost:4200'
-};
+import { IEnvironment } from "../models/environment";
+import { PROD_ENV } from "./environment.prod";
+import { DEV_ENV } from "./environment.dev";
+
+export const ENVIRONMENT = getEnvironment();
+
+function getEnvironment(): IEnvironment {
+	const parameters = new Set<string>(process.argv);
+	return parameters.has('--prod') ? PROD_ENV : DEV_ENV;
+}

@@ -1,12 +1,12 @@
 import * as bodyParser from 'body-parser';
+import * as cookieParser from 'cookie-parser';
+import * as cors from 'cors';
 import * as express from 'express';
-import * as cors from 'cors'
 import { Express } from 'express';
 import * as mongoose from 'mongoose';
+import { ENVIRONMENT } from './environments/environment';
 import { RecipeSchema } from './models';
-import { recipesRoute, loginRoute } from './routes';
-import { environment } from './environments/environment';
-import * as cookieParser from 'cookie-parser';
+import { loginRoute, recipesRoute } from './routes';
 
 const app: Express = (express as any)();
 const port = process.env.port || 3000;
@@ -14,7 +14,6 @@ const databaseIP = 'localhost';
 const databasePort = 27017;
 const databaseName = 'curry-chronicles';
 const connectionString = `mongodb://${databaseIP}:${databasePort}/${databaseName}`;
-
 
 (<any>mongoose).Promise = global.Promise;
 mongoose
@@ -26,7 +25,7 @@ mongoose
 app.use(cookieParser());
 
 app.use(cors({
-	origin: environment.frontendUrl,
+	origin: ENVIRONMENT,
 	credentials: true
 }));
 

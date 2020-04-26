@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { auth } from '../auth.json';
-import { environment } from '../environments/environment';
+import { ENVIRONMENT } from '../environments/environment';
 import { ILoginInfo, ILoginRequest } from '../models';
 
 const ACCESS_TOKEN_COOKIE_NAME = 'accessToken';
@@ -23,7 +23,7 @@ export class LoginController {
 		response.clearCookie(ACCESS_TOKEN_COOKIE_NAME);
 		response.cookie(ACCESS_TOKEN_COOKIE_NAME, auth.accessToken, {
 			httpOnly: true,
-			secure: environment.production,
+			secure: ENVIRONMENT.isProduction,
 			expires: expiration
 		});
 
@@ -32,7 +32,6 @@ export class LoginController {
 
 	public loginInfo(request: Request, response: Response): void {
 		const accessTokenCookieValue = (request?.cookies || {})[ACCESS_TOKEN_COOKIE_NAME];
-		console.log(accessTokenCookieValue);
 		if (accessTokenCookieValue == null || accessTokenCookieValue !== auth.accessToken) {
 			response.send({ isLoggedIn: false } as ILoginInfo);
 			return;

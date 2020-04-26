@@ -5,7 +5,8 @@
 	"main": "index.js",
 	"scripts": {
 		"start": "ts-node-dev src/server.ts",
-		"release": "ts-node src/server.ts"
+		"release": "ts-node-dev src/server.ts --prod",
+		"release-old": "ts-node src/server.ts"
 	},
 	"repository": {
 		"type": "git",

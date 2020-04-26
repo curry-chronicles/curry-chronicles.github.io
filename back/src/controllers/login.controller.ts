@@ -24,6 +24,7 @@ export class LoginController {
 		response.cookie(ACCESS_TOKEN_COOKIE_NAME, auth.accessToken, {
 			httpOnly: true,
 			secure: ENVIRONMENT.isProduction,
+			sameSite: 'none',
 			expires: expiration
 		});
 

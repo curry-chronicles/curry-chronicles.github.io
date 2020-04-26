@@ -5,6 +5,7 @@ import { Express } from 'express';
 import * as mongoose from 'mongoose';
 import { RecipeSchema } from './models';
 import { recipesRoute, loginRoute } from './routes';
+import { environment } from './environments/environment';
 
 const app: Express = (express as any)();
 const port = process.env.port || 3000;
@@ -22,8 +23,8 @@ mongoose
 	});
 
 app.use(cors({
-    origin: 'https://curry-chronicles.github.io',
-    credentials: true
+	origin: environment.frontendUrl,
+	credentials: true
 }));
 
 app.use(bodyParser.urlencoded({ extended: true }));

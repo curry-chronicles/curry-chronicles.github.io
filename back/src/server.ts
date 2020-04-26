@@ -6,6 +6,7 @@ import * as mongoose from 'mongoose';
 import { RecipeSchema } from './models';
 import { recipesRoute, loginRoute } from './routes';
 import { environment } from './environments/environment';
+import * as cookieParser from 'cookie-parser';
 
 const app: Express = (express as any)();
 const port = process.env.port || 3000;
@@ -21,6 +22,8 @@ mongoose
 	.catch(error => {
 		console.error(error);
 	});
+
+app.use(cookieParser());
 
 app.use(cors({
 	origin: environment.frontendUrl,

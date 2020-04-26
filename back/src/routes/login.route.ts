@@ -7,4 +7,7 @@ export function loginRoute(app: Express): void {
 	app.route('/api/login')
 		.post((request, result) => controller.login(request, result));
 
+	app.route('/api/login-info')
+		.get((request, result) => controller.loginInfo(request, result));
+
 }

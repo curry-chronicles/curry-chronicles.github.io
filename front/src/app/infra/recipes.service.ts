@@ -100,6 +100,6 @@ export class RecipesService {
 	}
 
 	private getMainPictureUrl(recipe: IRecipeOverview) {
-		return `${IMG_SERVER}${recipe.mainPicture}`;
+		return `${environment.backendUrl}${IMG_SERVER}${recipe.mainPicture}`;
 	}
 }

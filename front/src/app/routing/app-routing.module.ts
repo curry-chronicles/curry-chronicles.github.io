@@ -2,8 +2,8 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
-import { AdminComponent, HomeComponent, RecipeEditionComponent } from './ui';
-import { RecipeComponent } from './ui/recipe';
+import { AdminComponent, HomeComponent, LoginComponent, RecipeComponent, RecipeEditionComponent } from '../ui';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
 	{
@@ -11,7 +11,12 @@ const routes: Routes = [
 		component: HomeComponent
 	},
 	{
+		path: 'login',
+		component: LoginComponent
+	},
+	{
 		path: 'admin',
+		canActivate: [AuthGuard],
 		children: [
 			{
 				path: '',

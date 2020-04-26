@@ -13,6 +13,7 @@ export class RecipesController extends AController {
 			(error: Error, recipes: Document[]) => {
 				if (error != null) {
 					response.send(error);
+					return;
 				}
 				response.json(recipes);
 			});
@@ -25,6 +26,7 @@ export class RecipesController extends AController {
 			(error: Error, recipes: Document[]) => {
 				if (error != null) {
 					response.send(error);
+					return;
 				}
 				response.json(recipes[0]);
 			});

@@ -1,0 +1,18 @@
+@import "../colors";
+
+$padding: 0.5rem;
+
+.callout {
+
+	border-radius: 4px;
+	background-color: $grey;
+	position: relative;
+	display: block;
+	color: #fff;
+	padding: $padding;
+
+	&.mod-error {
+		background-color: map-get($error, 'background');
+		color: map-get($error, 'foreground');
+	}
+}

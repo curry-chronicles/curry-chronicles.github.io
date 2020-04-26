@@ -5,7 +5,8 @@
 	"main": "index.js",
 	"scripts": {
 		"start": "ts-node-dev src/server.ts",
-		"release": "ts-node src/server.ts"
+		"release": "ts-node-dev src/server.ts --prod",
+		"release-old": "ts-node src/server.ts"
 	},
 	"repository": {
 		"type": "git",
@@ -26,6 +27,7 @@
 	},
 	"dependencies": {
 		"body-parser": "^1.19.0",
+		"cookie-parser": "^1.4.5",
 		"cors": "^2.8.5",
 		"express": "^4.17.1",
 		"mongoose": "^5.8.4"

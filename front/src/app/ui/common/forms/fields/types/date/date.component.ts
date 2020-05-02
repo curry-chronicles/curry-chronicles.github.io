@@ -10,6 +10,6 @@ import { asIsoString } from '../../../../../../utils';
 export class DateComponent extends FieldType {
 	public value: any;
 	public onchange(date: Date): void {
-		this.formControl.setValue({ [this.key]: asIsoString(date) });
+		this.formControl.setValue(asIsoString(date));
 	}
 }

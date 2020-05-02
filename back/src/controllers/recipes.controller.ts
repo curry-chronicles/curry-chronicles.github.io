@@ -2,8 +2,9 @@ import { Request, Response } from 'express';
 import { Document } from 'mongoose';
 import { RecipeSchema } from '../models';
 import { AController } from './abstract.controller';
-import { RequestResponse } from 'request';
+import { Response as RequestResponse } from 'request';
 import * as httpRequest from 'request';
+import { LoginController } from './login.controller';
 
 export class RecipesController extends AController {
 
@@ -41,13 +42,19 @@ export class RecipesController extends AController {
 			encoding: null
 		}, (error: Error, requestResponse: RequestResponse, body: Body) => {
 			if (!error && requestResponse.statusCode == 200) {
-				response.writeHead(200, {'Content-Type': 'image/png'});
+				response.writeHead(200, { 'Content-Type': 'image/png' });
 				response.end(body);
 			}
 		});
 	}
 
 	public create(request: Request, response: Response): void {
+		let loginController = new LoginController();
+		if (!loginController.isLogged(request)) {
+			response.status(403);
+			response.send('Vous devez être identifié en tant qu\'admin');
+			return;
+		}
 		let newRecipe = new RecipeSchema(request.body);
 		newRecipe.save(
 			(error: Error, recipe: Document) => {
@@ -59,6 +66,12 @@ export class RecipesController extends AController {
 	}
 
 	public delete(request: Request, response: Response): void {
+		let loginController = new LoginController();
+		if (!loginController.isLogged(request)) {
+			response.status(403);
+			response.send('Vous devez être identifié en tant qu\'admin');
+			return;
+		}
 		RecipeSchema.remove(
 			{ id: request.params.recipeId },
 			(error: Error) => {

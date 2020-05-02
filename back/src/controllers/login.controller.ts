@@ -31,9 +31,13 @@ export class LoginController {
 		response.json();
 	}
 
-	public loginInfo(request: Request, response: Response): void {
+	public isLogged(request: Request): boolean {
 		const accessTokenCookieValue = (request?.cookies || {})[ACCESS_TOKEN_COOKIE_NAME];
-		if (accessTokenCookieValue == null || accessTokenCookieValue !== auth.accessToken) {
+		return (accessTokenCookieValue != null && accessTokenCookieValue === auth.accessToken);
+	}
+
+	public loginInfo(request: Request, response: Response): void {
+		if (!this.isLogged(request)) {
 			response.send({ isLoggedIn: false } as ILoginInfo);
 			return;
 		}

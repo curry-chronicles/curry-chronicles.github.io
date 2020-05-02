@@ -46,6 +46,16 @@ export class RecipeEditionComponent {
 				}
 			},
 			{
+				key: nameof<IRecipe>('headLine'),
+				type: 'textarea',
+				templateOptions: {
+					label: 'En tête',
+					appearance: 'outline',
+					rows: 5,
+					required: true
+				}
+			},
+			{
 				key: nameof<IRecipe>('publicationDate'),
 				type: 'date',
 				templateOptions: {

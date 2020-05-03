@@ -28,7 +28,13 @@ export class RecipesController extends AController {
 			this.getFields(request),
 			(error: Error, recipes: Document[]) => {
 				if (error != null) {
+					response.status(500);
 					response.send(error);
+					return;
+				}
+				if (recipes == null || recipes.length === 0) {
+					response.status(404);
+					response.send(`Recipe with Id ${request.params.id} not found`);
 					return;
 				}
 				response.json(recipes[0]);
@@ -36,7 +42,7 @@ export class RecipesController extends AController {
 	}
 
 	public create(request: Request, response: Response): void {
-		let loginController = new LoginController();
+		const loginController = new LoginController();
 		if (!loginController.isLogged(request)) {
 			response.status(403);
 			response.send('Vous devez être identifié en tant qu\'admin');
@@ -70,7 +76,7 @@ export class RecipesController extends AController {
 			})
 			.catch(error => {
 				response.send(error.message);
-			})
+			});
 	}
 
 	public delete(request: Request, response: Response): void {

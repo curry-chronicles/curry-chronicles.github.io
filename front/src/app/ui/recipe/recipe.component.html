@@ -1,6 +1,6 @@
 <ng-container *ngIf="recipe$ | async as recipe">
 
-	<h4>{{ recipe.publicationDate }}</h4>
+	<h4>{{ recipe.publicationDate | date }}</h4>
 	<h1>{{ recipe.name }}</h1>
 
 	<app-recipe-header [recipe]="recipe"></app-recipe-header>

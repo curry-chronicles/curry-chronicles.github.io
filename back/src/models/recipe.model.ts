@@ -43,6 +43,10 @@ export const RecipeSchema = mongoose.model(
 				type: String,
 				default: 'https://i.imgur.com/C9Fedsh.jpg'
 			},
+			publicationDate: {
+				type: String,
+				default: null
+			},
 			headLine: {
 				type: String,
 				default: ''

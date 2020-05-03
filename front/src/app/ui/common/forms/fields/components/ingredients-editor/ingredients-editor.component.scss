@@ -7,7 +7,11 @@ mat-form-field {
 }
 
 mat-list-item {
-	margin-bottom: 1rem;
+	&:first-child {
+		margin-top: 1.5rem;
+	}
+
+	margin-bottom: 1.5rem;
 
 	*[cdkDragHandle] {
 		cursor: move;

@@ -2,11 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, map, shareReplay } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 import { IRecipe, IRecipeOverview, Page } from '../models';
 import { todayAsIsoString } from '../utils';
-import { environment } from '../../environments/environment';
 
-const IMG_SERVER = '/api/pictures/';
 const RECIPES_API = '/api/recipes';
 
 const DEFAULT_RECIPE: IRecipe = {
@@ -50,9 +49,6 @@ export class RecipesService {
 				if (recipes.length === 0) {
 					currentPaging.hasReachedLimit = true;
 				}
-				recipes.forEach(recipe => {
-					recipe.mainPicture = this.getMainPictureUrl(recipe);
-				});
 				currentPaging.items.push(...recipes);
 				return currentPaging;
 			})
@@ -64,12 +60,6 @@ export class RecipesService {
 			RecipesService.recipes = this.http.get<IRecipeOverview[]>(
 				`${environment.backendUrl}${RECIPES_API}?fields=${RECIPE_OVERVIEW_FIELDS}`
 			).pipe(
-				map(recipes => {
-					recipes.forEach(recipe => {
-						recipe.mainPicture = this.getMainPictureUrl(recipe);
-					});
-					return recipes;
-				}),
 				shareReplay(1)
 			);
 		}
@@ -79,27 +69,24 @@ export class RecipesService {
 	public getRecipesByClue(clue: string): Observable<IRecipeOverview[]> {
 		return this.http.get<IRecipeOverview[]>(
 			`${environment.backendUrl}${RECIPES_API}?fields=${RECIPE_OVERVIEW_FIELDS}&name=like,${clue}`
-		).pipe(
-			map(recipes => {
-				recipes.forEach(recipe => {
-					recipe.mainPicture = this.getMainPictureUrl(recipe);
-				});
-				return recipes;
-			})
 		);
 	}
 
 	public getRecipe(id: string): Observable<IRecipe> {
 		return this.http.get<IRecipe>(`${environment.backendUrl}${RECIPES_API}/${id}`).pipe(
-			map(recipe => {
-				recipe.mainPicture = this.getMainPictureUrl(recipe);
-				return recipe;
-			}), catchError(_ => {
+			catchError(_ => {
 				return of(DEFAULT_RECIPE);
 			}));
 	}
 
-	private getMainPictureUrl(recipe: IRecipeOverview) {
-		return `${environment.backendUrl}${IMG_SERVER}${recipe.mainPicture}`;
+	/** Returns the lowercased Ids of all existing recipes */
+	public getAllRecipeIds(): Observable<Set<string>> {
+		return this.http.get<IRecipeOverview[]>(`${environment.backendUrl}${RECIPES_API}?fields=id`).pipe(
+			map(recipes => new Set<string>(recipes.map(recipe => recipe.id.toLocaleLowerCase())))
+		);
+	}
+
+	public create(recipe: IRecipe): Observable<IRecipe> {
+		return this.http.post<IRecipe>(`${environment.backendUrl}${RECIPES_API}`, recipe, { withCredentials: true });
 	}
 }

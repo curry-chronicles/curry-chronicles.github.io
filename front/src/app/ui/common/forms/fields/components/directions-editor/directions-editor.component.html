@@ -10,7 +10,7 @@
 			<mat-label>Description</mat-label>
 			<textarea matInput [disabled]="isDisabled" [appAutofocusOnShow]="directions.length > 1"
 				(focus)="onTouched()" (keyup.enter)="onEnter(directionIndex)" [(ngModel)]="direction.description"
-				(ngChange)="onDirectionsChanged()" placeholder="Nom"></textarea>
+				(ngChange)="onDirectionsChanged()" placeholder="Description"></textarea>
 		</mat-form-field>
 
 		<!-- Remove button -->

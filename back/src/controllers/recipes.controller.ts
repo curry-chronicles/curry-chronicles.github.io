@@ -37,19 +37,6 @@ export class RecipesController extends AController {
 			});
 	}
 
-	public getPictureById(request: Request, response: Response): void {
-		httpRequest.get({
-			url: 'http://sebferrer.fr/curry-chronicles/recipe/img/' + request.params.pictureId + '.jpg',
-			method: 'GET',
-			encoding: null
-		}, (error: Error, requestResponse: RequestResponse, body: Body) => {
-			if (!error && requestResponse.statusCode == 200) {
-				response.writeHead(200, { 'Content-Type': 'image/png' });
-				response.end(body);
-			}
-		});
-	}
-
 	public create(request: Request, response: Response): void {
 		let loginController = new LoginController();
 		if (!loginController.isLogged(request)) {

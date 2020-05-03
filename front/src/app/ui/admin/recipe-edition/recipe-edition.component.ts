@@ -164,6 +164,10 @@ export class RecipeEditionComponent {
 	}
 
 	public submit(): void {
+		if (!this.canSubmit) {
+			return;
+		}
+
 		this.isSaving = true;
 		this.recipesService.create(this.model)
 			.subscribe(() => {

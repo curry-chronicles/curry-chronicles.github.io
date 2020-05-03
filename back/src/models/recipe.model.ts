@@ -68,21 +68,21 @@ export const RecipeSchema = mongoose.model(
 				default: 'Un délicieux DEFAULT'
 			},
 			directions: [{
-				name: {
+				description: {
 					type: String,
 					default: 'Rien'
+				}
+			}],
+			ingredients: [{
+				name: {
+					type: String,
+					default: 'Contemplez l\'existence.'
 				},
 				amount: {
 					type: Number,
 					default: 1
 				},
 				unit: String
-			}],
-			ingredients: [{
-				description: {
-					type: String,
-					default: 'Contemplez l\'existence.'
-				}
 			}]
 		},
 		{

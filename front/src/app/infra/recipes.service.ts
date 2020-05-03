@@ -78,4 +78,11 @@ export class RecipesService {
 				return of(DEFAULT_RECIPE);
 			}));
 	}
+
+	/** Returns the lowercased Ids of all existing recipes */
+	public getAllRecipeIds(): Observable<Set<string>> {
+		return this.http.get<IRecipeOverview[]>(`${environment.backendUrl}${RECIPES_API}?fields=id`).pipe(
+			map(recipes => new Set<string>(recipes.map(recipe => recipe.id.toLocaleLowerCase())))
+		);
+	}
 }

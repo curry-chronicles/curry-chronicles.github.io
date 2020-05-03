@@ -1,14 +1,38 @@
 import { Schema } from 'mongoose';
 import * as mongoose from 'mongoose';
 
-export const RecipeSchemaName = 'recipes';
+export interface IDirection {
+	description: string;
+	picture?: string;
+}
 
+export interface IIngredient {
+	name: string;
+	amount?: number;
+	unit?: string;
+}
+
+export interface IRecipePayload {
+	id: string;
+	name: string;
+	mainPicture: string;
+	headLine: string;
+	publicationDate: string;
+	servesHowManyPeople: number;
+	preparationTime: string;
+	cookingTime: string;
+	description: string;
+	ingredients: IIngredient[];
+	directions: IDirection[];
+}
+
+export const RecipeSchemaName = 'recipes';
 export const RecipeSchema = mongoose.model(
 	RecipeSchemaName,
 	new Schema(
 		{
 			id: {
-				type: String ,
+				type: String,
 				unique: true
 			},
 			name: {

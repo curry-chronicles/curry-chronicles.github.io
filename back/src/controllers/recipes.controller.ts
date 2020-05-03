@@ -3,7 +3,7 @@ import * as imgur from 'imgur';
 import { Document } from 'mongoose';
 import * as httpRequest from 'request';
 import { Response as RequestResponse } from 'request';
-import { RecipeSchema } from '../models';
+import { IRecipePayload, RecipeSchema, validateRecipe } from '../models';
 import { imgurAuth } from './../imgur.json';
 import { AController } from './abstract.controller';
 import { LoginController } from './login.controller';
@@ -58,22 +58,30 @@ export class RecipesController extends AController {
 			return;
 		}
 
-		// TODO: remove the part before base64, at the beginning of the blob
-		const base64Picture = request.body.mainPicture as string;
+		let recipe = request.body as IRecipePayload;
+		const validationResult = validateRecipe(recipe);
+		if (!validationResult.isValid) {
+			response.status(500);
+			response.send(validationResult.toString());
+			return;
+		}
+
+		recipe = this.prepare(recipe);
 
 		imgur.setAPIUrl('https://api.imgur.com/3/');
 		imgur.setCredentials(imgurAuth.login, imgurAuth.password, imgurAuth.clientId);
-		imgur.uploadBase64(base64Picture, null, request.body.name, request.body.description)
+		imgur.uploadBase64(recipe.mainPicture, null, request.body.name, request.body.description)
 			.then(json => {
 				request.body.mainPicture = json.data.link;
 				const newRecipeSchema = new RecipeSchema(request.body);
-				newRecipeSchema.save(
-					(error: Error, recipe: Document) => {
-						if (error) {
-							response.send(error);
-						}
-						response.json(recipe);
-					});
+				newRecipeSchema.save((error: Error, recipe: Document) => {
+					if (error) {
+						response.status(500);
+						response.send(error);
+						return;
+					}
+					response.json(recipe);
+				});
 			})
 			.catch(error => {
 				response.send(error.message);
@@ -95,6 +103,16 @@ export class RecipesController extends AController {
 				}
 				response.json({ message: 'Recipe successfully deleted' });
 			});
+	}
+
+	private prepare(recipe: IRecipePayload): IRecipePayload {
+		// Remove the "data:image/png;base64," at the beginning of the mainPicture string
+		const base64Token = 'base64,';
+		const base64Index = recipe.mainPicture.indexOf(base64Token);
+		if (base64Index > -1) {
+			recipe.mainPicture = recipe.mainPicture.substring(base64Index + base64Token.length);
+		}
+		return recipe;
 	}
 
 }

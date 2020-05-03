@@ -34,15 +34,6 @@ export class RecipeEditionComponent {
 	) {
 		this.form = new FormGroup({});
 		this.model = {
-
-			id: 'wesh',
-			name: 'test',
-			cookingTime: '1:2:3',
-			preparationTime: '1:2:3',
-			description: 'Coucou',
-			headLine: 'sqwalala',
-			servesHowManyPeople: 2,
-
 			ingredients: [
 				{ name: '' }
 			],

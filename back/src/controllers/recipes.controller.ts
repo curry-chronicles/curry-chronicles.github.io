@@ -1,8 +1,6 @@
 import { Request, Response } from 'express';
 import * as imgur from 'imgur';
 import { Document } from 'mongoose';
-import * as httpRequest from 'request';
-import { Response as RequestResponse } from 'request';
 import { IRecipePayload, RecipeSchema, validateRecipe } from '../models';
 import { imgurAuth } from './../imgur.json';
 import { AController } from './abstract.controller';

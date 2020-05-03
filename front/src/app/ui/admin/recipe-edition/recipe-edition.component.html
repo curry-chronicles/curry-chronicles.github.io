@@ -3,9 +3,14 @@
 <form [formGroup]="form" (ngSubmit)="submit()">
 	<formly-form [model]="model" [fields]="fields" [form]="form"></formly-form>
 	<div class="submit-bar">
-		<button mat-raised-button type="submit" color="primary" [disabled]="!canSubmit">Enregistrer</button>
+		<button mat-raised-button type="submit" color="primary" [class.mod-loading]="isSaving"
+			[disabled]="!canSubmit">Enregistrer</button>
 	</div>
 </form>
+
+<div class="callout mod-error" *ngIf="error != null">
+	{{ error }}
+</div>
 
 <!-- Json recipe -->
 <mat-expansion-panel class="code-block">

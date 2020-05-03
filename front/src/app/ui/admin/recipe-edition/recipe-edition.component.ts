@@ -1,5 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { AbstractControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { RecipesService } from '../../../infra';
 import { IRecipe } from '../../../models';
@@ -21,14 +22,27 @@ export class RecipeEditionComponent {
 	public fields: FormlyFieldConfig[];
 
 	public get canSubmit(): boolean {
-		return this.form.valid && this.form.touched;
+		return this.form.valid && this.form.touched && !this.isSaving;
 	}
 
+	public isSaving = false;
+	public error: string;
+
 	constructor(
-		private recipesService: RecipesService
+		private recipesService: RecipesService,
+		private router: Router
 	) {
 		this.form = new FormGroup({});
 		this.model = {
+
+			id: 'wesh',
+			name: 'test',
+			cookingTime: '1:2:3',
+			preparationTime: '1:2:3',
+			description: 'Coucou',
+			headLine: 'sqwalala',
+			servesHowManyPeople: 2,
+
 			ingredients: [
 				{ name: '' }
 			],
@@ -159,7 +173,16 @@ export class RecipeEditionComponent {
 	}
 
 	public submit(): void {
-		console.log(this.model);
+		this.isSaving = true;
+		this.recipesService.create(this.model)
+			.subscribe(() => {
+				this.isSaving = false;
+				this.router.navigateByUrl('/admin');
+			}, error => {
+				this.isSaving = false;
+				console.error(error);
+				this.error = error;
+			});
 	}
 
 	public copyToClipboard(): void {

@@ -85,4 +85,8 @@ export class RecipesService {
 			map(recipes => new Set<string>(recipes.map(recipe => recipe.id.toLocaleLowerCase())))
 		);
 	}
+
+	public create(recipe: IRecipe): Observable<IRecipe> {
+		return this.http.post<IRecipe>(`${environment.backendUrl}${RECIPES_API}`, recipe, { withCredentials: true });
+	}
 }

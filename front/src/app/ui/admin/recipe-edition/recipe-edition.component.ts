@@ -78,6 +78,18 @@ export class RecipeEditionComponent {
 					type: 'textarea',
 					templateOptions: {
 						label: 'En tête',
+						placeholder: 'Description succincte visible sur la page d\'accueil',
+						appearance: 'outline',
+						rows: 2,
+						required: true
+					}
+				},
+				{
+					key: nameof<IRecipe>('description'),
+					type: 'textarea',
+					templateOptions: {
+						label: 'Description',
+						placeholder: 'Description complète de la recette',
 						appearance: 'outline',
 						rows: 5,
 						required: true

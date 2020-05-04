@@ -25,7 +25,7 @@ mongoose
 app.use(cookieParser());
 
 app.use(cors({
-	origin: ENVIRONMENT,
+	origin: ENVIRONMENT.frontendUrl,
 	credentials: true
 }));
 

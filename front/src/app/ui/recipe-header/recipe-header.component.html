@@ -8,11 +8,11 @@
 	<div>
 		<label for="preparationTime">Préparation</label>
 		<mat-icon>timer</mat-icon>
-		<span name="preparationTime">{{ recipe.preparationTime }}</span>
+		<span name="preparationTime">{{ recipe.preparationTime | timespan }}</span>
 	</div>
 	<div>
 		<label for="cookingTime">Cuisson</label>
 		<mat-icon>timer</mat-icon>
-		<span name="cookingTime">{{ recipe.cookingTime }}</span>
+		<span name="cookingTime">{{ recipe.cookingTime | timespan }}</span>
 	</div>
 </header>

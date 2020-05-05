@@ -5,7 +5,7 @@
 
 	<app-recipe-header [recipe]="recipe"></app-recipe-header>
 
-	<span class="description" [innerHtml]="recipe.description"></span>
+	<span class="description dynamic-content" [innerHtml]="recipe.description"></span>
 
 	<mat-card-content class="layout">
 		<app-ingredients-list [ingredients]="recipe.ingredients"></app-ingredients-list>

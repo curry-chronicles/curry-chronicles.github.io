@@ -20,7 +20,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
 import { AppComponent } from './app.component';
-import { AuthenticationService, RecipesService } from './infra';
+import { AuthenticationService, RecipesService, ImgurService } from './infra';
 import { AppRoutingModule } from './routing/app-routing.module';
 import { AdminComponent, AutofocusOnShowDirective, CURRY_CHRONICLES_FORMLY_CONFIG, DateComponent, DirectionsComponent, DirectionsEditorComponent, DirectionsListComponent, FileValueAccessorDirective, HomeComponent, IngredientsComponent, IngredientsEditorComponent, IngredientsListComponent, LoginComponent, PictureComponent, PictureEditorComponent, RecipeComponent, RecipeEditionComponent, RecipeHeaderComponent, RecipeThumbnailComponent, TimespanComponent, TimespanEditorComponent, TimespanPipe } from './ui';
 import { InfiniteScrollComponent } from './ui/infinite-scroll';
@@ -99,7 +99,8 @@ export const DateFormat = {
 	],
 	providers: [
 		RecipesService,
-		AuthenticationService
+		AuthenticationService,
+		ImgurService
 	],
 	bootstrap: [AppComponent]
 })

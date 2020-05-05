@@ -3,8 +3,9 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, map, shareReplay } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
-import { IRecipe, IRecipeOverview, Page } from '../models';
+import { IRecipe, IRecipeOverview, Page, ThumbnailType } from '../models';
 import { todayAsIsoString } from '../utils';
+import { ImgurService } from './imgur.service';
 
 const RECIPES_API = '/api/recipes';
 
@@ -34,7 +35,10 @@ const PAGING_INCREMENT = 10;
 export class RecipesService {
 	private static recipes: Observable<IRecipeOverview[]>;
 
-	constructor(private http: HttpClient) { }
+	constructor(
+		private http: HttpClient,
+		private imgurService: ImgurService
+	) { }
 
 	public getPagedRecipes(currentPaging: Page<IRecipeOverview> = null): Observable<Page<IRecipeOverview>> {
 		if (currentPaging == null) {
@@ -49,6 +53,9 @@ export class RecipesService {
 				if (recipes.length === 0) {
 					currentPaging.hasReachedLimit = true;
 				}
+				recipes.forEach(recipe => {
+					recipe.mainPicture = this.imgurService.toThumbnail(recipe.mainPicture, ThumbnailType.largeThumbnail);
+				});
 				currentPaging.items.push(...recipes);
 				return currentPaging;
 			})

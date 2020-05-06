@@ -1,15 +1,18 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent, HomeComponent, LoginComponent, RecipeComponent, RecipeEditionComponent } from '../ui';
 import { AuthGuard } from './auth.guard';
 import { RecipeResolver } from './recipe.resolver';
+import { RecipesPageResolver } from './recipes-page.resolver';
 
 const routes: Routes = [
 	{
 		path: '',
-		component: HomeComponent
+		component: HomeComponent,
+		resolve: {
+			recipesPage: RecipesPageResolver
+		}
 	},
 	{
 		path: 'login',
@@ -54,7 +57,8 @@ const routes: Routes = [
 	],
 	providers: [
 		AuthGuard,
-		RecipeResolver
+		RecipeResolver,
+		RecipesPageResolver
 	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

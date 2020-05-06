@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { RecipesService } from '../infra';
 import { IRecipe } from '../models';
 
 @Injectable()
-export class RecipeResolver {
+export class RecipeResolver implements Resolve<IRecipe> {
 	constructor(
-		private recipeService: RecipesService,
+		private recipesService: RecipesService,
 		private router: Router
 	) { }
 
@@ -18,7 +18,7 @@ export class RecipeResolver {
 			this.router.navigateByUrl('/');
 			return of(null);
 		}
-		return this.recipeService.getRecipeById(recipeId).pipe(
+		return this.recipesService.getRecipeById(recipeId).pipe(
 			tap(recipe => {
 				if (recipe == null) {
 					this.router.navigateByUrl('');

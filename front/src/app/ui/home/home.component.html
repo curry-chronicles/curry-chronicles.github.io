@@ -9,10 +9,10 @@
 		<mat-label>Rechercher</mat-label>
 		<input type="text" matInput #searchInputElement [(ngModel)]="searchInput"
 			placeholder="Rechercher une recette" />
-		<button *ngIf="isSearchInputEmpty" disabled type="button" mat-icon-button matSuffix>
+		<button *ngIf="isSearchInputEmpty" disabled type="button" mat-icon-button matSuffix aria-label="search">
 			<mat-icon>search</mat-icon>
 		</button>
-		<button *ngIf="!isSearchInputEmpty" (click)="onClearSearchInput()" type="button" mat-icon-button matSuffix>
+		<button *ngIf="!isSearchInputEmpty" (click)="onClearSearchInput()" type="button" mat-icon-button matSuffix aria-label="close">
 			<mat-icon>close</mat-icon>
 		</button>
 	</mat-form-field>

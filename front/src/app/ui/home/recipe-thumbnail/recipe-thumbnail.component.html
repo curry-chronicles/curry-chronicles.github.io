@@ -2,7 +2,7 @@
 	<h2>{{ recipe.name }}</h2>
 </header>
 <content>
-	<img [src]="recipe.mainPicture">
+	<img [src]="recipe.mainPicture" [alt]="recipe.name">
 </content>
 <footer>
 	{{ recipe.headLine }}

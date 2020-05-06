@@ -4,29 +4,9 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, shareReplay } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { IRecipe, IRecipeOverview, Page, ThumbnailType } from '../models';
-import { todayAsIsoString } from '../utils';
 import { ImgurService } from './imgur.service';
 
 const RECIPES_API = '/api/recipes';
-
-const DEFAULT_RECIPE: IRecipe = {
-	id: 'default',
-	name: 'Default',
-	publicationDate: todayAsIsoString(),
-	mainPicture: '',
-	headLine: '',
-	servesHowManyPeople: 0,
-	preparationTime: '00:00:00',
-	cookingTime: '00:00:00',
-	description: 'Un délicieux DEFAULT',
-	ingredients: [
-		{ name: 'Rien', amount: 1 }
-	],
-	directions: [
-		{ description: 'Contemplez l\'existence.' }
-	]
-};
-
 const RECIPE_OVERVIEW_FIELDS = 'id,name,mainPicture,headLine';
 
 const PAGING_INCREMENT = 10;
@@ -79,11 +59,10 @@ export class RecipesService {
 		);
 	}
 
-	public getRecipe(id: string): Observable<IRecipe> {
+	public getRecipeById(id: string): Observable<IRecipe> {
 		return this.http.get<IRecipe>(`${environment.backendUrl}${RECIPES_API}/${id}`).pipe(
-			catchError(_ => {
-				return of(DEFAULT_RECIPE);
-			}));
+			catchError(_ => of(null))
+		);
 	}
 
 	/** Returns the lowercased Ids of all existing recipes */

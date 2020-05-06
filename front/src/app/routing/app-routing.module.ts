@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent, HomeComponent, LoginComponent, RecipeComponent, RecipeEditionComponent } from '../ui';
 import { AuthGuard } from './auth.guard';
+import { RecipeResolver } from './recipe.resolver';
 
 const routes: Routes = [
 	{
@@ -30,13 +31,15 @@ const routes: Routes = [
 	},
 	{
 		path: ':recipeId',
-		component: RecipeComponent
+		component: RecipeComponent,
+		resolve: {
+			recipe: RecipeResolver
+		}
 	}
 ];
 
 @NgModule({
 	imports: [
-		BrowserModule,
 		BrowserAnimationsModule,
 		RouterModule.forRoot(
 			routes,
@@ -45,7 +48,13 @@ const routes: Routes = [
 			}
 		)
 	],
-	exports: [RouterModule],
+	exports: [
+		RouterModule
+	],
+	providers: [
+		AuthGuard,
+		RecipeResolver
+	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppRoutingModule { }

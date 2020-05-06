@@ -170,9 +170,9 @@ export class RecipeEditionComponent {
 
 		this.isSaving = true;
 		this.recipesService.create(this.model)
-			.subscribe(() => {
+			.subscribe(recipe => {
 				this.isSaving = false;
-				this.router.navigateByUrl('/admin');
+				this.router.navigateByUrl(`${recipe.id}`);
 			}, error => {
 				this.isSaving = false;
 				console.error(error);

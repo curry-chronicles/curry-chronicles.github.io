@@ -19,10 +19,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
-import { AppRoutingModule } from './routing/app-routing.module';
 import { AppComponent } from './app.component';
-import { RecipesService, AuthenticationService } from './infra';
-import { AdminComponent, AutofocusOnShowDirective, CURRY_CHRONICLES_FORMLY_CONFIG, DateComponent, DirectionsComponent, DirectionsEditorComponent, DirectionsListComponent, FileValueAccessorDirective, HomeComponent, IngredientsComponent, IngredientsEditorComponent, IngredientsListComponent, PictureComponent, PictureEditorComponent, RecipeComponent, RecipeEditionComponent, RecipeHeaderComponent, TimespanComponent, TimespanEditorComponent, RecipeThumbnailComponent, LoginComponent } from './ui';
+import { AuthenticationService, RecipesService, ImgurService } from './infra';
+import { AppRoutingModule } from './routing/app-routing.module';
+import { AdminComponent, AutofocusOnShowDirective, CURRY_CHRONICLES_FORMLY_CONFIG, DateComponent, DirectionsComponent, DirectionsEditorComponent, DirectionsListComponent, FileValueAccessorDirective, HomeComponent, IngredientsComponent, IngredientsEditorComponent, IngredientsListComponent, LoginComponent, PictureComponent, PictureEditorComponent, RecipeComponent, RecipeEditionComponent, RecipeHeaderComponent, RecipeThumbnailComponent, TimespanComponent, TimespanEditorComponent, TimespanPipe } from './ui';
 import { InfiniteScrollComponent } from './ui/infinite-scroll';
 
 export const DateFormat = {
@@ -67,6 +67,9 @@ export const DateFormat = {
 		AutofocusOnShowDirective,
 		FileValueAccessorDirective,
 
+		// Pipes
+		TimespanPipe,
+
 		// Helpers
 		InfiniteScrollComponent
 	],
@@ -96,7 +99,8 @@ export const DateFormat = {
 	],
 	providers: [
 		RecipesService,
-		AuthenticationService
+		AuthenticationService,
+		ImgurService
 	],
 	bootstrap: [AppComponent]
 })

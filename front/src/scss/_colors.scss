@@ -1,4 +1,5 @@
 $primary-color: #E13B2B;
+$primary-color-light: lighten($primary-color, 15%);
 
 $error:(
 	background: #FF6961,

@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { fromEvent, Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { fromEvent, Observable, of } from 'rxjs';
 import { debounceTime, map } from 'rxjs/operators';
 import { RecipesService } from '../../infra';
 import { IRecipeOverview, Page } from '../../models';
@@ -26,11 +27,13 @@ export class HomeComponent implements OnInit {
 	}
 
 	constructor(
-		private recipesService: RecipesService
-	) { }
+		private recipesService: RecipesService,
+		private activatedRoute: ActivatedRoute
+	) {
+		this.recipesPage$ = of(this.activatedRoute.snapshot.data.recipesPage as Page<IRecipeOverview>);
+	}
 
 	public ngOnInit(): void {
-		this.recipesPage$ = this.recipesService.getPagedRecipes();
 		fromEvent(this.searchInputElement.nativeElement, 'keyup').pipe(
 			debounceTime(SEARCH_DEBOUNCE_TIME_IN_MS)
 		).subscribe(() => {

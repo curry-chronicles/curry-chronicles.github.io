@@ -1,24 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { RecipesService } from '../../infra';
-import { IRecipe } from '../../models';
-import { Observable } from 'rxjs';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { IRecipe } from '../../models';
 
 @Component({
 	selector: 'app-recipe',
 	templateUrl: './recipe.component.html',
 	styleUrls: ['./recipe.component.scss']
 })
-export class RecipeComponent implements OnInit {
+export class RecipeComponent {
 
-	public recipe$: Observable<IRecipe>;
+	public recipe: IRecipe;
 
 	constructor(
-		private recipesService: RecipesService,
 		private route: ActivatedRoute
-	) { }
-
-	public ngOnInit(): void {
-		this.recipe$ = this.recipesService.getRecipe(this.route.snapshot.paramMap.get('recipeId'));
+	) {
+		this.recipe = this.route.snapshot.data.recipe as IRecipe;
 	}
 }

@@ -24,7 +24,10 @@ const routes: Routes = [
 		children: [
 			{
 				path: '',
-				component: AdminComponent
+				component: AdminComponent,
+				resolve: {
+					recipesPage: RecipesPageResolver
+				}
 			},
 			{
 				path: 'add-recipe',

@@ -1,19 +1,18 @@
-<h2>
-	<mat-icon>settings</mat-icon>
-	Administration
-	<button mat-button type="button" [disabled]="isLoggingOut" (click)="logout()">
-		Déconnexion
-	</button>
-</h2>
-
-<div>
-	<a mat-stroked-button routerLink="add-recipe" color="primary">
-		<mat-icon>add</mat-icon>
-		Ajouter une recette
-	</a>
-</div>
-
-<hr/>
+<section class="header">
+	<h2>
+		<mat-icon>settings</mat-icon>
+		Administration
+		<button mat-button type="button" [disabled]="isLoggingOut" (click)="logout()">
+			Déconnexion
+		</button>
+	</h2>
+	<div>
+		<a mat-stroked-button routerLink="add-recipe" color="primary">
+			<mat-icon>add</mat-icon>
+			Ajouter une recette
+		</a>
+	</div>
+</section>
 
 <ng-container *ngIf="recipesPage$ | async as recipesPage">
 	<ng-template [ngIf]="recipesPage.items.length > 0">
@@ -27,6 +26,10 @@
 						</header>
 						<content>
 							<img [src]="recipe.mainPicture" [alt]="recipe.name">
+							<div class="recipe-buttons-container">
+								<button mat-fab class="recipe-button"><mat-icon>edit</mat-icon></button>
+								<button mat-fab class="recipe-button"><mat-icon>delete</mat-icon></button>
+							</div>
 						</content>
 					</div>
 				</article>

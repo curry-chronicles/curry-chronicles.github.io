@@ -1,5 +1,24 @@
 @import "variables", "colors";
 
+.header {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	border-bottom: 1px dashed $lighter;
+	padding-bottom: 1rem;
+	margin-bottom: 2rem;
+
+	h1 {
+		display: inline-block;
+		margin: 0;
+		padding: 0;
+	}
+
+	mat-form-field {
+		margin-right: 0.5rem;
+	}
+}
+
 .recipes-list {
 	// When screen big enough, display overviews in a grid
 	@media screen and (min-width: $mobile-width-breakpoint) {
@@ -23,7 +42,6 @@
 			flex: 0 0 calc(49%);
 		}
 
-		cursor: pointer;
 		box-shadow: 0 0px 15px rgba(36, 37, 38, .15);
         margin-bottom: 1rem;
         
@@ -46,6 +64,7 @@
             content {
                 display: block;
                 overflow: hidden;
+                position: relative;
         
                 img {
                     display: block;
@@ -54,10 +73,40 @@
                     height: auto;
                     transition: transform 0.25s ease, filter 0.25s ease;
                 }
+
+                .recipe-buttons-container {
+                    visibility: hidden;
+                    opacity: 0;
+
+                    text-align: center;
+                    width: 100%;
+                    margin: 0;
+                    position: absolute;
+                    top: 50%;
+                    -ms-transform: translateY(-100%);
+                    transform: translateY(-100%);
+                    transition: all 0.3s ease;
+                }
+
+                .recipe-button {
+                    margin: 0.5rem;
+                    background-color: $primary-color;
+
+                    &:hover {
+                        -webkit-filter: brightness(80%);
+                        transition: all 0.5s ease;
+                    }
+                }
+
+                &:hover {
+                    .recipe-buttons-container {
+                        visibility: visible;
+                        opacity: 1;
+                        -ms-transform: translateY(-50%);
+                        transform: translateY(-50%);
+                    }
+                }
             }
-        
-            /*&:hover {
-            }*/
         }
 	}
 }

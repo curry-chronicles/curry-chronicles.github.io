@@ -45,14 +45,14 @@ export class AdminComponent {
 		});
 	}
 
-	openDialog(recipeName: string): void {
+	openDialog(recipeId: string): void {
 		const dialogRef = this.dialog.open(DialogDeleteComponent, {
 			width: '20rem',
-			data: { 'recipeName': recipeName }
+			data: { 'recipeId': recipeId }
 		});
 
-		dialogRef.afterClosed().subscribe(result => {
-			console.log(result);
+		dialogRef.afterClosed().subscribe(() => {
+			this.router.navigateByUrl('/admin');
 		});
 	}
 }

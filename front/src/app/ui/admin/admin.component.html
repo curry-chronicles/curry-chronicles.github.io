@@ -27,10 +27,10 @@
 						<content>
 							<img [src]="recipe.mainPicture" [alt]="recipe.name">
 							<div class="recipe-buttons-container">
-								<button mat-fab class="recipe-button">
+								<button mat-fab class="recipe-button" matTooltip="Editer" matTooltipPosition="above">
 									<mat-icon>edit</mat-icon>
 								</button>
-								<button mat-fab class="recipe-button" (click)="openDialog(recipe.name)">
+								<button mat-fab class="recipe-button" (click)="openDialog(recipe.name)" matTooltip="Supprimer" matTooltipPosition="above">
 									<mat-icon>delete</mat-icon>
 								</button>
 							</div>

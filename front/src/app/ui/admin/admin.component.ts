@@ -14,7 +14,7 @@ import { DialogDeleteComponent } from './dialog-delete/dialog-delete.component';
 export class AdminComponent {
 
 	public isLoggingOut = false;
-	public recipesPage$: Observable<Page<IRecipeOverview>>;
+	public recipesPage: Page<IRecipeOverview>;
 	public isLoadingMore = false;
 
 	constructor(
@@ -24,7 +24,7 @@ export class AdminComponent {
 		private activatedRoute: ActivatedRoute,
 		private dialog: MatDialog
 	) {
-		this.recipesPage$ = of(this.activatedRoute.snapshot.data.recipesPage as Page<IRecipeOverview>);
+		this.recipesPage = this.activatedRoute.snapshot.data.recipesPage as Page<IRecipeOverview>;
 	}
 
 	public logout(): void {

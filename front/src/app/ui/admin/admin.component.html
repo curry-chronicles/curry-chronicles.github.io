@@ -14,7 +14,7 @@
 	</div>
 </section>
 
-<ng-container *ngIf="recipesPage$ | async as recipesPage">
+<ng-container>
 	<ng-template [ngIf]="recipesPage.items.length > 0">
 		<!-- Recipes list -->
 		<app-infinite-scroll (scrolled)="loadMore(recipesPage)">

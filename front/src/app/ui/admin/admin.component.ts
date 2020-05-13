@@ -46,14 +46,18 @@ export class AdminComponent {
 		});
 	}
 
-	openDialog(recipe: IRecipeOverview, recipesPage: Page<IRecipeOverview>): void {
+	openDialog(recipeId: string): void {
 		const dialogRef = this.dialog.open(DialogDeleteComponent, {
 			width: '20rem',
-			data: { 'recipe': recipe, 'recipesPage': recipesPage }
+			data: { 'recipeId': recipeId }
 		});
 
-		dialogRef.afterClosed().subscribe(() => {
-			this.snackBar.open(`La recette "${recipe.id}" a été supprimée avec succès`, 'Fermer');
+		dialogRef.afterClosed().subscribe(response => {
+			if (response == null || response.answer !== 'yes') {
+				return;
+			}
+			this.recipesPage.items = this.recipesPage.items.filter(recipe => recipe.id !== recipeId);
+			this.snackBar.open(`La recette "${recipeId}" a été supprimée avec succès`, 'Fermer');
 		});
 	}
 }

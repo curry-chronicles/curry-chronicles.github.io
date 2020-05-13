@@ -4,8 +4,7 @@ import { RecipesService } from 'src/app/infra';
 import { IRecipeOverview, Page } from 'src/app/models';
 
 export interface DialogData {
-	recipe: IRecipeOverview;
-	recipesPage: Page<IRecipeOverview>;
+	recipeId: string;
 }
 
 @Component({
@@ -20,14 +19,13 @@ export class DialogDeleteComponent {
 		private recipesService: RecipesService) { }
 
 	onNoClick(): void {
-		this.dialogRef.close();
+		this.dialogRef.close({ 'answer': 'no' });
 	}
 
 	onYesClick(): void {
-		this.recipesService.delete(this.data.recipe.id).subscribe(() => {
-			this.data.recipesPage.items = this.data.recipesPage.items.filter(recipe => recipe.id !== this.data.recipe.id);
+		this.recipesService.delete(this.data.recipeId).subscribe(() => {
+			this.dialogRef.close({ 'answer': 'yes' });
 		});
-		this.dialogRef.close();
 	}
 
 }

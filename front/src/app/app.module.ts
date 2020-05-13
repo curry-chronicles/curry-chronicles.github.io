@@ -25,6 +25,7 @@ import { AppRoutingModule } from './routing/app-routing.module';
 import { AdminComponent, AutofocusOnShowDirective, CURRY_CHRONICLES_FORMLY_CONFIG, DateComponent, DirectionsComponent, DirectionsEditorComponent, DirectionsListComponent, FileValueAccessorDirective, HomeComponent, IngredientsComponent, IngredientsEditorComponent, IngredientsListComponent, LoginComponent, PictureComponent, PictureEditorComponent, RecipeComponent, RecipeEditionComponent, RecipeHeaderComponent, RecipeThumbnailComponent, TimespanComponent, TimespanEditorComponent, TimespanPipe, DialogDeleteComponent } from './ui';
 import { InfiniteScrollComponent } from './ui/infinite-scroll';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 export const DateFormat = {
 	parse: {
@@ -99,6 +100,7 @@ export const DateFormat = {
 		FormlyMaterialModule,
 		FormsModule,
 		MatDialogModule,
+		MatSnackBarModule
 	],
 	entryComponents: [
 		DialogDeleteComponent

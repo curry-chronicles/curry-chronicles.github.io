@@ -4,6 +4,7 @@ import { AuthenticationService, RecipesService } from '../../infra';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Page, IRecipeOverview } from 'src/app/models';
 import { DialogDeleteComponent } from './dialog-delete/dialog-delete.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
 	selector: 'app-admin',
@@ -21,7 +22,8 @@ export class AdminComponent {
 		private router: Router,
 		private recipesService: RecipesService,
 		private activatedRoute: ActivatedRoute,
-		private dialog: MatDialog
+		private dialog: MatDialog,
+		private snackBar: MatSnackBar
 	) {
 		this.recipesPage = this.activatedRoute.snapshot.data.recipesPage as Page<IRecipeOverview>;
 	}
@@ -51,7 +53,7 @@ export class AdminComponent {
 		});
 
 		dialogRef.afterClosed().subscribe(() => {
-			console.log('yay');
+			this.snackBar.open(`La recette "${recipe.id}" a été supprimée avec succès`, 'Fermer');
 		});
 	}
 }

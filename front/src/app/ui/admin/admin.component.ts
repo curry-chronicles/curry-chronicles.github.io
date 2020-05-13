@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { AuthenticationService, RecipesService } from '../../infra';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { Page, IRecipeOverview } from 'src/app/models';
+import { DialogDeleteComponent } from './dialog-delete/dialog-delete.component';
 
 @Component({
 	selector: 'app-admin',
@@ -19,7 +21,8 @@ export class AdminComponent {
 		private authenticationService: AuthenticationService,
 		private router: Router,
 		private recipesService: RecipesService,
-		private activatedRoute: ActivatedRoute
+		private activatedRoute: ActivatedRoute,
+		private dialog: MatDialog
 	) {
 		this.recipesPage$ = of(this.activatedRoute.snapshot.data.recipesPage as Page<IRecipeOverview>);
 	}
@@ -39,6 +42,17 @@ export class AdminComponent {
 		this.isLoadingMore = true;
 		this.recipesService.getPagedRecipes(page).subscribe(() => {
 			this.isLoadingMore = false;
+		});
+	}
+
+	openDialog(recipeName: string): void {
+		const dialogRef = this.dialog.open(DialogDeleteComponent, {
+			width: '20rem',
+			data: { 'recipeName': recipeName }
+		});
+
+		dialogRef.afterClosed().subscribe(result => {
+			console.log(result);
 		});
 	}
 }

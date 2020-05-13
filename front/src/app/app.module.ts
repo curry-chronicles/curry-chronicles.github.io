@@ -22,8 +22,9 @@ import { FormlyMaterialModule } from '@ngx-formly/material';
 import { AppComponent } from './app.component';
 import { AuthenticationService, RecipesService, ImgurService } from './infra';
 import { AppRoutingModule } from './routing/app-routing.module';
-import { AdminComponent, AutofocusOnShowDirective, CURRY_CHRONICLES_FORMLY_CONFIG, DateComponent, DirectionsComponent, DirectionsEditorComponent, DirectionsListComponent, FileValueAccessorDirective, HomeComponent, IngredientsComponent, IngredientsEditorComponent, IngredientsListComponent, LoginComponent, PictureComponent, PictureEditorComponent, RecipeComponent, RecipeEditionComponent, RecipeHeaderComponent, RecipeThumbnailComponent, TimespanComponent, TimespanEditorComponent, TimespanPipe } from './ui';
+import { AdminComponent, AutofocusOnShowDirective, CURRY_CHRONICLES_FORMLY_CONFIG, DateComponent, DirectionsComponent, DirectionsEditorComponent, DirectionsListComponent, FileValueAccessorDirective, HomeComponent, IngredientsComponent, IngredientsEditorComponent, IngredientsListComponent, LoginComponent, PictureComponent, PictureEditorComponent, RecipeComponent, RecipeEditionComponent, RecipeHeaderComponent, RecipeThumbnailComponent, TimespanComponent, TimespanEditorComponent, TimespanPipe, DialogDeleteComponent } from './ui';
 import { InfiniteScrollComponent } from './ui/infinite-scroll';
+import { MatDialogModule } from '@angular/material/dialog';
 
 export const DateFormat = {
 	parse: {
@@ -51,6 +52,7 @@ export const DateFormat = {
 		LoginComponent,
 		AdminComponent,
 		RecipeEditionComponent,
+		DialogDeleteComponent,
 
 		// Custom formly components
 		TimespanComponent,
@@ -95,7 +97,11 @@ export const DateFormat = {
 		ReactiveFormsModule,
 		FormlyModule.forRoot(CURRY_CHRONICLES_FORMLY_CONFIG),
 		FormlyMaterialModule,
-		FormsModule
+		FormsModule,
+		MatDialogModule,
+	],
+	entryComponents: [
+		DialogDeleteComponent
 	],
 	providers: [
 		RecipesService,

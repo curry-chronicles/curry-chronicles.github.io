@@ -19,7 +19,7 @@
 		<!-- Recipes list -->
 		<app-infinite-scroll (scrolled)="loadMore(recipesPage)">
 			<section class="recipes-list">
-				<article class="card" *ngFor="let recipe of recipesPage.items" [routerLink]="recipe.id">
+				<article class="card" *ngFor="let recipe of recipesPage.items">
 					<div class="card-recipe-thumbnail">
 						<header>
 							<h2>{{ recipe.name }}</h2>
@@ -27,8 +27,12 @@
 						<content>
 							<img [src]="recipe.mainPicture" [alt]="recipe.name">
 							<div class="recipe-buttons-container">
-								<button mat-fab class="recipe-button"><mat-icon>edit</mat-icon></button>
-								<button mat-fab class="recipe-button"><mat-icon>delete</mat-icon></button>
+								<button mat-fab class="recipe-button">
+									<mat-icon>edit</mat-icon>
+								</button>
+								<button mat-fab class="recipe-button" (click)="openDialog(recipe.name)">
+									<mat-icon>delete</mat-icon>
+								</button>
 							</div>
 						</content>
 					</div>

@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthenticationService, RecipesService } from '../../infra';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Observable, of } from 'rxjs';
 import { Page, IRecipeOverview } from 'src/app/models';
 import { DialogDeleteComponent } from './dialog-delete/dialog-delete.component';
 
@@ -45,14 +44,14 @@ export class AdminComponent {
 		});
 	}
 
-	openDialog(recipeId: string): void {
+	openDialog(recipe: IRecipeOverview, recipesPage: Page<IRecipeOverview>): void {
 		const dialogRef = this.dialog.open(DialogDeleteComponent, {
 			width: '20rem',
-			data: { 'recipeId': recipeId }
+			data: { 'recipe': recipe, 'recipesPage': recipesPage }
 		});
 
 		dialogRef.afterClosed().subscribe(() => {
-			this.router.navigateByUrl('/admin');
+			console.log('yay');
 		});
 	}
 }

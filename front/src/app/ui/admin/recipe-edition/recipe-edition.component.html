@@ -1,4 +1,4 @@
-<h1>Ajout d'une recette</h1>
+<h1>{{ recipe ? 'Edition' : 'Ajout' }} d'une recette</h1>
 
 <form [formGroup]="form" (ngSubmit)="submit()">
 	<formly-form [model]="model" [fields]="fields" [form]="form"></formly-form>

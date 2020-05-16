@@ -76,6 +76,10 @@ export class RecipesService {
 		return this.http.post<IRecipe>(`${environment.backendUrl}${RECIPES_API}`, recipe, { withCredentials: true });
 	}
 
+	public update(recipe: IRecipe): Observable<IRecipe> {
+		return this.http.post<IRecipe>(`${environment.backendUrl}${RECIPES_API}/${recipe.id}`, recipe, { withCredentials: true });
+	}
+
 	public delete(id: string): Observable<IRecipe> {
 		return this.http.delete(`${environment.backendUrl}${RECIPES_API}/${id}`, { withCredentials: true }).pipe(
 			catchError(_ => of(null))

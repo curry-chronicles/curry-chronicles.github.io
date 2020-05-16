@@ -1,6 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { AbstractControl, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { RecipesService } from '../../../infra';
 import { IRecipe } from '../../../models';
@@ -27,10 +27,12 @@ export class RecipeEditionComponent {
 
 	public isSaving = false;
 	public error: string;
+	public recipe: IRecipe;
 
 	constructor(
 		private recipesService: RecipesService,
-		private router: Router
+		private router: Router,
+		private activatedRoute: ActivatedRoute,
 	) {
 		this.form = new FormGroup({});
 		this.model = {
@@ -41,6 +43,11 @@ export class RecipeEditionComponent {
 				{ description: '' }
 			]
 		} as IRecipe;
+
+		this.recipe = this.activatedRoute.snapshot.data.recipe as IRecipe;
+		if (this.recipe != null) {
+			this.model = this.recipe;
+		}
 
 		this.recipesService.getAllRecipeIds().subscribe(existingRecipeIds => {
 			this.fields = [
@@ -69,7 +76,7 @@ export class RecipeEditionComponent {
 							message: 'Cet Id de recette existe déjà',
 							expression: (control: AbstractControl): boolean => {
 								const recipeId = (control.value as string)?.toLocaleLowerCase();
-								if (recipeId == null) {
+								if (recipeId == null || this.recipe != null) {
 									return true;
 								}
 								const result = existingRecipeIds.has(recipeId) ? false : true;
@@ -169,7 +176,8 @@ export class RecipeEditionComponent {
 		}
 
 		this.isSaving = true;
-		this.recipesService.create(this.model)
+		if (this.recipe == null) {
+			this.recipesService.create(this.model)
 			.subscribe(recipe => {
 				this.isSaving = false;
 				this.router.navigateByUrl(`${recipe.id}`);
@@ -178,6 +186,17 @@ export class RecipeEditionComponent {
 				console.error(error);
 				this.error = error;
 			});
+		} else {
+			this.recipesService.update(this.model)
+			.subscribe(recipe => {
+				this.isSaving = false;
+				this.router.navigateByUrl(`${recipe.id}`);
+			}, error => {
+				this.isSaving = false;
+				console.error(error);
+				this.error = error;
+			});
+		}
 	}
 
 	public copyToClipboard(): void {

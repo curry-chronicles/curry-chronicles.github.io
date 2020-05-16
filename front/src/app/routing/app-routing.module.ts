@@ -32,6 +32,18 @@ const routes: Routes = [
 			{
 				path: 'add-recipe',
 				component: RecipeEditionComponent
+			},
+			{
+				path: 'edit-recipe',
+				children: [
+					{
+						path: ':recipeId',
+						component: RecipeEditionComponent,
+						resolve: {
+							recipe: RecipeResolver
+						}
+					},
+				]
 			}
 		]
 	},

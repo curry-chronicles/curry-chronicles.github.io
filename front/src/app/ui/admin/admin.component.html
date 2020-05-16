@@ -27,7 +27,7 @@
 						<content>
 							<img [src]="recipe.mainPicture" [alt]="recipe.name">
 							<div class="recipe-buttons-container">
-								<button mat-fab class="recipe-button" matTooltip="Editer" matTooltipPosition="above">
+								<button mat-fab class="recipe-button" [routerLink]="['edit-recipe',recipe.id]" matTooltip="Editer" matTooltipPosition="above">
 									<mat-icon>edit</mat-icon>
 								</button>
 								<button mat-fab class="recipe-button" (click)="openDialog(recipe.id)"

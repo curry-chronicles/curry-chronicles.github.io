@@ -4,6 +4,9 @@
 			<img src="/assets/curry_chronicles.svg" height="28" alt="logo">
 			<span>Curry Chronicles</span>
 		</a>
+		<a routerLink="/admin" *ngIf="isLoggedIn" class="admin-link">
+			<span>Admin</span>
+		</a>
 	</mat-toolbar>
 </header>
 

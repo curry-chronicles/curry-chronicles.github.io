@@ -16,6 +16,9 @@ export function recipesRoute(app: Express): void {
 		.get((request, result) => {
 			controller.getById(request, result);
 		})
+		.post((request, result) => {
+			controller.update(request, result);
+		})
 		.delete((request, result) => {
 			controller.delete(request, result);
 		});

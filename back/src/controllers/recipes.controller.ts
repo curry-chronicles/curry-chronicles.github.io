@@ -79,6 +79,26 @@ export class RecipesController extends AController {
 			});
 	}
 
+	public update(request: Request, response: Response): void {
+		RecipeSchema.findOneAndUpdate(
+			{ id: request.params.recipeId },
+			request.body,
+			{ new: true },
+			(error: Error, recipe: Document) => {
+				if (error != null) {
+					response.status(500);
+					response.send(error);
+					return;
+				}
+				if (recipe == null) {
+					response.status(404);
+					response.send(`Recipe with Id ${request.params.id} not found`);
+					return;
+				}
+				response.json(recipe);
+			});
+	}
+
 	public delete(request: Request, response: Response): void {
 		let loginController = new LoginController();
 		if (!loginController.isLogged(request)) {

@@ -80,23 +80,59 @@ export class RecipesController extends AController {
 	}
 
 	public update(request: Request, response: Response): void {
-		RecipeSchema.findOneAndUpdate(
-			{ id: request.params.recipeId },
-			request.body,
-			{ new: true },
-			(error: Error, recipe: Document) => {
-				if (error != null) {
-					response.status(500);
-					response.send(error);
-					return;
-				}
-				if (recipe == null) {
-					response.status(404);
-					response.send(`Recipe with Id ${request.params.id} not found`);
-					return;
-				}
-				response.json(recipe);
-			});
+		delete request.body._id;
+		let pictureRegex = new RegExp('^data:image', 'i');
+		let picture = request.body.mainPicture;
+
+		if (pictureRegex.test(picture)) {
+			let recipePayload = request.body as IRecipePayload;
+			recipePayload = this.prepare(recipePayload);
+			imgur.setAPIUrl('https://api.imgur.com/3/');
+			imgur.setCredentials(imgurAuth.login, imgurAuth.password, imgurAuth.clientId);
+			imgur.uploadBase64(recipePayload.mainPicture, null, request.body.name, request.body.description)
+				.then(json => {
+					request.body.mainPicture = json.data.link;
+					RecipeSchema.findOneAndUpdate(
+						{ id: request.params.recipeId },
+						request.body,
+						{ new: true },
+						(error: Error, recipe: Document) => {
+							if (error != null) {
+								response.status(500);
+								response.send(error);
+								return;
+							}
+							if (recipe == null) {
+								response.status(404);
+								response.send(`Recipe with Id ${request.params.id} not found`);
+								return;
+							}
+							response.json(recipe);
+						});
+				})
+				.catch(error => {
+					response.send(error.message);
+				});
+		}
+		else {
+			RecipeSchema.findOneAndUpdate(
+				{ id: request.params.recipeId },
+				request.body,
+				{ new: true },
+				(error: Error, recipe: Document) => {
+					if (error != null) {
+						response.status(500);
+						response.send(error);
+						return;
+					}
+					if (recipe == null) {
+						response.status(404);
+						response.send(`Recipe with Id ${request.params.id} not found`);
+						return;
+					}
+					response.json(recipe);
+				});
+		}
 	}
 
 	public delete(request: Request, response: Response): void {

@@ -77,7 +77,7 @@ export class RecipesService {
 	}
 
 	public update(recipe: IRecipe): Observable<IRecipe> {
-		return this.http.post<IRecipe>(`${environment.backendUrl}${RECIPES_API}/${recipe.id}`, recipe, { withCredentials: true });
+		return this.http.put<IRecipe>(`${environment.backendUrl}${RECIPES_API}/${recipe.id}`, recipe, { withCredentials: true });
 	}
 
 	public delete(id: string): Observable<IRecipe> {

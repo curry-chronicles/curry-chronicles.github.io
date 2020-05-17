@@ -1,10 +1,9 @@
 import { Request, Response } from 'express';
-import * as imgur from 'imgur';
 import { Document } from 'mongoose';
 import { IRecipePayload, RecipeSchema, validateRecipe } from '../models';
-import { imgurAuth } from './../imgur.json';
 import { AController } from './abstract.controller';
 import { LoginController } from './login.controller';
+import { ImgurService } from '../services/imgur.service';
 
 export class RecipesController extends AController {
 
@@ -58,10 +57,8 @@ export class RecipesController extends AController {
 		}
 
 		recipe = this.prepare(recipe);
-
-		imgur.setAPIUrl('https://api.imgur.com/3/');
-		imgur.setCredentials(imgurAuth.login, imgurAuth.password, imgurAuth.clientId);
-		imgur.uploadBase64(recipe.mainPicture, null, request.body.name, request.body.description)
+		const imgurService = new ImgurService();
+		imgurService.uploadBase64(recipe.mainPicture, null, request.body.name, request.body.description)
 			.then(json => {
 				request.body.mainPicture = json.data.link;
 				const newRecipeSchema = new RecipeSchema(request.body);
@@ -81,15 +78,15 @@ export class RecipesController extends AController {
 
 	public update(request: Request, response: Response): void {
 		delete request.body._id;
-		let pictureRegex = new RegExp('^data:image', 'i');
-		let picture = request.body.mainPicture;
+		const pictureRegex = new RegExp('^data:image', 'i');
+		const picture = request.body.mainPicture;
 
 		if (pictureRegex.test(picture)) {
 			let recipePayload = request.body as IRecipePayload;
 			recipePayload = this.prepare(recipePayload);
-			imgur.setAPIUrl('https://api.imgur.com/3/');
-			imgur.setCredentials(imgurAuth.login, imgurAuth.password, imgurAuth.clientId);
-			imgur.uploadBase64(recipePayload.mainPicture, null, request.body.name, request.body.description)
+
+			const imgurService = new ImgurService();
+			imgurService.uploadBase64(recipePayload.mainPicture, null, request.body.name, request.body.description)
 				.then(json => {
 					request.body.mainPicture = json.data.link;
 					RecipeSchema.findOneAndUpdate(

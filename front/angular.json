@@ -128,8 +128,5 @@
       }
     }
   },
-  "defaultProject": "curry-chronicles",
-  "cli": {
-    "analytics": "f771bd3d-a8b8-4989-9c5f-34f1894effe6"
-  }
+  "defaultProject": "curry-chronicles"
 }

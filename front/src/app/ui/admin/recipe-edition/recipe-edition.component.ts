@@ -5,6 +5,7 @@ import { FormlyFieldConfig } from '@ngx-formly/core';
 import { RecipesService } from '../../../infra';
 import { IRecipe } from '../../../models';
 import { nameof } from '../../../utils';
+import { Observable } from 'rxjs';
 
 @Component({
 	selector: 'app-recipe-edition',
@@ -28,6 +29,7 @@ export class RecipeEditionComponent {
 	public isSaving = false;
 	public error: string;
 	public recipe: IRecipe;
+	public isCreation: boolean;
 
 	constructor(
 		private recipesService: RecipesService,
@@ -47,6 +49,9 @@ export class RecipeEditionComponent {
 		this.recipe = this.activatedRoute.snapshot.data.recipe as IRecipe;
 		if (this.recipe != null) {
 			this.model = this.recipe;
+			this.isCreation = false;
+		} else {
+			this.isCreation = true;
 		}
 
 		this.recipesService.getAllRecipeIds().subscribe(existingRecipeIds => {
@@ -176,27 +181,19 @@ export class RecipeEditionComponent {
 		}
 
 		this.isSaving = true;
-		if (this.recipe == null) {
-			this.recipesService.create(this.model)
-				.subscribe(recipe => {
-					this.isSaving = false;
-					this.router.navigateByUrl(`${recipe.id}`);
-				}, error => {
-					this.isSaving = false;
-					console.error(error);
-					this.error = error;
-				});
-		} else {
-			this.recipesService.update(this.model)
-				.subscribe(recipe => {
-					this.isSaving = false;
-					this.router.navigateByUrl(`${recipe.id}`);
-				}, error => {
-					this.isSaving = false;
-					console.error(error);
-					this.error = error;
-				});
-		}
+
+		const request: Observable<IRecipe> = this.isCreation ?
+			this.recipesService.create(this.model) :
+			this.recipesService.update(this.model);
+
+		request.subscribe(recipe => {
+				this.isSaving = false;
+				this.router.navigateByUrl(`${recipe.id}`);
+			}, error => {
+				this.isSaving = false;
+				console.error(error);
+				this.error = error;
+			});
 	}
 
 	public copyToClipboard(): void {

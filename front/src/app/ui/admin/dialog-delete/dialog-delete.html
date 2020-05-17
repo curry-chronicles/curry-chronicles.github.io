@@ -3,6 +3,6 @@
     <p>T'es sûr que tu veux définitivement supprimer la recette {{data.recipeId}} ?</p>
 </div>
 <div mat-dialog-actions>
+    <button mat-button mat-dialog-close="data.recipeId" (click)="onYesClick()" color="primary">Ouais carrément</button>
     <button mat-button cdkFocusInitial (click)="onNoClick()">Non t'es fou</button>
-    <button mat-button mat-dialog-close="data.recipeId" (click)="onYesClick()">Ouais carrément</button>
 </div>

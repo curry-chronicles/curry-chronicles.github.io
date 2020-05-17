@@ -178,24 +178,24 @@ export class RecipeEditionComponent {
 		this.isSaving = true;
 		if (this.recipe == null) {
 			this.recipesService.create(this.model)
-			.subscribe(recipe => {
-				this.isSaving = false;
-				this.router.navigateByUrl(`${recipe.id}`);
-			}, error => {
-				this.isSaving = false;
-				console.error(error);
-				this.error = error;
-			});
+				.subscribe(recipe => {
+					this.isSaving = false;
+					this.router.navigateByUrl(`${recipe.id}`);
+				}, error => {
+					this.isSaving = false;
+					console.error(error);
+					this.error = error;
+				});
 		} else {
 			this.recipesService.update(this.model)
-			.subscribe(recipe => {
-				this.isSaving = false;
-				this.router.navigateByUrl(`${recipe.id}`);
-			}, error => {
-				this.isSaving = false;
-				console.error(error);
-				this.error = error;
-			});
+				.subscribe(recipe => {
+					this.isSaving = false;
+					this.router.navigateByUrl(`${recipe.id}`);
+				}, error => {
+					this.isSaving = false;
+					console.error(error);
+					this.error = error;
+				});
 		}
 	}
 

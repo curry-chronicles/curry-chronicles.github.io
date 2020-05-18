@@ -4,7 +4,7 @@
 			<img src="/assets/curry_chronicles.svg" height="28" alt="logo">
 			<span>Curry Chronicles</span>
 		</a>
-		<button routerLink="/admin" mat-icon-button color="primary" aria-label="Admin" matTooltip="Admin">
+		<button routerLink="/admin" mat-icon-button color="primary" aria-label="Admin" matTooltip="Admin" *ngIf="isLoggedIn">
 			<mat-icon>settings</mat-icon>
 		</button>
 	</mat-toolbar>

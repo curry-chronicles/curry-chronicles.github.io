@@ -1,7 +1,9 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { AbstractControl, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormlyFieldConfig } from '@ngx-formly/core';
+import { Observable } from 'rxjs';
 import { RecipesService } from '../../../infra';
 import { IRecipe } from '../../../models';
 import { nameof } from '../../../utils';
@@ -27,10 +29,14 @@ export class RecipeEditionComponent {
 
 	public isSaving = false;
 	public error: string;
+	public recipe: IRecipe;
+	public isCreation: boolean;
 
 	constructor(
 		private recipesService: RecipesService,
-		private router: Router
+		private router: Router,
+		private activatedRoute: ActivatedRoute,
+		private snackBar: MatSnackBar
 	) {
 		this.form = new FormGroup({});
 		this.model = {
@@ -41,6 +47,14 @@ export class RecipeEditionComponent {
 				{ description: '' }
 			]
 		} as IRecipe;
+
+		this.recipe = this.activatedRoute.snapshot.data.recipe as IRecipe;
+		if (this.recipe != null) {
+			this.model = this.recipe;
+			this.isCreation = false;
+		} else {
+			this.isCreation = true;
+		}
 
 		this.recipesService.getAllRecipeIds().subscribe(existingRecipeIds => {
 			this.fields = [
@@ -61,7 +75,8 @@ export class RecipeEditionComponent {
 						label: 'Identifiant',
 						placeholder: 'URL de la recette',
 						appearance: 'outline',
-						required: true
+						required: true,
+						disabled: !this.isCreation
 					},
 					validators: {
 						// Check if the Id does not already exist
@@ -69,11 +84,10 @@ export class RecipeEditionComponent {
 							message: 'Cet Id de recette existe déjà',
 							expression: (control: AbstractControl): boolean => {
 								const recipeId = (control.value as string)?.toLocaleLowerCase();
-								if (recipeId == null) {
+								if (recipeId == null || this.recipe != null) {
 									return true;
 								}
-								const result = existingRecipeIds.has(recipeId) ? false : true;
-								return result;
+								return !existingRecipeIds.has(recipeId);
 							}
 						}
 					}
@@ -169,15 +183,20 @@ export class RecipeEditionComponent {
 		}
 
 		this.isSaving = true;
-		this.recipesService.create(this.model)
-			.subscribe(recipe => {
-				this.isSaving = false;
-				this.router.navigateByUrl(`${recipe.id}`);
-			}, error => {
-				this.isSaving = false;
-				console.error(error);
-				this.error = error;
-			});
+
+		const request: Observable<IRecipe> = this.isCreation ?
+			this.recipesService.create(this.model) :
+			this.recipesService.update(this.model);
+
+		request.subscribe(recipe => {
+			this.isSaving = false;
+			this.router.navigateByUrl(`${recipe.id}`);
+			this.snackBar.open(`La recette ${recipe.id} a été ${this.isCreation ? 'créée' : 'modifiée'} avec succès`, 'Fermer');
+		}, error => {
+			this.isSaving = false;
+			console.error(error);
+			this.error = error;
+		});
 	}
 
 	public copyToClipboard(): void {

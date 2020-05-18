@@ -1,0 +1,113 @@
+@import "variables", "colors";
+
+.header {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	border-bottom: 1px dashed $lighter;
+	padding-bottom: 1rem;
+	margin-bottom: 2rem;
+
+	h1 {
+		display: inline-block;
+		margin: 0;
+		padding: 0;
+	}
+
+	mat-form-field {
+		margin-right: 0.5rem;
+	}
+}
+
+.recipes-list {
+
+	// When screen big enough, display overviews in a grid
+	@media screen and (min-width: $mobile-width-breakpoint) {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+
+		&::after {
+			content: "";
+			flex: 0 1 calc(20% - 1rem);
+		}
+	}
+
+	overflow: inherit auto;
+	align-items: center;
+
+	.card {
+		flex: 0 1 calc(20% - 1rem);
+
+		@media screen and (max-width: $tablet-width-breakpoint) {
+			flex: 0 0 calc(49%);
+		}
+
+		box-shadow: 0 0px 15px rgba(36, 37, 38, .15);
+		margin-bottom: 1rem;
+
+		.card-recipe-thumbnail {
+			header {
+				background-color: $primary-color;
+				color: white;
+				padding: 0.5rem;
+				width: calc(100% - 1rem);
+
+				h2 {
+					text-overflow: ellipsis;
+					margin: 0;
+					padding: 0;
+					font-weight: 400;
+					font-size: 1rem;
+				}
+			}
+
+			content {
+				display: block;
+				overflow: hidden;
+				position: relative;
+
+				img {
+					display: block;
+					border: 0;
+					width: 100%;
+					height: auto;
+					transition: transform 0.25s ease, filter 0.25s ease;
+				}
+
+				.recipe-actions {
+					visibility: hidden;
+					opacity: 0;
+
+					text-align: center;
+					width: 100%;
+					margin: 0;
+					position: absolute;
+					top: 50%;
+					-ms-transform: translateY(-100%);
+					transform: translateY(-100%);
+					transition: all 0.3s ease;
+				}
+
+				button {
+					margin: 0.5rem;
+					background-color: $primary-color;
+
+					&:hover {
+						filter: brightness(80%);
+						transition: all 0.5s ease;
+					}
+				}
+
+				&:hover {
+					.recipe-actions {
+						visibility: visible;
+						opacity: 1;
+						-ms-transform: translateY(-50%);
+						transform: translateY(-50%);
+					}
+				}
+			}
+		}
+	}
+}

@@ -7,12 +7,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserModule } from '@angular/platform-browser';
@@ -20,9 +22,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
 import { AppComponent } from './app.component';
-import { AuthenticationService, RecipesService, ImgurService } from './infra';
+import { AuthenticationService, ImgurService, RecipesService } from './infra';
 import { AppRoutingModule } from './routing/app-routing.module';
-import { AdminComponent, AutofocusOnShowDirective, CURRY_CHRONICLES_FORMLY_CONFIG, DateComponent, DirectionsComponent, DirectionsEditorComponent, DirectionsListComponent, FileValueAccessorDirective, HomeComponent, IngredientsComponent, IngredientsEditorComponent, IngredientsListComponent, LoginComponent, PictureComponent, PictureEditorComponent, RecipeComponent, RecipeEditionComponent, RecipeHeaderComponent, RecipeThumbnailComponent, TimespanComponent, TimespanEditorComponent, TimespanPipe } from './ui';
+import { AdminComponent, AutofocusOnShowDirective, CURRY_CHRONICLES_FORMLY_CONFIG, DateComponent, DialogDeleteComponent, DirectionsComponent, DirectionsEditorComponent, DirectionsListComponent, FileValueAccessorDirective, HomeComponent, IngredientsComponent, IngredientsEditorComponent, IngredientsListComponent, LoginComponent, PictureComponent, PictureEditorComponent, RecipeComponent, RecipeEditionComponent, RecipeHeaderComponent, RecipeThumbnailComponent, TimespanComponent, TimespanEditorComponent, TimespanPipe } from './ui';
 import { InfiniteScrollComponent } from './ui/infinite-scroll';
 
 export const DateFormat = {
@@ -51,6 +53,7 @@ export const DateFormat = {
 		LoginComponent,
 		AdminComponent,
 		RecipeEditionComponent,
+		DialogDeleteComponent,
 
 		// Custom formly components
 		TimespanComponent,
@@ -95,7 +98,12 @@ export const DateFormat = {
 		ReactiveFormsModule,
 		FormlyModule.forRoot(CURRY_CHRONICLES_FORMLY_CONFIG),
 		FormlyMaterialModule,
-		FormsModule
+		FormsModule,
+		MatDialogModule,
+		MatSnackBarModule
+	],
+	entryComponents: [
+		DialogDeleteComponent
 	],
 	providers: [
 		RecipesService,

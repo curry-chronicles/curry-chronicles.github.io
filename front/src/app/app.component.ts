@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthenticationService } from './infra';
 
 const RANDOM_INGREDIENTS = [
 	'un gros poulet',
@@ -30,9 +31,18 @@ export class AppComponent {
 
 	private randomIngredientIndex: number;
 	public randomIngredient: string;
+	public isLoggedIn: boolean;
 
-	constructor() {
+	constructor(
+		private authenticationService: AuthenticationService
+	) {
 		this.generateRandomIngredient();
+		this.authenticationService.isLoggedIn().subscribe(isLoggedIn => {
+			this.isLoggedIn = isLoggedIn;
+		}, (error: string) => {
+			console.error(error);
+			this.isLoggedIn = false;
+		});
 	}
 
 	public generateRandomIngredient(): void {

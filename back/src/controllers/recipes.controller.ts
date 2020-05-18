@@ -1,8 +1,7 @@
 import { Request, Response } from 'express';
-import * as imgur from 'imgur';
 import { Document } from 'mongoose';
 import { IRecipePayload, RecipeSchema, validateRecipe } from '../models';
-import { imgurAuth } from './../imgur.json';
+import { ImgurService } from '../services';
 import { AController } from './abstract.controller';
 import { LoginController } from './login.controller';
 
@@ -58,10 +57,8 @@ export class RecipesController extends AController {
 		}
 
 		recipe = this.prepare(recipe);
-
-		imgur.setAPIUrl('https://api.imgur.com/3/');
-		imgur.setCredentials(imgurAuth.login, imgurAuth.password, imgurAuth.clientId);
-		imgur.uploadBase64(recipe.mainPicture, null, request.body.name, request.body.description)
+		const imgurService = new ImgurService();
+		imgurService.uploadBase64(recipe.mainPicture, null, request.body.name, request.body.description)
 			.then(json => {
 				request.body.mainPicture = json.data.link;
 				const newRecipeSchema = new RecipeSchema(request.body);
@@ -79,6 +76,28 @@ export class RecipesController extends AController {
 			});
 	}
 
+	public update(request: Request, response: Response): void {
+		delete request.body._id;
+		const pictureRegex = new RegExp('^data:image', 'i');
+		const picture = request.body.mainPicture;
+
+		// The picture has changed: upload it to imgur before updating Db
+		if (pictureRegex.test(picture)) {
+			const recipePayload = this.prepare(request.body as IRecipePayload);
+			new ImgurService().uploadBase64(recipePayload.mainPicture, null, request.body.name, request.body.description)
+				.then(json => {
+					request.body.mainPicture = json.data.link;
+					this.updateRecipeInDb(request, response);
+				})
+				.catch(error => {
+					response.send(error.message);
+				});
+		}
+		else {
+			this.updateRecipeInDb(request, response);
+		}
+	}
+
 	public delete(request: Request, response: Response): void {
 		let loginController = new LoginController();
 		if (!loginController.isLogged(request)) {
@@ -94,6 +113,22 @@ export class RecipesController extends AController {
 				}
 				response.json({ message: 'Recipe successfully deleted' });
 			});
+	}
+
+	private updateRecipeInDb(request, response: Response) {
+		RecipeSchema.findOneAndUpdate({ id: request.params.recipeId }, request.body, { new: true }, (error: Error, recipe: Document) => {
+			if (error != null) {
+				response.status(500);
+				response.send(error);
+				return;
+			}
+			if (recipe == null) {
+				response.status(404);
+				response.send(`Recipe with Id ${request.params.id} not found`);
+				return;
+			}
+			response.json(recipe);
+		});
 	}
 
 	private prepare(recipe: IRecipePayload): IRecipePayload {

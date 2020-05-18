@@ -4,9 +4,12 @@ mat-toolbar {
 	margin-bottom: 2rem;
 	background: white;
 	box-shadow: 0 6px 15px rgba(36, 37, 38, .08);
+	display: flex;
+	justify-content: space-between;
 
 	@media screen and (min-width: $tablet-width-breakpoint) {
 		padding-left: 20%;
+		padding-right: 20%;
 	}
 
 	.website-title {

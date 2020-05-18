@@ -24,11 +24,31 @@ const routes: Routes = [
 		children: [
 			{
 				path: '',
-				component: AdminComponent
+				component: AdminComponent,
+				resolve: {
+					recipesPage: RecipesPageResolver
+				}
 			},
 			{
 				path: 'add-recipe',
 				component: RecipeEditionComponent
+			},
+			{
+				path: 'edit-recipe',
+				children: [
+					{
+						path: '',
+						pathMatch: 'full',
+						redirectTo: '/admin'
+					},
+					{
+						path: ':recipeId',
+						component: RecipeEditionComponent,
+						resolve: {
+							recipe: RecipeResolver
+						}
+					},
+				]
 			}
 		]
 	},

@@ -7,7 +7,7 @@ import { IRecipe, IRecipeOverview, Page, ThumbnailType } from '../models';
 import { ImgurService } from './imgur.service';
 
 const RECIPES_API = '/api/recipes';
-const RECIPE_OVERVIEW_FIELDS = 'id,name,mainPicture,headLine';
+const RECIPE_OVERVIEW_FIELDS = 'id,name,mainPicture,headLine,publicationDate';
 
 const PAGING_INCREMENT = 10;
 
@@ -56,6 +56,13 @@ export class RecipesService {
 	public getRecipesByClue(clue: string): Observable<IRecipeOverview[]> {
 		return this.http.get<IRecipeOverview[]>(
 			`${environment.backendUrl}${RECIPES_API}?fields=${RECIPE_OVERVIEW_FIELDS}&name=like,${clue}`
+		).pipe(
+			map(recipes => {
+				recipes.forEach(recipe => {
+					recipe.mainPicture = this.imgurService.toThumbnail(recipe.mainPicture, ThumbnailType.largeThumbnail);
+				});
+				return recipes;
+			})
 		);
 	}
 
@@ -74,5 +81,15 @@ export class RecipesService {
 
 	public create(recipe: IRecipe): Observable<IRecipe> {
 		return this.http.post<IRecipe>(`${environment.backendUrl}${RECIPES_API}`, recipe, { withCredentials: true });
+	}
+
+	public update(recipe: IRecipe): Observable<IRecipe> {
+		return this.http.put<IRecipe>(`${environment.backendUrl}${RECIPES_API}/${recipe.id}`, recipe, { withCredentials: true });
+	}
+
+	public delete(id: string): Observable<IRecipe> {
+		return this.http.delete(`${environment.backendUrl}${RECIPES_API}/${id}`, { withCredentials: true }).pipe(
+			catchError(_ => of(null))
+		);
 	}
 }

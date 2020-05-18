@@ -6,12 +6,12 @@ export interface IRecipeOverview {
 	name: string;
 	mainPicture: string;
 	headLine: string;
+	publicationDate: string;
 }
 
 export interface IRecipe extends IRecipeOverview {
-	publicationDate: string;
 	servesHowManyPeople: number;
-	preparationTime: string; // Timespan to implement ourselves
+	preparationTime: string;
 	cookingTime: string;
 	description: string;
 	ingredients: IIngredient[];

@@ -12,7 +12,8 @@
 		<button *ngIf="isSearchInputEmpty" disabled type="button" mat-icon-button matSuffix aria-label="search">
 			<mat-icon>search</mat-icon>
 		</button>
-		<button *ngIf="!isSearchInputEmpty" (click)="onClearSearchInput()" type="button" mat-icon-button matSuffix aria-label="close">
+		<button *ngIf="!isSearchInputEmpty" (click)="onClearSearchInput()" type="button" mat-icon-button matSuffix
+			aria-label="close">
 			<mat-icon>close</mat-icon>
 		</button>
 	</mat-form-field>

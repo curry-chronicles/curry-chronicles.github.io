@@ -7,7 +7,7 @@ import { IRecipe, IRecipeOverview, Page, ThumbnailType } from '../models';
 import { ImgurService } from './imgur.service';
 
 const RECIPES_API = '/api/recipes';
-const RECIPE_OVERVIEW_FIELDS = 'id,name,mainPicture,headLine';
+const RECIPE_OVERVIEW_FIELDS = 'id,name,mainPicture,headLine,publicationDate';
 
 const PAGING_INCREMENT = 10;
 
@@ -37,6 +37,7 @@ export class RecipesService {
 					recipe.mainPicture = this.imgurService.toThumbnail(recipe.mainPicture, ThumbnailType.largeThumbnail);
 				});
 				currentPaging.items.push(...recipes);
+				currentPaging.items.sort((a, b) => new Date(b.publicationDate).getTime() - new Date(a.publicationDate).getTime());
 				return currentPaging;
 			})
 		);
@@ -56,6 +57,13 @@ export class RecipesService {
 	public getRecipesByClue(clue: string): Observable<IRecipeOverview[]> {
 		return this.http.get<IRecipeOverview[]>(
 			`${environment.backendUrl}${RECIPES_API}?fields=${RECIPE_OVERVIEW_FIELDS}&name=like,${clue}`
+		).pipe(
+			map(recipes => {
+				recipes.forEach(recipe => {
+					recipe.mainPicture = this.imgurService.toThumbnail(recipe.mainPicture, ThumbnailType.largeThumbnail);
+				});
+				return recipes;
+			})
 		);
 	}
 

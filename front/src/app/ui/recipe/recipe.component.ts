@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter, map, switchMap } from 'rxjs/operators';
-import { IRecipe } from '../../models';
+import { IRecipe, ThumbnailType } from '../../models';
+import { ImgurService } from 'src/app/infra';
 
 @Component({
 	selector: 'app-recipe',
@@ -14,7 +15,8 @@ export class RecipeComponent {
 
 	constructor(
 		private router: Router,
-		private route: ActivatedRoute
+		private route: ActivatedRoute,
+		private imgurService: ImgurService
 	) {
 		this.router.events.pipe(
 			filter(event => event instanceof NavigationEnd),
@@ -23,6 +25,7 @@ export class RecipeComponent {
 			filter(recipe => recipe != null),
 		).subscribe(recipe => {
 			this.recipe = recipe;
+			this.recipe.mainPicture = this.imgurService.toThumbnail(recipe.mainPicture, ThumbnailType.hugeThumbnail);
 		});
 	}
 }

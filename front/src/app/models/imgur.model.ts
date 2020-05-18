@@ -10,5 +10,5 @@ export enum ThumbnailType {
 	/** l = Large Thumbnail (640×640) */
 	largeThumbnail = 'l',
 	/** h = Huge Thumbnail (1024×1024) */
-	hudeThumbnail = 'h'
+	hugeThumbnail = 'h'
 }

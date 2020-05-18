@@ -6,6 +6,7 @@ import { RecipesService } from '../../../infra';
 import { IRecipe } from '../../../models';
 import { nameof } from '../../../utils';
 import { Observable } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
 	selector: 'app-recipe-edition',
@@ -35,6 +36,7 @@ export class RecipeEditionComponent {
 		private recipesService: RecipesService,
 		private router: Router,
 		private activatedRoute: ActivatedRoute,
+		private snackBar: MatSnackBar
 	) {
 		this.form = new FormGroup({});
 		this.model = {
@@ -73,7 +75,8 @@ export class RecipeEditionComponent {
 						label: 'Identifiant',
 						placeholder: 'URL de la recette',
 						appearance: 'outline',
-						required: true
+						required: true,
+						disabled: !this.isCreation
 					},
 					validators: {
 						// Check if the Id does not already exist
@@ -189,6 +192,8 @@ export class RecipeEditionComponent {
 		request.subscribe(recipe => {
 				this.isSaving = false;
 				this.router.navigateByUrl(`${recipe.id}`);
+				const action = this.isCreation ? 'créée' : 'modifiée';
+				this.snackBar.open(`La recette ${recipe.id} a été ${action} avec succès`, 'Fermer');
 			}, error => {
 				this.isSaving = false;
 				console.error(error);

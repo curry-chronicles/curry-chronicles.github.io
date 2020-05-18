@@ -37,6 +37,11 @@ const routes: Routes = [
 				path: 'edit-recipe',
 				children: [
 					{
+						path: '',
+						pathMatch: 'full',
+						redirectTo: '/admin'
+					},
+					{
 						path: ':recipeId',
 						component: RecipeEditionComponent,
 						resolve: {

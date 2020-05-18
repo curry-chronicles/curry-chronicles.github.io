@@ -9,6 +9,7 @@ mat-toolbar {
 
 	@media screen and (min-width: $tablet-width-breakpoint) {
 		padding-left: 20%;
+		padding-right: 20%;
 	}
 
 	.website-title {
@@ -27,12 +28,6 @@ mat-toolbar {
 
 		&:hover {
 			color: #e13b2b;
-		}
-	}
-
-	.admin-link {
-		@media screen and (min-width: $tablet-width-breakpoint) {
-			margin-right: 23rem;
 		}
 	}
 }

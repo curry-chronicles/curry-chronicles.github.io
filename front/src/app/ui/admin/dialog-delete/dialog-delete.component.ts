@@ -1,9 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { RecipesService } from 'src/app/infra';
-import { IRecipeOverview, Page } from 'src/app/models';
+import { RecipesService } from '../../../infra';
 
-export interface DialogData {
+export interface IDialogData {
 	recipeId: string;
 }
 
@@ -15,17 +14,17 @@ export class DialogDeleteComponent {
 
 	constructor(
 		public dialogRef: MatDialogRef<DialogDeleteComponent>,
-		@Inject(MAT_DIALOG_DATA) public data: DialogData,
-		private recipesService: RecipesService) { }
+		@Inject(MAT_DIALOG_DATA) public data: IDialogData,
+		private recipesService: RecipesService
+	) { }
 
-	onNoClick(): void {
+	public onNoClick(): void {
 		this.dialogRef.close({ 'answer': 'no' });
 	}
 
-	onYesClick(): void {
+	public onYesClick(): void {
 		this.recipesService.delete(this.data.recipeId).subscribe(() => {
 			this.dialogRef.close({ 'answer': 'yes' });
 		});
 	}
-
 }

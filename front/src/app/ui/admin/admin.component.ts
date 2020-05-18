@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { AuthenticationService, RecipesService } from '../../infra';
-import { Router, ActivatedRoute } from '@angular/router';
-import { Page, IRecipeOverview } from 'src/app/models';
-import { DialogDeleteComponent } from './dialog-delete/dialog-delete.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthenticationService, RecipesService } from '../../infra';
+import { IRecipeOverview, Page } from '../../models';
+import { DialogDeleteComponent } from './dialog-delete';
 
 @Component({
 	selector: 'app-admin',
@@ -46,13 +46,11 @@ export class AdminComponent {
 		});
 	}
 
-	openDialog(recipeId: string): void {
-		const dialogRef = this.dialog.open(DialogDeleteComponent, {
+	public openDialog(recipeId: string): void {
+		this.dialog.open(DialogDeleteComponent, {
 			width: '20rem',
 			data: { 'recipeId': recipeId }
-		});
-
-		dialogRef.afterClosed().subscribe(response => {
+		}).afterClosed().subscribe(response => {
 			if (response == null || response.answer !== 'yes') {
 				return;
 			}

@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import { Document } from 'mongoose';
 import { IRecipePayload, RecipeSchema, validateRecipe } from '../models';
+import { ImgurService } from '../services';
 import { AController } from './abstract.controller';
 import { LoginController } from './login.controller';
-import { ImgurService } from '../services/imgur.service';
 
 export class RecipesController extends AController {
 
@@ -81,54 +81,20 @@ export class RecipesController extends AController {
 		const pictureRegex = new RegExp('^data:image', 'i');
 		const picture = request.body.mainPicture;
 
+		// The picture has changed: upload it to imgur before updating Db
 		if (pictureRegex.test(picture)) {
-			let recipePayload = request.body as IRecipePayload;
-			recipePayload = this.prepare(recipePayload);
-
-			const imgurService = new ImgurService();
-			imgurService.uploadBase64(recipePayload.mainPicture, null, request.body.name, request.body.description)
+			const recipePayload = this.prepare(request.body as IRecipePayload);
+			new ImgurService().uploadBase64(recipePayload.mainPicture, null, request.body.name, request.body.description)
 				.then(json => {
 					request.body.mainPicture = json.data.link;
-					RecipeSchema.findOneAndUpdate(
-						{ id: request.params.recipeId },
-						request.body,
-						{ new: true },
-						(error: Error, recipe: Document) => {
-							if (error != null) {
-								response.status(500);
-								response.send(error);
-								return;
-							}
-							if (recipe == null) {
-								response.status(404);
-								response.send(`Recipe with Id ${request.params.id} not found`);
-								return;
-							}
-							response.json(recipe);
-						});
+					this.updateRecipeInDb(request, response);
 				})
 				.catch(error => {
 					response.send(error.message);
 				});
 		}
 		else {
-			RecipeSchema.findOneAndUpdate(
-				{ id: request.params.recipeId },
-				request.body,
-				{ new: true },
-				(error: Error, recipe: Document) => {
-					if (error != null) {
-						response.status(500);
-						response.send(error);
-						return;
-					}
-					if (recipe == null) {
-						response.status(404);
-						response.send(`Recipe with Id ${request.params.id} not found`);
-						return;
-					}
-					response.json(recipe);
-				});
+			this.updateRecipeInDb(request, response);
 		}
 	}
 
@@ -147,6 +113,22 @@ export class RecipesController extends AController {
 				}
 				response.json({ message: 'Recipe successfully deleted' });
 			});
+	}
+
+	private updateRecipeInDb(request, response: Response) {
+		RecipeSchema.findOneAndUpdate({ id: request.params.recipeId }, request.body, { new: true }, (error: Error, recipe: Document) => {
+			if (error != null) {
+				response.status(500);
+				response.send(error);
+				return;
+			}
+			if (recipe == null) {
+				response.status(404);
+				response.send(`Recipe with Id ${request.params.id} not found`);
+				return;
+			}
+			response.json(recipe);
+		});
 	}
 
 	private prepare(recipe: IRecipePayload): IRecipePayload {

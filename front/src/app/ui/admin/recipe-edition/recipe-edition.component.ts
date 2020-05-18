@@ -1,12 +1,12 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { AbstractControl, FormGroup } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormlyFieldConfig } from '@ngx-formly/core';
+import { Observable } from 'rxjs';
 import { RecipesService } from '../../../infra';
 import { IRecipe } from '../../../models';
 import { nameof } from '../../../utils';
-import { Observable } from 'rxjs';
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
 	selector: 'app-recipe-edition',
@@ -87,8 +87,7 @@ export class RecipeEditionComponent {
 								if (recipeId == null || this.recipe != null) {
 									return true;
 								}
-								const result = existingRecipeIds.has(recipeId) ? false : true;
-								return result;
+								return !existingRecipeIds.has(recipeId);
 							}
 						}
 					}
@@ -190,15 +189,14 @@ export class RecipeEditionComponent {
 			this.recipesService.update(this.model);
 
 		request.subscribe(recipe => {
-				this.isSaving = false;
-				this.router.navigateByUrl(`${recipe.id}`);
-				const action = this.isCreation ? 'créée' : 'modifiée';
-				this.snackBar.open(`La recette ${recipe.id} a été ${action} avec succès`, 'Fermer');
-			}, error => {
-				this.isSaving = false;
-				console.error(error);
-				this.error = error;
-			});
+			this.isSaving = false;
+			this.router.navigateByUrl(`${recipe.id}`);
+			this.snackBar.open(`La recette ${recipe.id} a été ${this.isCreation ? 'créée' : 'modifiée'} avec succès`, 'Fermer');
+		}, error => {
+			this.isSaving = false;
+			console.error(error);
+			this.error = error;
+		});
 	}
 
 	public copyToClipboard(): void {

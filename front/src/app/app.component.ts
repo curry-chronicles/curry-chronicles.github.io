@@ -32,7 +32,6 @@ export class AppComponent {
 	private randomIngredientIndex: number;
 	public randomIngredient: string;
 	public isLoggedIn: boolean;
-	public error: string;
 
 	constructor(
 		private authenticationService: AuthenticationService
@@ -41,8 +40,8 @@ export class AppComponent {
 		this.authenticationService.isLoggedIn().subscribe(isLoggedIn => {
 			this.isLoggedIn = isLoggedIn;
 		}, (error: string) => {
+			console.error(error);
 			this.isLoggedIn = false;
-			this.error = error;
 		});
 	}
 

@@ -14,42 +14,35 @@
 	</div>
 </section>
 
-<ng-container>
-	<ng-template [ngIf]="recipesPage.items.length > 0">
-		<!-- Recipes list -->
-		<app-infinite-scroll (scrolled)="loadMore(recipesPage)">
-			<section class="recipes-list">
-				<article class="card" *ngFor="let recipe of recipesPage.items">
-					<div class="card-recipe-thumbnail">
-						<header>
-							<h2>{{ recipe.name }}</h2>
-						</header>
-						<content>
-							<img [src]="recipe.mainPicture" [alt]="recipe.name">
-							<div class="recipe-buttons-container">
-								<button mat-fab class="recipe-button" [routerLink]="['edit-recipe',recipe.id]"
-									matTooltip="Editer" matTooltipPosition="above">
-									<mat-icon>edit</mat-icon>
-								</button>
-								<button mat-fab class="recipe-button" (click)="openDialog(recipe.id)"
-									matTooltip="Supprimer" matTooltipPosition="above">
-									<mat-icon>delete</mat-icon>
-								</button>
-							</div>
-						</content>
+<!-- Recipes list -->
+<app-infinite-scroll (scrolled)="loadMore(recipesPage)">
+	<section class="recipes-list">
+		<article class="card" *ngFor="let recipe of recipesPage.items">
+			<div class="card-recipe-thumbnail">
+				<header>
+					<h2>{{ recipe.name }}</h2>
+				</header>
+				<content>
+					<img [src]="recipe.mainPicture" [alt]="recipe.name">
+					<div class="recipe-actions">
+						<button mat-fab [routerLink]="['edit-recipe',recipe.id]" matTooltip="Editer"
+							matTooltipPosition="above">
+							<mat-icon>edit</mat-icon>
+						</button>
+						<button mat-fab (click)="openDialog(recipe.id)" matTooltip="Supprimer"
+							matTooltipPosition="above">
+							<mat-icon>delete</mat-icon>
+						</button>
 					</div>
-				</article>
-			</section>
-		</app-infinite-scroll>
-		<div class="load-more-container">
-			<!-- Load more button -->
-			<ng-template [ngIf]="!recipesPage.hasReachedLimit">
-				<button mat-raised-button type="button" color="primary" (click)="loadMore(recipesPage)"
-					[class.mod-loading]="isLoadingMore" [disabled]="isLoadingMore">
-					Charger plus
-				</button>
-			</ng-template>
-		</div>
-	</ng-template>
-
-</ng-container>
+				</content>
+			</div>
+		</article>
+	</section>
+</app-infinite-scroll>
+<div class="load-more-container" *ngIf="!recipesPage.hasReachedLimit">
+	<!-- Load more button -->
+	<button mat-raised-button type="button" color="primary" (click)="loadMore(recipesPage)"
+		[class.mod-loading]="isLoadingMore" [disabled]="isLoadingMore">
+		Charger plus
+	</button>
+</div>

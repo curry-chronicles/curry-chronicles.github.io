@@ -37,7 +37,6 @@ export class RecipesService {
 					recipe.mainPicture = this.imgurService.toThumbnail(recipe.mainPicture, ThumbnailType.largeThumbnail);
 				});
 				currentPaging.items.push(...recipes);
-				currentPaging.items.sort((a, b) => new Date(b.publicationDate).getTime() - new Date(a.publicationDate).getTime());
 				return currentPaging;
 			})
 		);

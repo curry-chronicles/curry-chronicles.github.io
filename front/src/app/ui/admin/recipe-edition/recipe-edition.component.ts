@@ -4,7 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { Observable } from 'rxjs';
-import { RecipesService } from '../../../infra';
+import { RecipesService } from '@curry-chronicles/infra';
 import { IRecipe } from '@curry-chronicles/models';
 import { nameof } from '../../../utils';
 

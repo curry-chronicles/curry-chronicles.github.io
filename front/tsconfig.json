@@ -13,6 +13,9 @@
 		"paths": {
 			"@curry-chronicles/models": [
 				"./src/app/models/index"
+			],
+			"@curry-chronicles/infra": [
+				"./src/app/infra/index"
 			]
 		},
 		"sourceMap": true,

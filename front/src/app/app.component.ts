@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthenticationService } from './infra';
+import { AuthenticationService } from '@curry-chronicles/infra';
 
 const RANDOM_INGREDIENTS = [
 	'un gros poulet',

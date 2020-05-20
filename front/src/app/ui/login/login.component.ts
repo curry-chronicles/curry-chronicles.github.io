@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FormlyFieldConfig } from '@ngx-formly/core';
-import { AuthenticationService } from '../../infra';
+import { AuthenticationService } from '@curry-chronicles/infra';
 import { ILogin } from '@curry-chronicles/models';
 import { nameof } from '../../utils';
 

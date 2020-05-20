@@ -24,7 +24,7 @@ import { FormlyMaterialModule } from '@ngx-formly/material';
 import { AppComponent } from './app.component';
 import { AuthenticationService, ImgurService, RecipesService } from './infra';
 import { AppRoutingModule } from './routing/app-routing.module';
-import { AdminComponent, AutofocusOnShowDirective, CURRY_CHRONICLES_FORMLY_CONFIG, DateComponent, DialogDeleteComponent, DirectionsComponent, DirectionsEditorComponent, DirectionsListComponent, FileValueAccessorDirective, HomeComponent, IngredientsComponent, IngredientsEditorComponent, IngredientsListComponent, LoginComponent, PictureComponent, PictureEditorComponent, RecipeComponent, RecipeEditionComponent, RecipeHeaderComponent, RecipeThumbnailComponent, TimespanComponent, TimespanEditorComponent, TimespanPipe } from './ui';
+import { AdminComponent, AutofocusOnShowDirective, CURRY_CHRONICLES_FORMLY_CONFIG, DateComponent, DialogDeleteComponent, DirectionsComponent, DirectionsEditorComponent, DirectionsListComponent, FileValueAccessorDirective, HomeComponent, IngredientPipe, IngredientsComponent, IngredientsEditorComponent, IngredientsListComponent, LoginComponent, PictureComponent, PictureEditorComponent, RecipeComponent, RecipeEditionComponent, RecipeHeaderComponent, RecipeThumbnailComponent, TimespanComponent, TimespanEditorComponent, TimespanPipe } from './ui';
 import { InfiniteScrollComponent } from './ui/infinite-scroll';
 
 export const DateFormat = {
@@ -72,6 +72,7 @@ export const DateFormat = {
 
 		// Pipes
 		TimespanPipe,
+		IngredientPipe,
 
 		// Helpers
 		InfiniteScrollComponent

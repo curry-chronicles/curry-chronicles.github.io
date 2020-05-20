@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
-import { ILogin, ILoginInfo } from '../models';
+import { ILogin, ILoginInfo } from '@curry-chronicles/models';
 
 const LOGIN_URL = '/api/login';
 const LOGOUT_URL = '/api/logout';

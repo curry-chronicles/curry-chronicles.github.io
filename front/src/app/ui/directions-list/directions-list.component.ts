@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular/core';
-import { IDirection } from '../../models';
+import { IDirection } from '@curry-chronicles/models';
 
 @Component({
 	selector: 'app-directions-list',

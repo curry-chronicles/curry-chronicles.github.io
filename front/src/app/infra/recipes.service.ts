@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, map, shareReplay } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
-import { IRecipe, IRecipeOverview, Page, ThumbnailType } from '../models';
+import { IRecipe, IRecipeOverview, Page, ThumbnailType } from '@curry-chronicles/models';
 import { ImgurService } from './imgur.service';
 
 const RECIPES_API = '/api/recipes';

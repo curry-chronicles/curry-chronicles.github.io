@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { Observable } from 'rxjs';
 import { RecipesService } from '../../../infra';
-import { IRecipe } from '../../../models';
+import { IRecipe } from '@curry-chronicles/models';
 import { nameof } from '../../../utils';
 
 @Component({

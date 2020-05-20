@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService, RecipesService } from '../../infra';
-import { IRecipeOverview, Page } from '../../models';
+import { IRecipeOverview, Page } from '@curry-chronicles/models';
 import { DialogDeleteComponent } from './dialog-delete';
 
 @Component({

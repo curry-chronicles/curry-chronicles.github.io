@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ThumbnailType } from '../models';
+import { ThumbnailType } from '@curry-chronicles/models';
 
 const knownExtensions = [
 	'.jpg',

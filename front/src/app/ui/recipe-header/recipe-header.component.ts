@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IRecipe } from '../../models';
+import { IRecipe } from '@curry-chronicles/models';
 
 @Component({
 	selector: 'app-recipe-header',

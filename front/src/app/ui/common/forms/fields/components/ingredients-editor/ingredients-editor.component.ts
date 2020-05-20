@@ -1,7 +1,7 @@
 import { moveItemInArray, CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Component, forwardRef } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
-import { IIngredient, isIngredientValid } from '../../../../../../models';
+import { IIngredient, isIngredientValid } from '@curry-chronicles/models';
 
 @Component({
 	selector: 'app-ingredients-editor',

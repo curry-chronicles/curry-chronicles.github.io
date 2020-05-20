@@ -1,6 +1,6 @@
 import { Component, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { Timespan } from '../../../../../../models';
+import { Timespan } from '@curry-chronicles/models';
 
 @Component({
 	selector: 'app-timespan-editor',

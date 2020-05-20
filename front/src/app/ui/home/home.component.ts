@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { fromEvent, Observable, of } from 'rxjs';
 import { debounceTime, map } from 'rxjs/operators';
 import { RecipesService } from '../../infra';
-import { IRecipeOverview, Page } from '../../models';
+import { IRecipeOverview, Page } from '@curry-chronicles/models';
 
 const SEARCH_DEBOUNCE_TIME_IN_MS = 300;
 

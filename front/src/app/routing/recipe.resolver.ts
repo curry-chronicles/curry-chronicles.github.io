@@ -3,7 +3,7 @@ import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@a
 import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { RecipesService } from '../infra';
-import { IRecipe } from '../models';
+import { IRecipe } from '@curry-chronicles/models';
 
 @Injectable()
 export class RecipeResolver implements Resolve<IRecipe> {

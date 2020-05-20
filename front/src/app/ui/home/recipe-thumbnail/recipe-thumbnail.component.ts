@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { IRecipeOverview } from '../../../models';
+import { IRecipeOverview } from '@curry-chronicles/models';
 
 @Component({
 	selector: 'app-recipe-thumbnail',

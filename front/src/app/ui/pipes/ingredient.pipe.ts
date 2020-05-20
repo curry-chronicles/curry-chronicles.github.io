@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { IIngredient } from '../../models';
+import { IIngredient } from '@curry-chronicles/models';
 
 @Pipe({
 	name: 'ingredient'

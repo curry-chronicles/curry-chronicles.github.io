@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { RecipesService } from '../../../infra';
+import { RecipesService } from '@curry-chronicles/infra';
 
 export interface IDialogData {
 	recipeId: string;

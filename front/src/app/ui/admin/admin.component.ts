@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthenticationService, RecipesService } from '../../infra';
-import { IRecipeOverview, Page } from '../../models';
+import { AuthenticationService, RecipesService } from '@curry-chronicles/infra';
+import { IRecipeOverview, Page } from '@curry-chronicles/models';
 import { DialogDeleteComponent } from './dialog-delete';
 
 @Component({

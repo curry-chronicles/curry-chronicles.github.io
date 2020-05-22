@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter, map, switchMap } from 'rxjs/operators';
-import { IRecipe, ThumbnailType } from '../../models';
-import { ImgurService } from 'src/app/infra';
+import { IRecipe, ThumbnailType } from '@curry-chronicles/models';
+import { ImgurService } from '@curry-chronicles/infra';
 
 @Component({
 	selector: 'app-recipe',

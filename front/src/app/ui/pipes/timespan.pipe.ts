@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Timespan } from '../../models';
+import { Timespan } from '@curry-chronicles/models';
 
 @Pipe({
 	name: 'timespan'

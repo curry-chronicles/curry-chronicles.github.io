@@ -1,7 +1,7 @@
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
-import { RecipesService } from '../infra';
-import { IRecipeOverview, Page } from '../models';
+import { RecipesService } from '@curry-chronicles/infra';
+import { IRecipeOverview, Page } from '@curry-chronicles/models';
 import { Injectable } from '@angular/core';
 
 @Injectable()

@@ -80,7 +80,7 @@ export const RecipeSchema = mongoose.model(
 				},
 				amount: {
 					type: Number,
-					default: 1
+					default: null
 				},
 				unit: String
 			}]

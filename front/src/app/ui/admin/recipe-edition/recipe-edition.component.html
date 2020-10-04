@@ -2,9 +2,22 @@
 
 <form [formGroup]="form" (ngSubmit)="submit()">
 	<formly-form [model]="model" [fields]="fields" [form]="form"></formly-form>
+
+	<div *ngIf="showValidationMessages" class="callout mod-error">
+		<button mat-icon-button type="button" (click)="showValidationMessages = false" matTooltip="Fermer"
+			aria-label="Fermer" class="callout-kill">
+			<mat-icon>close</mat-icon>
+		</button>
+
+		<ul>
+			<li *ngFor="let field of fields">
+				<formly-validation-message [field]="field"></formly-validation-message>
+			</li>
+		</ul>
+	</div>
+
 	<div class="submit-bar">
-		<button mat-raised-button type="submit" color="primary" [class.mod-loading]="isSaving"
-			[disabled]="!canSubmit">Enregistrer</button>
+		<button mat-raised-button type="submit" color="primary" [class.mod-loading]="isSaving">Enregistrer</button>
 	</div>
 </form>
 

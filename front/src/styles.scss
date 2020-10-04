@@ -2,6 +2,7 @@
 
 @import "components/components";
 @import "theme";
+@import "shame";
 
 @import url("https://fonts.googleapis.com/css?family=Varela+Round&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Courgette&display=swap");
@@ -30,12 +31,8 @@ body {
 	font-family: "Varela Round", sans-serif;
 }
 
-ul {
+ul.reset {
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
-}
-
-.mat-list-item-content {
-	padding-left: 0 !important;
 }

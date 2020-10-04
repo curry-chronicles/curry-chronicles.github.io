@@ -6,6 +6,4 @@ import { FieldType } from '@ngx-formly/core';
 	templateUrl: './directions.component.html',
 	styleUrls: ['./directions.component.scss']
 })
-export class DirectionsComponent extends FieldType {
-
-}
+export class DirectionsComponent extends FieldType { }

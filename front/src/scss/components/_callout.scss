@@ -15,4 +15,10 @@ $padding: 0.5rem;
 		background-color: map-get($error, 'background');
 		color: map-get($error, 'foreground');
 	}
+
+	.callout-kill {
+		position: absolute;
+		right: 0.5rem;
+		top: 0.5rem
+	}
 }

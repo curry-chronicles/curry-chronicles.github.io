@@ -23,5 +23,13 @@ export const CURRY_CHRONICLES_FORMLY_CONFIG: ConfigOption = {
 			name: 'date',
 			component: DateComponent
 		}
+	],
+	validationMessages: [
+		{
+			name: 'required',
+			message: (_, field) => {
+				return `Le champ ${field?.templateOptions?.label} est requis`;
+			},
+		}
 	]
 };

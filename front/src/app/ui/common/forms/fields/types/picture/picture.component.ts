@@ -6,6 +6,4 @@ import { FieldType } from '@ngx-formly/core';
 	templateUrl: './picture.component.html',
 	styleUrls: ['./picture.component.scss']
 })
-export class PictureComponent extends FieldType {
-
-}
+export class PictureComponent extends FieldType { }

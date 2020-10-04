@@ -18,6 +18,7 @@ export class RecipeEditionComponent {
 	@ViewChild('jsonRecipeTextArea')
 	public jsonRecipeTextArea: ElementRef<HTMLTextAreaElement>;
 	public showCopySuccessMessage = false;
+	public showValidationMessages = false;
 
 	public form: FormGroup;
 	public model: IRecipe;
@@ -81,7 +82,7 @@ export class RecipeEditionComponent {
 					validators: {
 						// Check if the Id does not already exist
 						'RECIPE_ID_ALREADY_EXISTS': {
-							message: 'Cet Id de recette existe déjà',
+							message: 'L\'Id de recette existe déjà',
 							expression: (control: AbstractControl): boolean => {
 								const recipeId = (control.value as string)?.toLocaleLowerCase();
 								if (recipeId == null || this.recipe != null) {
@@ -138,6 +139,7 @@ export class RecipeEditionComponent {
 					type: 'picture',
 					templateOptions: {
 						label: 'Image principale',
+						appearance: 'outline',
 						required: true
 					}
 				},
@@ -179,6 +181,7 @@ export class RecipeEditionComponent {
 
 	public submit(): void {
 		if (!this.canSubmit) {
+			this.showValidationMessages = true;
 			return;
 		}
 

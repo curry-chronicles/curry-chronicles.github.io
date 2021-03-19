@@ -20,7 +20,7 @@
 </section>
 
 <ng-container *ngIf="recipesPage$ | async as recipesPage; else loading">
-	<ng-template [ngIf]="recipesPage.items.length > 0" [ngIfElse]="norecipe">
+	<ng-template [ngIf]="recipesPage.items.length > 0" [ngIfElse]="!!searchInput ? noRecipeFound : noRecipeAtAll">
 		<!-- Recipes list -->
 		<app-infinite-scroll (scrolled)="loadMore(recipesPage)">
 			<section class="recipes-list">
@@ -44,11 +44,19 @@
 		</div>
 	</ng-template>
 
-	<!-- No recipe to display -->
-	<ng-template #norecipe>
+	<!-- No recipe found -->
+	<ng-template #noRecipeFound>
 		<div class="empty-recipes">
 			<h3>Aucune recette</h3>
-			Essayez de modifier votre recherche
+			<p>Essayez de modifier votre recherche</p>
+		</div>
+	</ng-template>
+	<!-- No recipe at all -->
+	<ng-template #noRecipeAtAll>
+		<div class="empty-recipes">
+			<h3>Aucune recette</h3>
+			<p>Ah bah c'est bien OVH, super pour le site de cuisine. Génial ! Je te remercie !</p>
+			<p>Il est foutu, c'est pas grave hein ?</p>
 		</div>
 	</ng-template>
 </ng-container>

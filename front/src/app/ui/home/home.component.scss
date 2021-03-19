@@ -57,6 +57,10 @@
 .empty-recipes {
 	text-align: center;
 	margin: 10rem 0;
+	p {
+		font-size: 0.9rem;
+		line-height: 0.5rem;
+	}
 }
 
 .recipes-loader {

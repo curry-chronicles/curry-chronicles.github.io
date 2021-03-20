@@ -18,7 +18,8 @@ const RANDOM_INGREDIENTS = [
 	'ma maman',
 	'de la bière',
 	'beaucoup de bière',
-	'surtout de la bière'
+	'surtout de la bière',
+	'surtout pas OVH'
 ];
 
 @Component({

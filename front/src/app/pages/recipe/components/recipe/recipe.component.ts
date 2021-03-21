@@ -13,9 +13,9 @@ export class RecipeComponent {
 	public recipe: IRecipe;
 
 	constructor(
-		private router: Router,
-		private route: ActivatedRoute,
-		private imgurService: ImgurService
+		private readonly router: Router,
+		private readonly route: ActivatedRoute,
+		private readonly imgurService: ImgurService
 	) {
 		//TODO: enh, retrieving data should be easier
 		this.router.events.pipe(

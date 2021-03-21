@@ -8,8 +8,8 @@ import { RecipesService } from './../services';
 @Injectable()
 export class RecipeResolver implements Resolve<IRecipe> {
 	constructor(
-		private recipesService: RecipesService,
-		private router: Router
+		private readonly recipesService: RecipesService,
+		private readonly router: Router
 	) { }
 
 	public resolve(route: ActivatedRouteSnapshot, _: RouterStateSnapshot): Observable<IRecipe> {

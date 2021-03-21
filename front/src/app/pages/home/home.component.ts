@@ -26,8 +26,8 @@ export class HomeComponent implements OnInit {
 	}
 
 	constructor(
-		private recipesService: RecipesService,
-		private activatedRoute: ActivatedRoute
+		private readonly recipesService: RecipesService,
+		private readonly activatedRoute: ActivatedRoute
 	) {
 		this.recipesPage$ = of(this.activatedRoute.snapshot.data.recipesPage as Page<IRecipeOverview>);
 	}

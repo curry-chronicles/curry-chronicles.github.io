@@ -7,7 +7,7 @@ import { RecipesService } from '../services';
 @Injectable()
 export class RecipesPageResolver implements Resolve<Page<IRecipeOverview>> {
 	constructor(
-		private recipesService: RecipesService,
+		private readonly recipesService: RecipesService,
 	) { }
 
 	public resolve(_: ActivatedRouteSnapshot, __: RouterStateSnapshot): Observable<Page<IRecipeOverview>> {

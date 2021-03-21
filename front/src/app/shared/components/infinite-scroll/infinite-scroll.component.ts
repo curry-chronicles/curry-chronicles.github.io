@@ -29,7 +29,7 @@ export class InfiniteScrollComponent implements AfterViewInit, OnDestroy {
 	}
 
 	constructor(
-		private host: ElementRef
+		private readonly host: ElementRef
 	) { }
 
 	public ngAfterViewInit(): void {

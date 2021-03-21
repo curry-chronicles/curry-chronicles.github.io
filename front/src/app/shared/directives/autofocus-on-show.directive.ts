@@ -9,7 +9,9 @@ export class AutofocusOnShowDirective implements AfterViewInit {
 	@Input()
 	public appAutofocusOnShow = true;
 
-	constructor(private el: ElementRef) {
+	constructor(
+		private readonly el: ElementRef
+	) {
 		if (el.nativeElement.focus == null) {
 			throw new Error('Element does not accept focus.');
 		}

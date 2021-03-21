@@ -31,10 +31,10 @@ export class RecipeEditionComponent {
 	public isCreation: boolean;
 
 	constructor(
-		private recipesService: RecipesService,
-		private router: Router,
-		private activatedRoute: ActivatedRoute,
-		private snackBar: MatSnackBar
+		private readonly recipesService: RecipesService,
+		private readonly router: Router,
+		private readonly activatedRoute: ActivatedRoute,
+		private readonly snackBar: MatSnackBar
 	) {
 		this.form = new FormGroup({});
 		this.model = {

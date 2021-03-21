@@ -19,9 +19,9 @@ export enum DialogDeleteResult {
 export class DialogDeleteComponent {
 
 	constructor(
-		public dialogRef: MatDialogRef<DialogDeleteComponent>,
-		@Inject(MAT_DIALOG_DATA) public data: IDialogData,
-		private recipesService: RecipesService
+		public readonly dialogRef: MatDialogRef<DialogDeleteComponent>,
+		@Inject(MAT_DIALOG_DATA) public readonly data: IDialogData,
+		private readonly recipesService: RecipesService
 	) { }
 
 	public onNoClick(): void {

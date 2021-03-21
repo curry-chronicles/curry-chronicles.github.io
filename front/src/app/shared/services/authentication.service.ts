@@ -14,7 +14,7 @@ const LOGIN_INFO_URL = '/api/login-info';
 })
 export class AuthenticationService {
 
-	constructor(private http: HttpClient) { }
+	constructor(private readonly http: HttpClient) { }
 
 	public login(credentials: ILogin): Observable<any> {
 		return this.http.post(`${environment.backendUrl}${LOGIN_URL}`, credentials, { withCredentials: true }).pipe(

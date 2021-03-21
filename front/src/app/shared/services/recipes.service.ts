@@ -18,8 +18,8 @@ export class RecipesService {
 	private static recipes: Observable<IRecipeOverview[]>;
 
 	constructor(
-		private http: HttpClient,
-		private imgurService: ImgurService
+		private readonly http: HttpClient,
+		private readonly imgurService: ImgurService
 	) { }
 
 	public getPagedRecipes(currentPaging: Page<IRecipeOverview> = null): Observable<Page<IRecipeOverview>> {

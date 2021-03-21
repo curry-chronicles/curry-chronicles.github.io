@@ -24,7 +24,9 @@ export class FileValueAccessorDirective implements ControlValueAccessor {
 
 	private get isMultiple(): boolean { return (this.element.nativeElement as HTMLInputElement).multiple; }
 
-	constructor(private element: ElementRef) { }
+	constructor(
+		private readonly element: ElementRef
+	) { }
 
 	public writeValue(_) {
 		// Nothing to do

@@ -17,12 +17,12 @@ export class AdminComponent {
 	public isLoadingMore = false;
 
 	constructor(
-		private authenticationService: AuthenticationService,
-		private router: Router,
-		private recipesService: RecipesService,
-		private activatedRoute: ActivatedRoute,
-		private dialog: MatDialog,
-		private snackBar: MatSnackBar
+		private readonly authenticationService: AuthenticationService,
+		private readonly router: Router,
+		private readonly recipesService: RecipesService,
+		private readonly activatedRoute: ActivatedRoute,
+		private readonly dialog: MatDialog,
+		private readonly snackBar: MatSnackBar
 	) {
 		this.recipesPage = this.activatedRoute.snapshot.data.recipesPage as Page<IRecipeOverview>;
 	}

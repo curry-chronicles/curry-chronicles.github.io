@@ -35,7 +35,7 @@ export class AppComponent {
 	public isLoggedIn: boolean;
 
 	constructor(
-		private authenticationService: AuthenticationService
+		private readonly authenticationService: AuthenticationService
 	) {
 		this.generateRandomIngredient();
 		this.authenticationService.isLoggedIn().subscribe(isLoggedIn => {

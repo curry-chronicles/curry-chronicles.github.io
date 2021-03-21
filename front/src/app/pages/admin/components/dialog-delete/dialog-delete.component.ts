@@ -6,6 +6,12 @@ export interface IDialogData {
 	recipeId: string;
 }
 
+export enum DialogDeleteResult {
+	confirmed,
+	canceled,
+	error
+}
+
 @Component({
 	selector: 'app-dialog-delete',
 	templateUrl: 'dialog-delete.html'
@@ -19,12 +25,17 @@ export class DialogDeleteComponent {
 	) { }
 
 	public onNoClick(): void {
-		this.dialogRef.close({ 'answer': 'no' });
+		this.dialogRef.close(DialogDeleteResult.canceled);
 	}
 
 	public onYesClick(): void {
-		this.recipesService.delete(this.data.recipeId).subscribe(() => {
-			this.dialogRef.close({ 'answer': 'yes' });
-		});
+		this.recipesService.delete(this.data.recipeId).subscribe(
+			() => {
+				this.dialogRef.close(DialogDeleteResult.confirmed);
+			},
+			() => {
+				this.dialogRef.close(DialogDeleteResult.error)
+			}
+		);
 	}
 }

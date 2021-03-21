@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthenticationService } from '@curry-chronicles/infra';
+import { AuthenticationService } from '@curry-chronicles/shared';
 
 const RANDOM_INGREDIENTS = [
 	'un gros poulet',

@@ -16,6 +16,9 @@
 			],
 			"@curry-chronicles/infra": [
 				"./src/app/infra/index"
+			],
+			"@curry-chronicles/shared": [
+				"./src/app/shared/index"
 			]
 		},
 		"sourceMap": true,

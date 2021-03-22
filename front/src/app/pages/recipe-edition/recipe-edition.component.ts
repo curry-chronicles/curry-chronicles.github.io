@@ -2,7 +2,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { AbstractControl, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IRecipe, nameof, RecipesService } from '@curry-chronicles/shared';
+import { IRecipe, nameof, RecipesService, SnackbarConfigs } from '@curry-chronicles/shared';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { Observable } from 'rxjs';
 
@@ -189,7 +189,11 @@ export class RecipeEditionComponent {
 		request.subscribe(recipe => {
 			this.isSaving = false;
 			this.router.navigateByUrl(`${recipe.id}`);
-			this.snackBar.open(`La recette ${recipe.id} a été ${this.isCreation ? 'créée' : 'modifiée'} avec succès`, 'Fermer');
+			this.snackBar.open(
+				`La recette ${recipe.id} a été ${this.isCreation ? 'créée' : 'modifiée'} avec succès`,
+				'Fermer',
+				SnackbarConfigs.success
+			);
 		}, error => {
 			this.isSaving = false;
 			console.error(error);

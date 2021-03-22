@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthenticationService, IRecipeOverview, Page, RecipesService } from '@curry-chronicles/shared';
+import { AuthenticationService, IRecipeOverview, Page, RecipesService, SnackbarConfigs } from '@curry-chronicles/shared';
 import { DialogDeleteComponent, DialogDeleteResult } from './components';
 
 @Component({
@@ -55,12 +55,17 @@ export class AdminComponent {
 			switch (result) {
 				case DialogDeleteResult.confirmed:
 					this.recipesPage.items = this.recipesPage.items.filter(recipe => recipe.id !== recipeId);
-					this.snackBar.open(`La recette '${recipeId}' a été supprimée avec succès`, 'Fermer');
+					this.snackBar.open(
+						`La recette '${recipeId}' a été supprimée avec succès`,
+						'Fermer',
+						SnackbarConfigs.success
+					);
 					break;
 				case DialogDeleteResult.error:
 					this.snackBar.open(
 						'Une erreur est survenue lors de la suppression de la recette',
-						'Fermer'
+						'Fermer',
+						SnackbarConfigs.error
 					);
 					break;
 			}

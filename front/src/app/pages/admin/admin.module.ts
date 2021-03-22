@@ -7,7 +7,6 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RouterModule, Routes } from '@angular/router';
 import { RecipesPageResolver, SharedModule } from '@curry-chronicles/shared';
 import { AdminComponent } from './admin.component';
-import { DialogDeleteComponent } from './components';
 
 const routes: Routes = [
 	{
@@ -17,7 +16,7 @@ const routes: Routes = [
 			recipesPage: RecipesPageResolver
 		}
 	}
-]
+];
 
 @NgModule({
 	imports: [
@@ -30,8 +29,7 @@ const routes: Routes = [
 		MatSnackBarModule
 	],
 	declarations: [
-		AdminComponent,
-		DialogDeleteComponent
+		AdminComponent
 	]
 })
 export class AdminModule { }

@@ -1,6 +1,6 @@
 import { MatSnackBarConfig } from '@angular/material/snack-bar';
 
-const MAGIC_SNACKBAR_DURATION_IN_MS = 200000;
+const MAGIC_SNACKBAR_DURATION_IN_MS = 2000;
 
 export class SnackbarConfigs {
 

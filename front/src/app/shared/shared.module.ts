@@ -1,6 +1,9 @@
+import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { InfiniteScrollComponent } from './components';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ConfirmationDialogComponent, InfiniteScrollComponent } from './components';
 import { AutofocusOnShowDirective, FileValueAccessorDirective } from './directives';
 import { RecipeResolver, RecipesPageResolver } from './resolvers';
 import { AuthenticationService, ImgurService, RecipesService } from './services';
@@ -15,6 +18,7 @@ import { AuthenticationService, ImgurService, RecipesService } from './services'
 	],
 	declarations: [
 		AutofocusOnShowDirective,
+		ConfirmationDialogComponent,
 		FileValueAccessorDirective,
 		InfiniteScrollComponent
 	],
@@ -23,7 +27,10 @@ import { AuthenticationService, ImgurService, RecipesService } from './services'
 		AutofocusOnShowDirective
 	],
 	imports: [
-		HttpClientModule
+		HttpClientModule,
+		CommonModule,
+		MatDialogModule,
+		MatButtonModule
 	]
 })
 export class SharedModule { }

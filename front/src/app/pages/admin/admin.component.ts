@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthenticationService, IRecipeOverview, Page, RecipesService, SnackbarConfigs } from '@curry-chronicles/shared';
-import { DialogDeleteComponent, DialogDeleteResult } from './components';
+import { AuthenticationService, ConfirmationDialogComponent, ConfirmationDialogResult, IConfirmationDialogData, IRecipe, IRecipeOverview, Page, RecipesService, SnackbarConfigs } from '@curry-chronicles/shared';
+import { filter, mergeMap } from 'rxjs/operators';
 
 @Component({
 	selector: 'app-admin',
@@ -45,30 +45,31 @@ export class AdminComponent {
 		});
 	}
 
-	public openDialog(recipeId: string): void {
-		this.dialog.open(DialogDeleteComponent, {
-			width: '20rem',
+	public openDialog(recipe: IRecipe): void {
+		this.dialog.open(ConfirmationDialogComponent, {
 			data: {
-				recipeId
+				title: 'Supprimer la recette ?',
+				message: `Voulez-vous vraiment supprimer la recette "${recipe.name}" ?`
+			} as IConfirmationDialogData
+		}).afterClosed().pipe(
+			filter((result: ConfirmationDialogResult) => result === ConfirmationDialogResult.confirmed),
+			mergeMap(() => this.recipesService.delete(recipe.id))
+		).subscribe(
+			() => {
+				this.recipesPage.items = this.recipesPage.items.filter(r => r.id !== recipe.id);
+				this.snackBar.open(
+					`La recette '${recipe}' a été supprimée avec succès`,
+					'Fermer',
+					SnackbarConfigs.success
+				);
+			},
+			() => {
+				this.snackBar.open(
+					'Une erreur est survenue lors de la suppression 😔',
+					'Fermer',
+					SnackbarConfigs.error
+				);
 			}
-		}).afterClosed().subscribe((result: DialogDeleteResult) => {
-			switch (result) {
-				case DialogDeleteResult.confirmed:
-					this.recipesPage.items = this.recipesPage.items.filter(recipe => recipe.id !== recipeId);
-					this.snackBar.open(
-						`La recette '${recipeId}' a été supprimée avec succès`,
-						'Fermer',
-						SnackbarConfigs.success
-					);
-					break;
-				case DialogDeleteResult.error:
-					this.snackBar.open(
-						'Une erreur est survenue lors de la suppression de la recette',
-						'Fermer',
-						SnackbarConfigs.error
-					);
-					break;
-			}
-		});
+		);
 	}
 }

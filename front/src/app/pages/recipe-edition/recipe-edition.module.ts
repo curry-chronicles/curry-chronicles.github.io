@@ -13,7 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RouterModule, Routes } from '@angular/router';
-import { RecipeResolver, SharedModule } from '@curry-chronicles/shared';
+import { AuthGuard, RecipeResolver, SharedModule } from '@curry-chronicles/shared';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
 import { CURRY_CHRONICLES_FORMLY_CONFIG, DateComponent, DirectionsComponent, DirectionsEditorComponent, IngredientsComponent, IngredientsEditorComponent, PictureComponent, PictureEditorComponent, TimespanComponent, TimespanEditorComponent } from './forms';
@@ -25,7 +25,8 @@ const routes: Routes = [
 		component: RecipeEditionComponent,
 		resolve: {
 			recipe: RecipeResolver
-		}
+		},
+		canActivate: [AuthGuard]
 	}
 ];
 

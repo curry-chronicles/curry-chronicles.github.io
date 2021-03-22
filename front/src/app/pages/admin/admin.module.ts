@@ -5,13 +5,14 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RouterModule, Routes } from '@angular/router';
-import { RecipesPageResolver, SharedModule } from '@curry-chronicles/shared';
+import { AuthGuard, RecipesPageResolver, SharedModule } from '@curry-chronicles/shared';
 import { AdminComponent } from './admin.component';
 
 const routes: Routes = [
 	{
 		path: '',
 		component: AdminComponent,
+		canActivate: [AuthGuard],
 		resolve: {
 			recipesPage: RecipesPageResolver
 		}

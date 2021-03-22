@@ -5,7 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ConfirmationDialogComponent, InfiniteScrollComponent } from './components';
 import { AutofocusOnShowDirective, FileValueAccessorDirective } from './directives';
-import { RecipeResolver, RecipesPageResolver } from './resolvers';
+import { AuthGuard, RecipeResolver, RecipesPageResolver } from './routing';
 import { AuthenticationService, ImgurService, RecipesService } from './services';
 
 @NgModule({
@@ -14,7 +14,8 @@ import { AuthenticationService, ImgurService, RecipesService } from './services'
 		ImgurService,
 		RecipesService,
 		RecipesPageResolver,
-		RecipeResolver
+		RecipeResolver,
+		AuthGuard
 	],
 	declarations: [
 		AutofocusOnShowDirective,

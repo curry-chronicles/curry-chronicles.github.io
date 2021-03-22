@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { IRecipe } from './../models';
-import { RecipesService } from './../services';
+import { IRecipe } from './../../models';
+import { RecipesService } from './../../services';
 
 @Injectable()
 export class RecipeResolver implements Resolve<IRecipe> {

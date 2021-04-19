@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
 import { auth } from '../auth.json';
-import { ENVIRONMENT } from '../environments/environment';
 import { ILoginInfo, ILoginRequest } from '../models';
 
 const ACCESS_TOKEN_COOKIE_NAME = 'accessToken';
@@ -23,7 +22,7 @@ export class LoginController {
 		response.clearCookie(ACCESS_TOKEN_COOKIE_NAME);
 		response.cookie(ACCESS_TOKEN_COOKIE_NAME, auth.accessToken, {
 			httpOnly: true,
-			secure: ENVIRONMENT.isProduction,
+			secure: true,
 			sameSite: 'none',
 			expires: expiration
 		});

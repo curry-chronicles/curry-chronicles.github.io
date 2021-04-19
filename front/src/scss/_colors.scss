@@ -1,12 +1,17 @@
-$primary-color: #E13B2B;
+$primary-color: #e13b2b;
 $primary-color-light: lighten($primary-color, 15%);
 
-$error:(
-	background: #FF6961,
-	foreground: #FFFFFF
+$error: (
+	background: #f44336,
+	foreground: #ffffff,
+);
+
+$success: (
+	background: #4bb543,
+	foreground: #ffffff,
 );
 
 $grey: #666666;
 $light: #999999;
 $lighter: #dedede;
-$lightest: #F9F9F9;
+$lightest: #f9f9f9;

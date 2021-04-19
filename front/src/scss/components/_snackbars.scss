@@ -1,0 +1,21 @@
+@import "../colors";
+
+.mat-snack-bar-container {
+	&.success-snackbar {
+		background: map-get($success, "background");
+		color: map-get($success, "foreground");
+		button {
+			color: map-get($success, "foreground");
+			border-color: map-get($success, "foreground");
+		}
+	}
+
+	&.error-snackbar {
+		background: map-get($error, "background");
+		color: map-get($error, "foreground");
+		button {
+			color: map-get($error, "foreground");
+			border-color: map-get($error, "foreground");
+		}
+	}
+}

@@ -1,0 +1,79 @@
+@import "variables", "colors";
+
+.header {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	border-bottom: 1px dashed $lighter;
+	padding-bottom: 1rem;
+	margin-bottom: 2rem;
+
+	h1 {
+		display: inline-block;
+		margin: 0;
+		padding: 0;
+	}
+
+	mat-form-field {
+		margin-right: 0.5rem;
+	}
+}
+
+.recipes-list {
+
+	// When screen big enough, display overviews in a grid
+	@media screen and (min-width: $mobile-width-breakpoint) {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+
+		&::after {
+			content: "";
+			flex: 0 1 calc(33% - 1rem);
+		}
+	}
+
+	overflow: inherit auto;
+	align-items: center;
+
+	.card {
+		flex: 0 1 calc(33% - 1rem);
+
+		@media screen and (max-width: $tablet-width-breakpoint) {
+			flex: 0 0 calc(49%);
+		}
+
+		cursor: pointer;
+		box-shadow: 0 0px 15px rgba(36, 37, 38, .15);
+		margin-bottom: 1rem;
+	}
+}
+
+.load-more-container {
+	margin: 8rem 0;
+	text-align: center;
+}
+
+.empty-recipes {
+	text-align: center;
+	margin: 10rem 0;
+	p {
+		font-size: 0.9rem;
+		line-height: 0.5rem;
+	}
+}
+
+.recipes-loader {
+	width: 100%;
+	text-align: center;
+
+	mat-spinner {
+		margin: auto;
+		margin-top: 20vh;
+		margin-bottom: 3rem;
+	}
+
+	>span {
+		color: $grey;
+	}
+}

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthenticationService } from '@curry-chronicles/infra';
+import { AuthenticationService } from '@curry-chronicles/shared';
 
 const RANDOM_INGREDIENTS = [
 	'un gros poulet',
@@ -18,7 +18,8 @@ const RANDOM_INGREDIENTS = [
 	'ma maman',
 	'de la bière',
 	'beaucoup de bière',
-	'surtout de la bière'
+	'surtout de la bière',
+	'surtout pas OVH'
 ];
 
 @Component({
@@ -34,7 +35,7 @@ export class AppComponent {
 	public isLoggedIn: boolean;
 
 	constructor(
-		private authenticationService: AuthenticationService
+		private readonly authenticationService: AuthenticationService
 	) {
 		this.generateRandomIngredient();
 		this.authenticationService.isLoggedIn().subscribe(isLoggedIn => {

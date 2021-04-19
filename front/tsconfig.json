@@ -7,7 +7,7 @@
 		"esModuleInterop": true,
 		"experimentalDecorators": true,
 		"importHelpers": true,
-		"module": "esnext",
+		"module": "es2020",
 		"moduleResolution": "node",
 		"outDir": "./dist/out-tsc",
 		"paths": {
@@ -16,6 +16,9 @@
 			],
 			"@curry-chronicles/infra": [
 				"./src/app/infra/index"
+			],
+			"@curry-chronicles/shared": [
+				"./src/app/shared/index"
 			]
 		},
 		"sourceMap": true,

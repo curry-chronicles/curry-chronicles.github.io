@@ -1,4 +1,4 @@
-import { IRequest, Paging } from '../models';
+import { IRequest, Paging, ISortParams } from '../models';
 
 const IGNORED_FILTERS = new Set<string>(['fields', 'paging']);
 
@@ -29,7 +29,7 @@ export abstract class AController {
 		return (request?.query?.fields || '').split(',');
 	}
 
-	protected getPaging(request: IRequest): Paging {
-		return Paging.parse(request?.query?.paging);
+	protected getPaging(request: IRequest, sortParams?: ISortParams): Paging {
+		return Paging.parse(request?.query?.paging, sortParams);
 	}
 }

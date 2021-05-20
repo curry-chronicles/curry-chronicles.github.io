@@ -11,7 +11,7 @@ export class RecipesController extends AController {
 		RecipeSchema.find(
 			this.getFilters(request),
 			this.getFields(request),
-			this.getPaging(request),
+			this.getPaging(request, { key: "publicationDate", direction: -1 }),
 			(error: Error, recipes: Document[]) => {
 				if (error != null) {
 					response.send(error);

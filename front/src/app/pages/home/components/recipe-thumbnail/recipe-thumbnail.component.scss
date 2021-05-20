@@ -19,12 +19,19 @@
 	content {
 		display: block;
 		overflow: hidden;
+		@media screen and (min-width: $mobile-width-breakpoint) {
+			height: 13.5rem;
+		}
 
 		img {
 			display: block;
 			border: 0;
-			width: 100%;
-			height: auto;
+			@media screen and (min-width: $tablet-width-breakpoint) {
+				height: 100%;
+			}
+			@media screen and (max-width: $tablet-width-breakpoint) {
+				width: 100%;
+			}
 			transition: transform 0.25s ease, filter 0.25s ease;
 		}
 	}
@@ -35,6 +42,13 @@
 		color: $grey;
 		font-size: 1rem;
 		text-align: center;
+		@media screen and (min-width: $mobile-width-breakpoint) {
+			height: 2.2rem;
+			display: flex;
+			justify-content: center;
+			align-content: center;
+			flex-direction: column;
+		}
 	}
 
 	&:hover {

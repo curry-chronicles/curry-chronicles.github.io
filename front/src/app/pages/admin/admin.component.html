@@ -25,7 +25,7 @@
 				<content>
 					<img [src]="recipe.mainPicture" [alt]="recipe.name">
 					<div class="recipe-actions">
-						<button mat-fab [routerLink]="['/edit', recipe.id]" matTooltip="Editer"
+						<button mat-fab [routerLink]="['edit', recipe.id]" matTooltip="Editer"
 							matTooltipPosition="above">
 							<mat-icon>edit</mat-icon>
 						</button>

@@ -15,7 +15,6 @@ export class RecipeResolver implements Resolve<IRecipe> {
 	public resolve(route: ActivatedRouteSnapshot, _: RouterStateSnapshot): Observable<IRecipe> {
 		const recipeId = route?.params?.recipeId as string;
 		if (recipeId == null) {
-			this.router.navigateByUrl('/');
 			return of(null);
 		}
 		return this.recipesService.getRecipeById(recipeId).pipe(

@@ -77,6 +77,13 @@ export class RecipesController extends AController {
 	}
 
 	public update(request: Request, response: Response): void {
+		let loginController = new LoginController()
+		if (!loginController.isLogged(request)) {
+			response.status(403);
+			response.send('Vous devez être identifié en tant qu\'admin');
+			return;
+		}
+
 		delete request.body._id;
 		const pictureRegex = new RegExp('^data:image', 'i');
 		const picture = request.body.mainPicture;

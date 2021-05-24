@@ -2,6 +2,7 @@
 	<h2>{{ recipe.name }}</h2>
 </header>
 <content>
+	<div class="img-container" [ngStyle]="{'background-image': 'url(' + recipe.mainPicture + ')'}"></div>
 	<img [src]="recipe.mainPicture" [alt]="recipe.name">
 </content>
 <footer>

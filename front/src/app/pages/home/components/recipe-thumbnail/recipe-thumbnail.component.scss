@@ -19,20 +19,33 @@
 	content {
 		display: block;
 		overflow: hidden;
-		@media screen and (min-width: $mobile-width-breakpoint) {
-			height: 13.5rem;
+		@media screen and (min-width: $tablet-width-breakpoint) {
+			height: 14vw;
 		}
 
-		img {
-			display: block;
-			border: 0;
+		.img-container {
 			@media screen and (min-width: $tablet-width-breakpoint) {
+				display: block;
+				border: 0;
+				background-size: cover;
 				height: 100%;
+				transition: transform 0.25s ease, filter 0.25s ease;
 			}
 			@media screen and (max-width: $tablet-width-breakpoint) {
-				width: 100%;
+				display: none;
 			}
-			transition: transform 0.25s ease, filter 0.25s ease;
+		}
+		img {
+			@media screen and (min-width: $tablet-width-breakpoint) {
+				display: none;
+			}
+			@media screen and (max-width: $tablet-width-breakpoint) {
+				display: block;
+				border: 0;
+				width: 100%;
+				height: auto;
+				transition: transform 0.25s ease, filter 0.25s ease;
+			}
 		}
 	}
 
@@ -52,6 +65,10 @@
 	}
 
 	&:hover {
+		.img-container {
+			filter: contrast(1.15);
+			transform: scale(1.333);
+		}
 		img {
 			filter: contrast(1.15);
 			transform: scale(1.333);

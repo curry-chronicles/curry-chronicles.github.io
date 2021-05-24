@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IRecipeOverview, Page, RecipesService } from '@curry-chronicles/shared';
-import { fromEvent, Observable, of } from 'rxjs';
+import { fromEvent, BehaviorSubject } from 'rxjs';
 import { debounceTime, map } from 'rxjs/operators';
 
 const SEARCH_DEBOUNCE_TIME_IN_MS = 300;
@@ -13,7 +13,8 @@ const SEARCH_DEBOUNCE_TIME_IN_MS = 300;
 })
 export class HomeComponent implements OnInit {
 
-	public recipesPage$: Observable<Page<IRecipeOverview>>;
+	private recipesPage: Page<IRecipeOverview>;
+	public recipesPage$: BehaviorSubject<Page<IRecipeOverview>>;
 
 	@ViewChild('searchInputElement', { static: true })
 	public searchInputElement: ElementRef<HTMLInputElement>;
@@ -29,7 +30,9 @@ export class HomeComponent implements OnInit {
 		private readonly recipesService: RecipesService,
 		private readonly activatedRoute: ActivatedRoute
 	) {
-		this.recipesPage$ = of(this.activatedRoute.snapshot.data.recipesPage as Page<IRecipeOverview>);
+		this.recipesPage = this.activatedRoute.snapshot.data.recipesPage as Page<IRecipeOverview>;
+		this.recipesPage$ = new BehaviorSubject<Page<IRecipeOverview>>(new Page<IRecipeOverview>(0, 0, []));
+		this.recipesPage$.next(this.recipesPage);
 	}
 
 	public ngOnInit(): void {
@@ -57,11 +60,21 @@ export class HomeComponent implements OnInit {
 
 	private onSearchChanged(): void {
 		if (this.isSearchInputEmpty) {
-			this.recipesPage$ = this.recipesService.getPagedRecipes();
+			this.recipesService.getPagedRecipes().subscribe(
+				recipes => {
+					this.recipesPage = recipes;
+					this.recipesPage$.next(this.recipesPage);
+				}
+			);
 			return;
 		}
-		this.recipesPage$ = this.recipesService.getRecipesByClue(this.searchInput).pipe(
+		this.recipesService.getRecipesByClue(this.searchInput).pipe(
 			map(recipes => new Page<IRecipeOverview>(0, 0, recipes, true))
+		).subscribe(
+			recipes => {
+				this.recipesPage = recipes;
+					this.recipesPage$.next(this.recipesPage);
+			}
 		);
 	}
 }

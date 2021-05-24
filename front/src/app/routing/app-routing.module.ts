@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
 	{
 		path: '',
-		loadChildren: () => import('../pages/home').then(m => m.HomeModule),
+		loadChildren: () => import('../pages/home').then(m => m.HomeModule)
 	},
 	{
 		path: 'login',
@@ -15,12 +15,16 @@ const routes: Routes = [
 		loadChildren: () => import('../pages/admin').then(m => m.AdminModule)
 	},
 	{
-		path: ':recipeId',
-		loadChildren: () => import('../pages/recipe').then(m => m.RecipeModule),
+		path: 'admin/add-recipe',
+		loadChildren: () => import('../pages/recipe-edition').then(m => m.RecipeEditionModule)
 	},
 	{
-		path: 'edit/:recipeId',
+		path: 'admin/edit/:recipeId',
 		loadChildren: () => import('../pages/recipe-edition').then(m => m.RecipeEditionModule)
+	},
+	{
+		path: ':recipeId',
+		loadChildren: () => import('../pages/recipe').then(m => m.RecipeModule)
 	}
 ];
 

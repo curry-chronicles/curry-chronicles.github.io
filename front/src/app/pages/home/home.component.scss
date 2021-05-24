@@ -20,7 +20,6 @@
 }
 
 .recipes-list {
-
 	// When screen big enough, display overviews in a grid
 	@media screen and (min-width: $mobile-width-breakpoint) {
 		display: flex;
@@ -44,7 +43,7 @@
 		}
 
 		cursor: pointer;
-		box-shadow: 0 0px 15px rgba(36, 37, 38, .15);
+		box-shadow: 0 0px 15px rgba(36, 37, 38, 0.15);
 		margin-bottom: 1rem;
 	}
 }
@@ -59,7 +58,9 @@
 	margin: 10rem 0;
 	p {
 		font-size: 0.9rem;
-		line-height: 0.5rem;
+		@media screen and (min-width: $tablet-width-breakpoint) {
+			line-height: 0.5rem;
+		}
 	}
 }
 
@@ -73,7 +74,7 @@
 		margin-bottom: 3rem;
 	}
 
-	>span {
+	> span {
 		color: $grey;
 	}
 }

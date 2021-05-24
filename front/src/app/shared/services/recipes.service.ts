@@ -41,6 +41,11 @@ export class RecipesService {
 				currentPaging.items.push(...recipes);
 				return currentPaging;
 			})
+		).pipe(
+			catchError(error => {
+				console.error(error);
+				return of(new Page<IRecipeOverview>(0, PAGING_INCREMENT, []))
+			})
 		);
 	}
 

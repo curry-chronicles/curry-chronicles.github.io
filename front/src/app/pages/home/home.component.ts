@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
 		private readonly activatedRoute: ActivatedRoute
 	) {
 		this.recipesPage = this.activatedRoute.snapshot.data.recipesPage as Page<IRecipeOverview>;
-		this.recipesPage$ = new BehaviorSubject<Page<IRecipeOverview>>(null);
+		this.recipesPage$ = new BehaviorSubject<Page<IRecipeOverview>>(new Page<IRecipeOverview>(0, 0, []));
 		this.recipesPage$.next(this.recipesPage);
 	}
 

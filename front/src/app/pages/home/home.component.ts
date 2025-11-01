@@ -1,80 +1,53 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { IRecipeOverview, Page, RecipesService } from '@curry-chronicles/shared';
-import { fromEvent, BehaviorSubject } from 'rxjs';
-import { debounceTime, map } from 'rxjs/operators';
-
-const SEARCH_DEBOUNCE_TIME_IN_MS = 300;
+import { Component, OnInit } from '@angular/core';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { Page, IRecipeOverview } from '../../shared/models';
+import { RecipesService } from '../../shared/services/recipes.service';
+import { map } from 'rxjs/operators';
 
 @Component({
-	selector: 'app-home',
-	templateUrl: './home.component.html',
-	styleUrls: ['./home.component.scss']
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
 
-	private recipesPage: Page<IRecipeOverview>;
-	public recipesPage$: BehaviorSubject<Page<IRecipeOverview>>;
+  searchInput = '';
+  recipesPage$!: Observable<Page<IRecipeOverview>>;
+  private pageSubject = new BehaviorSubject<Page<IRecipeOverview> | null>(null);
+  isLoadingMore = false;
 
-	@ViewChild('searchInputElement', { static: true })
-	public searchInputElement: ElementRef<HTMLInputElement>;
-	public searchInput = '';
+  constructor(
+    private readonly recipesService: RecipesService,
+  ) {}
 
-	public isLoadingMore = false;
+  get isSearchInputEmpty(): boolean {
+    return !this.searchInput.trim();
+  }
 
-	public get isSearchInputEmpty(): boolean {
-		return this.searchInput == null || this.searchInput.length === 0;
-	}
+  ngOnInit(): void {
+    this.recipesService.resetPaging();
+    this.recipesPage$ = this.pageSubject.asObservable().pipe(map(p => p!));
+    this.loadMore();
+  }
 
-	constructor(
-		private readonly recipesService: RecipesService,
-		private readonly activatedRoute: ActivatedRoute
-	) {
-		this.recipesPage = this.activatedRoute.snapshot.data.recipesPage as Page<IRecipeOverview>;
-		this.recipesPage$ = new BehaviorSubject<Page<IRecipeOverview>>(new Page<IRecipeOverview>(0, 0, []));
-		this.recipesPage$.next(this.recipesPage);
-	}
+  onClearSearchInput(): void {
+    this.searchInput = '';
+    this.onSearchChanged();
+  }
 
-	public ngOnInit(): void {
-		fromEvent(this.searchInputElement.nativeElement, 'keyup').pipe(
-			debounceTime(SEARCH_DEBOUNCE_TIME_IN_MS)
-		).subscribe(() => {
-			this.onSearchChanged();
-		});
-	}
+  onSearchChanged(): void {
+    this.recipesService.filterRecipes(this.searchInput);
+    this.pageSubject.next(null);
+    this.loadMore();
+  }
 
-	public onClearSearchInput(): void {
-		this.searchInput = '';
-		this.onSearchChanged();
-	}
+  loadMore(_: any = null): void {
+    if (this.isLoadingMore) return;
+    this.isLoadingMore = true;
 
-	public loadMore(page: Page<IRecipeOverview>): void {
-		if (page.hasReachedLimit) {
-			return;
-		}
-		this.isLoadingMore = true;
-		this.recipesService.getPagedRecipes(page).subscribe(() => {
-			this.isLoadingMore = false;
-		});
-	}
-
-	private onSearchChanged(): void {
-		if (this.isSearchInputEmpty) {
-			this.recipesService.getPagedRecipes().subscribe(
-				recipes => {
-					this.recipesPage = recipes;
-					this.recipesPage$.next(this.recipesPage);
-				}
-			);
-			return;
-		}
-		this.recipesService.getRecipesByClue(this.searchInput).pipe(
-			map(recipes => new Page<IRecipeOverview>(0, 0, recipes, true))
-		).subscribe(
-			recipes => {
-				this.recipesPage = recipes;
-					this.recipesPage$.next(this.recipesPage);
-			}
-		);
-	}
+    this.recipesService.getPagedRecipes().subscribe(page => {
+      this.pageSubject.next(page);
+      this.isLoadingMore = false;
+    });
+  }
 }

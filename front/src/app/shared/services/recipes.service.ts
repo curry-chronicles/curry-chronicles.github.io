@@ -1,100 +1,154 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { catchError, map, shareReplay } from 'rxjs/operators';
-// TODO: inject env instead of simply importing it, see: 
-// https://seangwright.medium.com/the-best-way-to-use-angulars-environment-files-a0c098551abc
-import { environment } from './../../../environments/environment';
+import { Observable, of, throwError } from 'rxjs';
+import { map, shareReplay, catchError } from 'rxjs/operators';
 import { IRecipe, IRecipeOverview, Page, ThumbnailType } from './../models';
 import { ImgurService } from './imgur.service';
 
-const RECIPES_API = '/api/recipes';
-const RECIPE_OVERVIEW_FIELDS = 'id,name,mainPicture,headLine,publicationDate';
-
+const RECIPES_ASSET_URL = 'assets/recipes.json';
 const PAGING_INCREMENT = 10;
 
 @Injectable()
 export class RecipesService {
-	private static recipes: Observable<IRecipeOverview[]>;
 
-	constructor(
-		private readonly http: HttpClient,
-		private readonly imgurService: ImgurService
-	) { }
+  private static allRecipesCache: IRecipe[] | null = null;
+  private allRecipes$?: Observable<IRecipe[]>;
+  private pagingState: Page<IRecipeOverview> | null = null;
+  private filteredOverviews: IRecipeOverview[] | null = null;
 
-	public getPagedRecipes(currentPaging: Page<IRecipeOverview> = null): Observable<Page<IRecipeOverview>> {
-		if (currentPaging == null) {
-			currentPaging = new Page<IRecipeOverview>(0, PAGING_INCREMENT, []);
-		} else {
-			currentPaging.skip += PAGING_INCREMENT;
-		}
-		return this.http.get<IRecipeOverview[]>(
-			`${environment.backendUrl}${RECIPES_API}?fields=${RECIPE_OVERVIEW_FIELDS}&paging=${currentPaging.skip},${currentPaging.limit}`
-		).pipe(
-			map(recipes => {
-				if (recipes.length === 0) {
-					currentPaging.hasReachedLimit = true;
-				}
-				recipes.forEach(recipe => {
-					recipe.mainPicture = this.imgurService.toThumbnail(recipe.mainPicture, ThumbnailType.largeThumbnail);
-				});
-				currentPaging.items.push(...recipes);
-				return currentPaging;
-			})
-		).pipe(
-			catchError(error => {
-				console.error(error);
-				return of(new Page<IRecipeOverview>(0, PAGING_INCREMENT, []))
-			})
-		);
-	}
+  constructor(
+    private readonly http: HttpClient,
+    private readonly imgurService: ImgurService,
+  ) {}
 
-	public getRecipesOverviews(): Observable<IRecipeOverview[]> {
-		if (RecipesService.recipes == null) {
-			RecipesService.recipes = this.http.get<IRecipeOverview[]>(
-				`${environment.backendUrl}${RECIPES_API}?fields=${RECIPE_OVERVIEW_FIELDS}`
-			).pipe(
-				shareReplay(1)
-			);
-		}
-		return RecipesService.recipes;
-	}
+  private loadAll(): Observable<IRecipe[]> {
+    if (RecipesService.allRecipesCache) {
+      return of(RecipesService.allRecipesCache);
+    }
+    if (!this.allRecipes$) {
+      this.allRecipes$ = this.http.get<any[]>(RECIPES_ASSET_URL).pipe(
+        map(list =>
+          list.map(r => ({
+            id: r.id,
+            name: r.name,
+            headLine: r.headLine,
+            mainPicture: r.mainPicture,
+            publicationDate: r.publicationDate,
+            servesHowManyPeople: r.servesHowManyPeople,
+            preparationTime: r.preparationTime,
+            cookingTime: r.cookingTime,
+            description: r.description,
+            ingredients: r.ingredients.map(i => ({
+              name: i.name,
+              amount: i.amount,
+              unit: i.unit || '',
+              quantity: i.unit ? `${i.amount} ${i.unit}` : `${i.amount}`
+            })),
+            directions: r.directions.map((d, index) => ({
+              stepNumber: index + 1,
+              description: d.description
+            }))
+          }))
+        ),
+        map(list =>
+          [...list].sort(
+            (a, b) =>
+              new Date(b.publicationDate).getTime() -
+              new Date(a.publicationDate).getTime()
+          )
+        ),
+        shareReplay(1)
+      );
+    }
+    return this.allRecipes$.pipe(
+      map(list => {
+        RecipesService.allRecipesCache = list;
+        return list;
+      })
+    );
+  }
 
-	public getRecipesByClue(clue: string): Observable<IRecipeOverview[]> {
-		return this.http.get<IRecipeOverview[]>(
-			`${environment.backendUrl}${RECIPES_API}?fields=${RECIPE_OVERVIEW_FIELDS}&name=like,${clue}`
-		).pipe(
-			map(recipes => {
-				recipes.forEach(recipe => {
-					recipe.mainPicture = this.imgurService.toThumbnail(recipe.mainPicture, ThumbnailType.largeThumbnail);
-				});
-				return recipes;
-			})
-		);
-	}
+  public getRecipesOverviews(): Observable<IRecipeOverview[]> {
+    return this.loadAll().pipe(
+      map(list =>
+        list.map(r => ({
+          id: r.id,
+          name: r.name,
+          headLine: r.headLine,
+          publicationDate: r.publicationDate,
+          mainPicture: this.imgurService.toThumbnail(
+            r.mainPicture,
+            ThumbnailType.largeThumbnail
+          )
+        }))
+      )
+    );
+  }
 
-	public getRecipeById(id: string): Observable<IRecipe> {
-		return this.http.get<IRecipe>(`${environment.backendUrl}${RECIPES_API}/${id}`).pipe(
-			catchError(_ => of(null))
-		);
-	}
+  public resetPaging(): void {
+    this.pagingState = null;
+  }
 
-	/** Returns the lowercased Ids of all existing recipes */
-	public getAllRecipeIds(): Observable<Set<string>> {
-		return this.http.get<IRecipeOverview[]>(`${environment.backendUrl}${RECIPES_API}?fields=id`).pipe(
-			map(recipes => new Set<string>(recipes.map(recipe => recipe.id.toLocaleLowerCase())))
-		);
-	}
+  public filterRecipes(clue: string): void {
+    const q = (clue ?? '').trim().toLowerCase();
+    if (!q) {
+      this.filteredOverviews = null;
+      this.resetPaging();
+      return;
+    }
+    this.getRecipesOverviews().subscribe(all => {
+      this.filteredOverviews = all.filter(r =>
+        (r.name ?? '').toLowerCase().includes(q) ||
+        (r.headLine ?? '').toLowerCase().includes(q)
+      );
+      this.resetPaging();
+    });
+  }
 
-	public create(recipe: IRecipe): Observable<IRecipe> {
-		return this.http.post<IRecipe>(`${environment.backendUrl}${RECIPES_API}`, recipe, { withCredentials: true });
-	}
+  public getPagedRecipes(): Observable<Page<IRecipeOverview>> {
+    const source$ = this.filteredOverviews ? of(this.filteredOverviews) : this.getRecipesOverviews();
+    return source$.pipe(
+      map(overviews => {
+        if (!this.pagingState) {
+          this.pagingState = new Page<IRecipeOverview>(0, PAGING_INCREMENT, []);
+        }
+        const start = this.pagingState.items.length;
+        const end = start + this.pagingState.limit;
+        const slice = overviews.slice(start, end);
+        const newPage = new Page<IRecipeOverview>(
+          this.pagingState.skip,
+          this.pagingState.limit,
+          [...this.pagingState.items, ...slice],
+          end >= overviews.length
+        );
+        this.pagingState = newPage;
+        return newPage;
+      })
+    );
+  }
 
-	public update(recipe: IRecipe): Observable<IRecipe> {
-		return this.http.put<IRecipe>(`${environment.backendUrl}${RECIPES_API}/${recipe.id}`, recipe, { withCredentials: true });
-	}
+  public getRecipeById(id: string): Observable<IRecipe | null> {
+    return this.loadAll().pipe(
+      map(list => list.find(r => r.id === id) ?? null),
+      catchError(() => of(null))
+    );
+  }
 
-	public delete(id: string): Observable<any> {
-		return this.http.delete(`${environment.backendUrl}${RECIPES_API}/${id}`, { withCredentials: true });
-	}
+  public getAllRecipeIds(): Observable<Set<string>> {
+    return this.loadAll().pipe(
+      map(list => new Set<string>(list.map(r => (r.id ?? '').toLowerCase())))
+    );
+  }
+
+  public create(_: IRecipe): Observable<IRecipe> {
+    return throwError(() => new Error('What are you trying to do?'));
+  }
+
+  public update(_: IRecipe): Observable<IRecipe> {
+    return throwError(() => new Error('What are you trying to do?'));
+  }
+
+  public delete(_: string): Observable<any> {
+    return throwError(() => new Error('What are you trying to do?'));
+  }
 }

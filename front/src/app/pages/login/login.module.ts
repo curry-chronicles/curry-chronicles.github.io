@@ -8,6 +8,7 @@ import { AuthGuard, IAuthGuardData, SharedModule } from '@curry-chronicles/share
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
 import { LoginComponent } from './login.component';
+import { CURRY_CHRONICLES_FORMLY_CONFIG } from '../recipe-edition/forms';
 
 const routes: Routes = [
 	{
@@ -30,7 +31,7 @@ const routes: Routes = [
 		MatCardModule,
 		MatButtonModule,
 		FormsModule,
-		FormlyModule,
+		FormlyModule.forRoot(CURRY_CHRONICLES_FORMLY_CONFIG),
 		FormlyMaterialModule,
 		ReactiveFormsModule
 	],

@@ -1,75 +1,44 @@
-import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AuthenticationService, ConfirmationDialogComponent, ConfirmationDialogResult, IConfirmationDialogData, IRecipe, IRecipeOverview, Page, RecipesService, SnackbarConfigs } from '@curry-chronicles/shared';
-import { filter, mergeMap } from 'rxjs/operators';
+import { Component, OnInit } from '@angular/core';
+import { Page, IRecipeOverview } from '../../shared/models';
+import { RecipesService } from '../../shared/services/recipes.service';
 
 @Component({
-	selector: 'app-admin',
-	templateUrl: './admin.component.html',
-	styleUrls: ['./admin.component.scss']
+  selector: 'app-admin',
+  templateUrl: './admin.component.html',
+  styleUrls: ['./admin.component.scss']
 })
-export class AdminComponent {
+export class AdminComponent implements OnInit {
 
-	public isLoggingOut = false;
-	public recipesPage: Page<IRecipeOverview>;
-	public isLoadingMore = false;
+  recipesPage: Page<IRecipeOverview> | null = null;
+  isLoadingMore = false;
+  isLoggingOut = false;
 
-	constructor(
-		private readonly authenticationService: AuthenticationService,
-		private readonly router: Router,
-		private readonly recipesService: RecipesService,
-		private readonly activatedRoute: ActivatedRoute,
-		private readonly dialog: MatDialog,
-		private readonly snackBar: MatSnackBar
-	) {
-		this.recipesPage = this.activatedRoute.snapshot.data.recipesPage as Page<IRecipeOverview>;
-	}
+  constructor(
+    private readonly recipesService: RecipesService,
+  ) {}
 
-	public logout(): void {
-		this.isLoggingOut = true;
-		this.authenticationService.logout().subscribe(() => {
-			this.isLoggingOut = false;
-			this.router.navigateByUrl('/');
-		});
-	}
+  ngOnInit(): void {
+    this.recipesService.resetPaging();
+    this.loadMore();
+  }
 
-	public loadMore(page: Page<IRecipeOverview>): void {
-		if (page.hasReachedLimit) {
-			return;
-		}
-		this.isLoadingMore = true;
-		this.recipesService.getPagedRecipes(page).subscribe(() => {
-			this.isLoadingMore = false;
-		});
-	}
+  loadMore(_: any = null): void {
+    if (this.isLoadingMore || (this.recipesPage && this.recipesPage.hasReachedLimit)) {
+      return;
+    }
 
-	public openDialog(recipe: IRecipe): void {
-		this.dialog.open(ConfirmationDialogComponent, {
-			data: {
-				title: 'Supprimer la recette ?',
-				message: `Voulez-vous vraiment supprimer la recette "${recipe.name}" ?`
-			} as IConfirmationDialogData
-		}).afterClosed().pipe(
-			filter((result: ConfirmationDialogResult) => result === ConfirmationDialogResult.confirmed),
-			mergeMap(() => this.recipesService.delete(recipe.id))
-		).subscribe(
-			() => {
-				this.recipesPage.items = this.recipesPage.items.filter(r => r.id !== recipe.id);
-				this.snackBar.open(
-					`La recette '${recipe}' a été supprimée avec succès`,
-					'Fermer',
-					SnackbarConfigs.success
-				);
-			},
-			() => {
-				this.snackBar.open(
-					'Une erreur est survenue lors de la suppression 😔',
-					'Fermer',
-					SnackbarConfigs.error
-				);
-			}
-		);
-	}
+    this.isLoadingMore = true;
+
+    this.recipesService.getPagedRecipes().subscribe(page => {
+      this.recipesPage = page;
+      this.isLoadingMore = false;
+    });
+  }
+
+  logout(): void {
+    this.isLoggingOut = true;
+    setTimeout(() => this.isLoggingOut = false, 400);
+  }
+
+  openDialog(_: any): void {}
 }

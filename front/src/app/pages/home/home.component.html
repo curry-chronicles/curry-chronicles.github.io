@@ -7,8 +7,7 @@
 	<!-- Search input -->
 	<mat-form-field>
 		<mat-label>Rechercher</mat-label>
-		<input type="text" matInput #searchInputElement [(ngModel)]="searchInput"
-			placeholder="Rechercher une recette" />
+		<input type="text" matInput [(ngModel)]="searchInput" (input)="onSearchChanged()" placeholder="Rechercher une recette" />
 		<button *ngIf="isSearchInputEmpty" disabled type="button" mat-icon-button matSuffix aria-label="search">
 			<mat-icon>search</mat-icon>
 		</button>

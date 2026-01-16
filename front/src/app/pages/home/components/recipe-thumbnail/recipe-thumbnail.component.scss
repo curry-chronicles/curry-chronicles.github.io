@@ -19,13 +19,33 @@
 	content {
 		display: block;
 		overflow: hidden;
+		@media screen and (min-width: $tablet-width-breakpoint) {
+			height: 14vw;
+		}
 
+		.img-container {
+			@media screen and (min-width: $tablet-width-breakpoint) {
+				display: block;
+				border: 0;
+				background-size: cover;
+				height: 100%;
+				transition: transform 0.25s ease, filter 0.25s ease;
+			}
+			@media screen and (max-width: $tablet-width-breakpoint) {
+				display: none;
+			}
+		}
 		img {
-			display: block;
-			border: 0;
-			width: 100%;
-			height: auto;
-			transition: transform 0.25s ease, filter 0.25s ease;
+			@media screen and (min-width: $tablet-width-breakpoint) {
+				display: none;
+			}
+			@media screen and (max-width: $tablet-width-breakpoint) {
+				display: block;
+				border: 0;
+				width: 100%;
+				height: auto;
+				transition: transform 0.25s ease, filter 0.25s ease;
+			}
 		}
 	}
 
@@ -35,9 +55,20 @@
 		color: $grey;
 		font-size: 1rem;
 		text-align: center;
+		@media screen and (min-width: $mobile-width-breakpoint) {
+			height: 2.2rem;
+			display: flex;
+			justify-content: center;
+			align-content: center;
+			flex-direction: column;
+		}
 	}
 
 	&:hover {
+		.img-container {
+			filter: contrast(1.15);
+			transform: scale(1.333);
+		}
 		img {
 			filter: contrast(1.15);
 			transform: scale(1.333);
